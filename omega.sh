@@ -6,7 +6,7 @@ tput civis
 APP=$(dirname "$0")/$(basename "$0")
 SYM_PATH=$(readlink -f "$APP")
 
-BASE_PATH=$(echo "$SYM_PATH" | sed "s/\/game.sh//")
+BASE_PATH=$(echo "$SYM_PATH" | sed "s/\/omega.sh//")
 SRC_PATH=$BASE_PATH/src
 TMP_PATH=$BASE_PATH/.tmp
 GFX_PATH=$SRC_PATH/gfx
