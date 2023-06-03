@@ -1,10 +1,10 @@
 #!/bin/bash
 
+HUD_WIDTH=50
 function drawHUD()
 {
 	cols=`tput cols`
-	hud_width=50
-	start_col=$((cols-hud_width))
+	start_col=$((cols-HUD_WIDTH))
 
 	rows=`tput lines`
 	rows=$((rows-1))
@@ -21,7 +21,7 @@ function drawHUD()
 		printf "="
 
 		iLoop=$((iLoop+1))
-		if (( iLoop == hud_width )); then
+		if (( iLoop == HUD_WIDTH )); then
 			break
 		fi
 	done
@@ -31,7 +31,7 @@ function drawHUD()
 		tput cup $iLoop $start_col
 		printf "|"
 
-		tput cup $iLoop $((start_col+hud_width))
+		tput cup $iLoop $((start_col+HUD_WIDTH))
 		printf "|"
 
 		iLoop=$((iLoop+1))
@@ -92,7 +92,20 @@ function drawMenu()
 
 function drawComms()
 {
+	tput cup 5 $((start_col+menu_pad))
+	printf "\e[38;5;15m[\e[38;5;${OC}mn\e[0m\e[38;5;15m]\e[38;5;32m Communications\e[0m"
 
+	tput cup 7 $((start_col+menu_pad))
+	printf "\e[38;5;15m[\e[38;5;${OC}mb\e[0m\e[38;5;15m] Back"
+
+	# Draw the current comms menu
+	for screen_key in "${!LOCATIONS[@]}"; do
+		if  ${LOCATIONS[$screen_key]} ; then
+			COMMS_RENDER="comms$screen_key"
+			eval "$COMMS_RENDER"
+			break
+		fi
+	done
 }
 
 function drawEngage()

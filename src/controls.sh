@@ -6,6 +6,12 @@ function controls()
 	    read -t 0.01 -s -n 10000 key
 
 		case "$key" in
+			[cC])
+				drawComms
+				
+				clear
+				drawScreen
+				;;
 			[nN])
 				drawGalaxyMap
 				mapControls

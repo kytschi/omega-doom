@@ -1,6 +1,7 @@
 #!/bin/bash
 
 current_location="SawousEmpire"
+ZONE_PATH=$UNIVERSE_PATH/sawous-empire
 
 LOCATIONS["${current_location}SolarisPrime"]=true
 LOCATIONS["${current_location}Triu"]=false
@@ -8,49 +9,50 @@ LOCATIONS["${current_location}Triu"]=false
 function atSawousEmpireSolarisPrime()
 {
 	LOCATION_TITLE="SOLARIS PRIME"
-	drawGfx "solaris-prime.gfx"
+	drawGfx "$ZONE_PATH/gfx/solaris-prime.gfx"
+	source "$ZONE_PATH/comms.sh"
 }
 
 function atSawousEmpireTriu()
 {
 	LOCATION_TITLE="TRIU"
-	drawGfx "triu.gfx"
+	drawGfx "$ZONE_PATH/gfx/triu.gfx"
 }
 
 function atSawousEmpireMortuus()
 {
 	LOCATION_TITLE="MORTUUS"
-	drawGfx "mortuus.gfx"
+	drawGfx "$ZONE_PATH/gfx/mortuus.gfx"
 }
 
 function atSawousEmpireGaea()
 {
 	LOCATION_TITLE="GAEA"
-	drawGfx "gaea.gfx"
+	drawGfx "$ZONE_PATH/gfx/gaea.gfx"
 }
 
 function atSawousEmpireElatus()
 {
 	LOCATION_TITLE="ELATUS"
-	drawGfx "elatus.gfx"
+	drawGfx "$ZONE_PATH/gfx/elatus.gfx"
 }
 
 function atSawousEmpireHellhound()
 {
 	LOCATION_TITLE="HELLHOUND"
-	drawGfx "hellhound.gfx"
+	drawGfx "$ZONE_PATH/gfx/hellhound.gfx"
 }
 
 function atSawousEmpirePholus()
 {
 	LOCATION_TITLE="PHOLUS"
-	drawGfx "pholus.gfx"
+	drawGfx "$ZONE_PATH/gfx/pholus.gfx"
 }
 
 function atSawousEmpireCrommyon()
 {
 	LOCATION_TITLE="CROMMYON"
-	drawGfx "crommyon.gfx"
+	drawGfx "$ZONE_PATH/gfx/crommyon.gfx"
 }
 
 function drawSawousEmpireMapLocations()
@@ -95,7 +97,7 @@ function drawSawousEmpireMap()
 		printf '%s' "$line"
 
 		start_row=$((start_row+1))
-	done < $GFX_PATH/sawous-empire-map.gfx
+	done < $ZONE_PATH/gfx/sawous-empire-map.gfx
 
 	drawSawousEmpireMapLocations
 

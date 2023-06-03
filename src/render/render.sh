@@ -13,17 +13,17 @@ if (( `ls $RENDER_PATH/*.png 2>/dev/null | wc -l` )); then
 			echo "Rendering $src to ${desc}.gfx"
 
 			if [ $src != "logo.png" ]; then
-			convert \
-				$src \
-				-background none \
-				-layers flatten \
-				jpg:- | jp2a - --color > $GFX_PATH$desc.gfx
+				convert \
+					$src \
+					-background none \
+					-layers flatten \
+					jpg:- | jp2a - --color > $GFX_PATH$desc.gfx
 			else
-			convert \
-				$src \
-				-background none \
-				-layers flatten \
-				jpg:- | jp2a - --color > $GFX_PATH$desc.gfx
+				convert \
+					$src \
+					-background none \
+					-layers flatten \
+					jpg:- | jp2a - --color > $GFX_PATH$desc.gfx
 
 			fi
 		fi

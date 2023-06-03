@@ -10,6 +10,7 @@ BASE_PATH=$(echo "$SYM_PATH" | sed "s/\/omega.sh//")
 SRC_PATH=$BASE_PATH/src
 TMP_PATH=$BASE_PATH/.tmp
 GFX_PATH=$SRC_PATH/gfx
+UNIVERSE_PATH=$SRC_PATH/universe
 RENDER_PATH=$SRC_PATH/render
 
 source $SRC_PATH/controls.sh
@@ -18,6 +19,7 @@ source $SRC_PATH/screen.sh
 
 declare -A LOCATIONS
 TO_LOCATION=""
+COMMS_MENU=""
 
 SCREEN_WIDTH=640
 SCREEN_HEIGHT=480
@@ -29,7 +31,7 @@ PLAYER_Y=0 #$(( SCREEN_HEIGHT / 1 ))
 FUEL=32
 
 source $SRC_PATH/map.sh
-source $SRC_PATH/universe/sawous-empire.sh
+source $SRC_PATH/universe/sawous-empire/zone.sh
 
 drawScreen
 controls
