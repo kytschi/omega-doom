@@ -3,9 +3,9 @@
 function controls()
 {
 	while true; do
-	        read -t 0.01 -s -n 10000 key
+	    read -t 0.01 -s -n 10000 key
 
-        	case "$key" in
+		case "$key" in
 			[nN])
 				drawGalaxyMap
 				mapControls
@@ -13,9 +13,9 @@ function controls()
 				clear
 				drawScreen
 				;;
-            		[qQ])
+			[qQ])
 				quit
-                  		;;
+				;;
 		esac
 	done
 }
@@ -23,7 +23,7 @@ function controls()
 function quit()
 {
 	clear
-        tput cup 0 0
-       	echo "Good-bye"
-        exit 1
+	tput cup 0 0
+	echo "Good-bye"
+	exit 1
 }

@@ -30,8 +30,8 @@ function drawLocationTitle()
 		fi
 
 		if (( iLoop == 6 )); then
-                        running=false
-                fi
+			running=false
+		fi
 	done
 }
 
@@ -56,15 +56,15 @@ function drawGfx()
 	file=$1
 
 	while IFS= read -r line; do
-                printf '%s\n' "$line"
-        done < $GFX_PATH/$file
+		printf '%s\n' "$line"
+	done < $GFX_PATH/$file
 }
 
 function engage()
 {
 	for screen_key in "${!LOCATIONS[@]}"; do
-                LOCATIONS[$screen_key]=false
-        done
+		LOCATIONS[$screen_key]=false
+	done
 
 	LOCATIONS[$TO_LOCATION]=true
 

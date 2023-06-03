@@ -8,7 +8,7 @@ if (( `ls $RENDER_PATH/*.png 2>/dev/null | wc -l` )); then
 		src=${src##*/}
 
 		if [ $src != "ship.png" ]; then
-                	desc=${src/.png/""}
+        	desc=${src/.png/""}
 
 			echo "Rendering $src to ${desc}.gfx"
 
@@ -20,10 +20,10 @@ if (( `ls $RENDER_PATH/*.png 2>/dev/null | wc -l` )); then
 				jpg:- | jp2a - --color > $GFX_PATH$desc.gfx
 			else
 			convert \
-                                $src \
-                                -background none \
-                                -layers flatten \
-                                jpg:- | jp2a - --color > $GFX_PATH$desc.gfx
+				$src \
+				-background none \
+				-layers flatten \
+				jpg:- | jp2a - --color > $GFX_PATH$desc.gfx
 
 			fi
 		fi

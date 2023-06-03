@@ -13,44 +13,44 @@ function atSawousEmpireSolarisPrime()
 
 function atSawousEmpireTriu()
 {
-        LOCATION_TITLE="TRIU"
-        drawGfx "triu.gfx"
+	LOCATION_TITLE="TRIU"
+	drawGfx "triu.gfx"
 }
 
 function atSawousEmpireMortuus()
 {
-        LOCATION_TITLE="MORTUUS"
-        drawGfx "mortuus.gfx"
+	LOCATION_TITLE="MORTUUS"
+	drawGfx "mortuus.gfx"
 }
 
 function atSawousEmpireGaea()
 {
-        LOCATION_TITLE="GAEA"
-        drawGfx "gaea.gfx"
+	LOCATION_TITLE="GAEA"
+	drawGfx "gaea.gfx"
 }
 
 function atSawousEmpireElatus()
 {
-        LOCATION_TITLE="ELATUS"
-        drawGfx "elatus.gfx"
+	LOCATION_TITLE="ELATUS"
+	drawGfx "elatus.gfx"
 }
 
 function atSawousEmpireHellhound()
 {
-        LOCATION_TITLE="HELLHOUND"
-        drawGfx "hellhound.gfx"
+	LOCATION_TITLE="HELLHOUND"
+	drawGfx "hellhound.gfx"
 }
 
 function atSawousEmpirePholus()
 {
-        LOCATION_TITLE="PHOLUS"
-        drawGfx "pholus.gfx"
+	LOCATION_TITLE="PHOLUS"
+	drawGfx "pholus.gfx"
 }
 
 function atSawousEmpireCrommyon()
 {
-        LOCATION_TITLE="CROMMYON"
-        drawGfx "crommyon.gfx"
+	LOCATION_TITLE="CROMMYON"
+	drawGfx "crommyon.gfx"
 }
 
 function drawSawousEmpireMapLocations()
@@ -58,133 +58,133 @@ function drawSawousEmpireMapLocations()
 	start_row=2
 
 	tput cup $((start_row+3)) 15
-        printf " \e[38;5;15m[\e[38;5;${OC}m1\e[0m\e[38;5;15m] Solaris Prime "
+	printf " \e[38;5;15m[\e[38;5;${OC}m1\e[0m\e[38;5;15m] Solaris Prime "
 
-        tput cup $((start_row+8)) 25
-        printf " Triu \e[38;5;15m[\e[38;5;${OC}m2\e[0m\e[38;5;15m] "
+	tput cup $((start_row+8)) 25
+	printf " Triu \e[38;5;15m[\e[38;5;${OC}m2\e[0m\e[38;5;15m] "
 
 	tput cup $((start_row+3)) 58
-        printf " Mortuus \e[38;5;15m[\e[38;5;${OC}m3\e[0m\e[38;5;15m] "
+    printf " Mortuus \e[38;5;15m[\e[38;5;${OC}m3\e[0m\e[38;5;15m] "
 
 	tput cup $((start_row+15)) 23
-        printf " \e[38;5;15m[\e[38;5;${OC}m4\e[0m\e[38;5;15m] Gaea "
+    printf " \e[38;5;15m[\e[38;5;${OC}m4\e[0m\e[38;5;15m] Gaea "
 
 	tput cup $((start_row+16)) 50
-        printf " Elatus \e[38;5;15m[\e[38;5;${OC}m5\e[0m\e[38;5;15m] "
+    printf " Elatus \e[38;5;15m[\e[38;5;${OC}m5\e[0m\e[38;5;15m] "
 
 	tput cup $((start_row+21)) 48
-        printf " \e[38;5;15m[\e[38;5;${OC}m6\e[0m\e[38;5;15m] Hellhound"
+    printf " \e[38;5;15m[\e[38;5;${OC}m6\e[0m\e[38;5;15m] Hellhound"
 
 	tput cup $((start_row+27)) 27
-        printf " \e[38;5;15m[\e[38;5;${OC}m7\e[0m\e[38;5;15m] Pholus"
+    printf " \e[38;5;15m[\e[38;5;${OC}m7\e[0m\e[38;5;15m] Pholus"
 
 	tput cup $((start_row+26)) 69
-        printf " \e[38;5;15m[\e[38;5;${OC}m8\e[0m\e[38;5;15m] Crommyon"
+    printf " \e[38;5;15m[\e[38;5;${OC}m8\e[0m\e[38;5;15m] Crommyon"
 }
 
 function drawSawousEmpireMap()
 {
-        start_row=2
+    start_row=2
 
 	tput cup 1 0
 	echo -e "  \e[38;5;${color}m Sawous Empire \e[0m"
 
-        while IFS= read -r line; do
-                tput cup $start_row 0
+	while IFS= read -r line; do
+		tput cup $start_row 0
 
-                printf '%s' "$line"
+		printf '%s' "$line"
 
-                start_row=$((start_row+1))
-        done < $GFX_PATH/sawous-empire-map.gfx
+		start_row=$((start_row+1))
+	done < $GFX_PATH/sawous-empire-map.gfx
 
 	drawSawousEmpireMapLocations
 
-        while true; do
-                read -t 0.01 -s -n 10000 key
+	while true; do
+		read -t 0.01 -s -n 10000 key
 
-                case "$key" in
-                        [1])
-                                TO_LOCATION="${current_location}SolarisPrime"
+		case "$key" in
+			[1])
+				TO_LOCATION="${current_location}SolarisPrime"
 
 				drawSawousEmpireMapLocations
-                                tput cup $((start_row+3)) 15
-        			printf " \e[38;5;15m[\e[38;5;${OC}m1\e[0m\e[38;5;15m] \e[38;5;32mSolaris Prime\e[0m "
+				tput cup $((start_row+3)) 15
+				printf " \e[38;5;15m[\e[38;5;${OC}m1\e[0m\e[38;5;15m] \e[38;5;32mSolaris Prime\e[0m "
 
 				drawEngage
-                                ;;
+				;;
 			[2])
-                                TO_LOCATION="${current_location}Triu"
+				TO_LOCATION="${current_location}Triu"
 
 				drawSawousEmpireMapLocations
 				tput cup $((start_row+8)) 25
-        			printf " \e[38;5;32mTriu\e[0m \e[38;5;15m[\e[38;5;${OC}m2\e[0m\e[38;5;15m] "
-
-                                drawEngage
-                                ;;
-			[3])
-                                TO_LOCATION="${current_location}Mortuus"
-
-                                drawSawousEmpireMapLocations
-                                tput cup $((start_row+3)) 58
-                                printf " \e[38;5;32mMortuus\e[0m \e[38;5;15m[\e[38;5;${OC}m3\e[0m\e[38;5;15m] "
-
-                                drawEngage
-                                ;;
-			[4])
-                                TO_LOCATION="${current_location}Gaea"
-
-                                drawSawousEmpireMapLocations
-				tput cup $((start_row+15)) 23
-        			printf " \e[38;5;15m[\e[38;5;${OC}m4\e[0m\e[38;5;15m] \e[38;5;32mGaea\e[0m "
-
-                                drawEngage
-                                ;;
-			[5])
-                                TO_LOCATION="${current_location}Elatus"
-
-                                drawSawousEmpireMapLocations
-				tput cup $((start_row+16)) 50
-        			printf " \e[38;5;32mElatus\e[0m \e[38;5;15m[\e[38;5;${OC}m5\e[0m\e[38;5;15m] "
+				printf " \e[38;5;32mTriu\e[0m \e[38;5;15m[\e[38;5;${OC}m2\e[0m\e[38;5;15m] "
 
 				drawEngage
-                                ;;
+				;;
+			[3])
+				TO_LOCATION="${current_location}Mortuus"
+
+				drawSawousEmpireMapLocations
+				tput cup $((start_row+3)) 58
+				printf " \e[38;5;32mMortuus\e[0m \e[38;5;15m[\e[38;5;${OC}m3\e[0m\e[38;5;15m] "
+
+				drawEngage
+				;;
+			[4])
+				TO_LOCATION="${current_location}Gaea"
+
+				drawSawousEmpireMapLocations
+				tput cup $((start_row+15)) 23
+				printf " \e[38;5;15m[\e[38;5;${OC}m4\e[0m\e[38;5;15m] \e[38;5;32mGaea\e[0m "
+
+				drawEngage
+				;;
+			[5])
+				TO_LOCATION="${current_location}Elatus"
+
+				drawSawousEmpireMapLocations
+				tput cup $((start_row+16)) 50
+				printf " \e[38;5;32mElatus\e[0m \e[38;5;15m[\e[38;5;${OC}m5\e[0m\e[38;5;15m] "
+
+				drawEngage
+				;;
 			[6])
-                                TO_LOCATION="${current_location}Hellhound"
+				TO_LOCATION="${current_location}Hellhound"
 
-                                drawSawousEmpireMapLocations
+				drawSawousEmpireMapLocations
 				tput cup $((start_row+21)) 48
-        			printf " \e[38;5;15m[\e[38;5;${OC}m6\e[0m\e[38;5;15m] \e[38;5;32mHellhound\e[0m"
+				printf " \e[38;5;15m[\e[38;5;${OC}m6\e[0m\e[38;5;15m] \e[38;5;32mHellhound\e[0m"
 
-                                drawEngage
-                                ;;
+				drawEngage
+				;;
 			[7])
-                                TO_LOCATION="${current_location}Pholus"
+				TO_LOCATION="${current_location}Pholus"
 
-                                drawSawousEmpireMapLocations
+				drawSawousEmpireMapLocations
 				tput cup $((start_row+27)) 27
-        			printf " \e[38;5;15m[\e[38;5;${OC}m7\e[0m\e[38;5;15m] \e[38;5;32mPholus\e[0m"
+				printf " \e[38;5;15m[\e[38;5;${OC}m7\e[0m\e[38;5;15m] \e[38;5;32mPholus\e[0m"
 
-                                drawEngage
-                                ;;
+				drawEngage
+				;;
 			[8])
-                                TO_LOCATION="${current_location}Crommyon"
+				TO_LOCATION="${current_location}Crommyon"
 
-                                drawSawousEmpireMapLocations
- 				tput cup $((start_row+26)) 69
-        			printf " \e[38;5;15m[\e[38;5;${OC}m8\e[0m\e[38;5;15m] \e[38;5;32mCrommyon\e[0m"
+				drawSawousEmpireMapLocations
+				tput cup $((start_row+26)) 69
+				printf " \e[38;5;15m[\e[38;5;${OC}m8\e[0m\e[38;5;15m] \e[38;5;32mCrommyon\e[0m"
 
-                                drawEngage
-                                ;;
+				drawEngage
+				;;
 			[eE])
 				engage
 				break
 				;;
-                        [bB])
-                                break
-                                ;;
+			[bB])
+				break
+				;;
 			[qQ])
 				quit
 				;;
-                esac
-        done
+		esac
+	done
 }

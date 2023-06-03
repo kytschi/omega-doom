@@ -32,12 +32,12 @@ function drawHUD()
 		printf "|"
 
 		tput cup $iLoop $((start_col+hud_width))
-                printf "|"
+		printf "|"
 
-                iLoop=$((iLoop+1))
-                if (( iLoop == rows )); then
-                        break
-                fi
+		iLoop=$((iLoop+1))
+		if (( iLoop == rows )); then
+				break
+		fi
 	done
 
 	menu_pad=5
@@ -73,26 +73,31 @@ function drawMenu()
 {
 	OC=208
 
-        start_row=5
-        tput cup $start_row $((start_col+menu_pad))
-        printf "\e[38;5;15m[\e[38;5;${OC}mc\e[0m\e[38;5;15m] Communications"
+	start_row=5
+	tput cup $start_row $((start_col+menu_pad))
+	printf "\e[38;5;15m[\e[38;5;${OC}mc\e[0m\e[38;5;15m] Communications"
 
-        start_row=$((start_row+1))
-        tput cup $start_row $((start_col+menu_pad))
-        printf "\e[38;5;15m[\e[38;5;${OC}mn\e[0m\e[38;5;15m] Navigation"
+	start_row=$((start_row+1))
+	tput cup $start_row $((start_col+menu_pad))
+	printf "\e[38;5;15m[\e[38;5;${OC}mn\e[0m\e[38;5;15m] Navigation"
 
-        start_row=$((start_row+3))
-        tput cup $start_row $((start_col+menu_pad))
-        printf "\e[38;5;15m[\e[38;5;${OC}mq\e[0m\e[38;5;15m] Save & Quit"
+	start_row=$((start_row+3))
+	tput cup $start_row $((start_col+menu_pad))
+	printf "\e[38;5;15m[\e[38;5;${OC}mq\e[0m\e[38;5;15m] Save & Quit"
 
 	# Clear engage
 	tput cup 11 $((start_col+menu_pad))
-        printf "                              "
+    printf "                              "
+}
+
+function drawComms()
+{
+
 }
 
 function drawEngage()
 {
-        tput cup 11 $((start_col+menu_pad))
-        printf "\e[38;5;15m[\e[38;5;${OC}me\e[0m\e[38;5;15m] Engage"
+	tput cup 11 $((start_col+menu_pad))
+	printf "\e[38;5;15m[\e[38;5;${OC}me\e[0m\e[38;5;15m] Engage"
 }
 
