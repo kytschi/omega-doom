@@ -30,9 +30,12 @@ PLAYER_X=0 #$(( SCREEN_WIDTH / 1 ))
 PLAYER_Y=0 #$(( SCREEN_HEIGHT / 1 ))
 FUEL=32
 
+SKIP_LOGO=1
+SKIP_INTRO=0
+
 source $SRC_PATH/characters.sh
 source $SRC_PATH/map.sh
-source $SRC_PATH/universe/sawous-empire/sector.sh
+source $SRC_PATH/universe/rosia-empire/sector.sh
 
 source $SRC_PATH/intro.sh
 

@@ -1,61 +1,61 @@
 #!/bin/bash
 
-current_location="SawousEmpire"
-ZONE_PATH=$UNIVERSE_PATH/sawous-empire
+current_location="RosiaEmpire"
+ZONE_PATH=$UNIVERSE_PATH/rosia-empire
 
 LOCATIONS["${current_location}SolarisPrime"]=true
 LOCATIONS["${current_location}Triu"]=false
 
-function atSawousEmpireSolarisPrime()
+function atRosiaEmpireSolarisPrime()
 {
 	LOCATION_TITLE="SOLARIS PRIME"
 	drawGfx "$ZONE_PATH/gfx/solaris-prime.gfx"
 	source "$ZONE_PATH/comms.sh"
 }
 
-function atSawousEmpireTriu()
+function atRosiaEmpireTriu()
 {
 	LOCATION_TITLE="TRIU"
 	drawGfx "$ZONE_PATH/gfx/triu.gfx"
 }
 
-function atSawousEmpireMortuus()
+function atRosiaEmpireMortuus()
 {
 	LOCATION_TITLE="MORTUUS"
 	drawGfx "$ZONE_PATH/gfx/mortuus.gfx"
 }
 
-function atSawousEmpireGaea()
+function atRosiaEmpireGaea()
 {
 	LOCATION_TITLE="GAEA"
 	drawGfx "$ZONE_PATH/gfx/gaea.gfx"
 }
 
-function atSawousEmpireElatus()
+function atRosiaEmpireElatus()
 {
 	LOCATION_TITLE="ELATUS"
 	drawGfx "$ZONE_PATH/gfx/elatus.gfx"
 }
 
-function atSawousEmpireHellhound()
+function atRosiaEmpireHellhound()
 {
 	LOCATION_TITLE="HELLHOUND"
 	drawGfx "$ZONE_PATH/gfx/hellhound.gfx"
 }
 
-function atSawousEmpirePholus()
+function atRosiaEmpirePholus()
 {
 	LOCATION_TITLE="PHOLUS"
 	drawGfx "$ZONE_PATH/gfx/pholus.gfx"
 }
 
-function atSawousEmpireCrommyon()
+function atRosiaEmpireCrommyon()
 {
 	LOCATION_TITLE="CROMMYON"
 	drawGfx "$ZONE_PATH/gfx/crommyon.gfx"
 }
 
-function drawSawousEmpireMapLocations()
+function drawRosiaEmpireMapLocations()
 {
 	start_row=2
 
@@ -84,12 +84,12 @@ function drawSawousEmpireMapLocations()
     printf " \e[38;5;15m[\e[38;5;${OC}m8\e[0m\e[38;5;15m] Crommyon"
 }
 
-function drawSawousEmpireMap()
+function drawRosiaEmpireMap()
 {
     start_row=2
 
 	tput cup 1 0
-	echo -e "  \e[38;5;${color}m Sawous Empire \e[0m"
+	echo -e "  \e[38;5;${color}m Rosia Empire \e[0m"
 
 	while IFS= read -r line; do
 		tput cup $start_row 0
@@ -99,7 +99,7 @@ function drawSawousEmpireMap()
 		start_row=$((start_row+1))
 	done < $ZONE_PATH/gfx/sawous-empire-map.gfx
 
-	drawSawousEmpireMapLocations
+	drawRosiaEmpireMapLocations
 
 	while true; do
 		read -t 0.01 -s -n 10000 key
@@ -108,7 +108,7 @@ function drawSawousEmpireMap()
 			[1])
 				TO_LOCATION="${current_location}SolarisPrime"
 
-				drawSawousEmpireMapLocations
+				drawRosiaEmpireMapLocations
 				tput cup $((start_row+3)) 15
 				printf " \e[38;5;15m[\e[38;5;${OC}m1\e[0m\e[38;5;15m] \e[38;5;32mSolaris Prime\e[0m "
 

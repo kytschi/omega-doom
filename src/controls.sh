@@ -1,5 +1,6 @@
 #!/bin/bash
 
+SUB_SELECT_MENU="";
 SUB_SELECT_ONE="";
 function controls()
 {
@@ -7,18 +8,16 @@ function controls()
 	    read -t 0.01 -s -n 10000 key
 
 		case "$key" in
-			[cC])
-				drawComms
-				
+			[bB])
 				clear
 				drawScreen
+				;;
+			[cC])
+				drawComms
 				;;
 			[nN])
 				drawGalaxyMap
 				mapControls
-
-				clear
-				drawScreen
 				;;
 			[qQ])
 				quit

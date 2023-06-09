@@ -98,14 +98,7 @@ function drawComms()
 	tput cup 7 $((start_col+menu_pad))
 	printf "\e[38;5;15m[\e[38;5;${OC}mb\e[0m\e[38;5;15m] Back"
 
-	# Draw the current comms menu
-	for screen_key in "${!LOCATIONS[@]}"; do
-		if  ${LOCATIONS[$screen_key]} ; then
-			COMMS_RENDER="comms$screen_key"
-			eval "$COMMS_RENDER"
-			break
-		fi
-	done
+	eval "$SUB_SELECT_MENU"
 }
 
 function drawEngage()

@@ -7,57 +7,58 @@ function drawIntro()
     x=$((cols/3))
     x=$((x-13))
     
-    # for (( iLoop=1; iLoop<=7; iLoop++ )); do
-    #     y=5
-    #     while IFS= read -r line; do
-    #         tput cup $y $x
-    #         printf '%s\n' "$line"
-    #         y=$((y+1))
-    #     done < $GFX_PATH/intro/game-title$iLoop.gfx
-    #     sleep 0.5
-    # done
-    # for (( iLoop=7; iLoop>=1; iLoop-- )); do
-    #     y=5
-    #     while IFS= read -r line; do
-    #         tput cup $y $x
-    #         printf '%s\n' "$line"
-    #         y=$((y+1))
-    #     done < $GFX_PATH/intro/game-title$iLoop.gfx
-    #     sleep 0.5
-    # done
+    if ((SKIP_LOGO==0)); then
+        for (( iLoop=1; iLoop<=7; iLoop++ )); do
+            y=5
+            while IFS= read -r line; do
+                tput cup $y $x
+                printf '%s\n' "$line"
+                y=$((y+1))
+            done < $GFX_PATH/intro/game-title$iLoop.gfx
+            sleep 0.5
+        done
+        for (( iLoop=7; iLoop>=1; iLoop-- )); do
+            y=5
+            while IFS= read -r line; do
+                tput cup $y $x
+                printf '%s\n' "$line"
+                y=$((y+1))
+            done < $GFX_PATH/intro/game-title$iLoop.gfx
+            sleep 0.5
+        done
+    fi
 
     drawScreen
-    #sleep 1
-    commsIntro
-    controls    
+    sleep 1
+    if ((SKIP_INTRO==0)); then
+        intro
+    fi
+    controls
 }
 
-function commsIntro()
+function intro()
 {
     SUB_SELECT_ONE="introScreen1"
+    SUB_SELECT_MENU="introControls"
 
-	tput cup 12 $((start_col+menu_pad))
+    drawComms
+    introControls
+
+    sleep 1
+    introScreen1
+}
+
+function introControls()
+{
+    tput cup 12 $((start_col+menu_pad))
 	printf "\e[38;5;15m[\e[38;5;${OC}m1\e[0m\e[38;5;15m] Incoming Hail"
-
-    # while true; do
-	# 	read -t 0.01 -s -n 10000 key
-
-	# 	case "$key" in
-    #         [1])
-    #             introScreen1
-    #             ;;
-	# 		[bB])
-	# 			break
-	# 			;;
-	# 		[qQ])
-	# 			quit
-	# 			;;
-	# 	esac
-	# done
 }
 
 function introScreen1()
 {
+    tput cup 12 $((start_col+menu_pad))
+    printf "\e[38;5;15m[\e[38;5;${OC}m1\e[0m\e[38;5;15m]\e[38;5;32m Incoming Hail\e[0m"
+
     char_one_x=2
     char_one_text_x=43
     char_one_y=6
@@ -89,16 +90,52 @@ function introScreen1()
     #Abraham
     drawMessage $char_two_text_x $char_two_text_y "Admiral, I hope this isn't bad news?"
     sleep 1
-    drawMessage $char_two_text_x $char_two_text_y "My crew is in dire need of some R a..."
+    drawMessage $char_two_text_x $char_two_text_y "My crew is in dire need of some R an..."
 
     #Byrd
     PREV_MESSAGE=""
     drawMessage $char_one_text_x $char_one_text_y "Sorry John, you'll have to delay that."
     sleep 1
-    drawMessage $char_one_text_x $char_one_text_y "We've lost contact with output 1337 in the Kilaks sector."
+    drawMessage $char_one_text_x $char_one_text_y "We've lost contact with a research team at outpost 3366."
+    sleep 1
+
+    #Abraham
+    PREV_MESSAGE="My crew is in dire need of some R an..."
+    drawMessage $char_two_text_x $char_two_text_y "Output 3366, I don't recall it?"
+    sleep 1
+
+    #Byrd
+    PREV_MESSAGE="We've lost contact with a research team at outpost 3366."
+    drawMessage $char_one_text_x $char_one_text_y "You wouldn't, strictly for top brass eyes only John."
     sleep 1
     drawMessage $char_one_text_x $char_one_text_y "Your our closest Starship I'm afraid."
     sleep 1
-    drawMessage $char_one_text_x $char_one_text_y "Report to the output at "
+    drawMessage $char_one_text_x $char_one_text_y "Report to the co-ordinates 663993 691216."
     sleep 1
+
+    #Abraham
+    PREV_MESSAGE="Output 3366, I don't recall it?"
+    drawMessage $char_two_text_x $char_two_text_y "Sector 663993, Admiral that puts in the Rosia Empire?!"
+    sleep 1
+
+    #Byrd
+    PREV_MESSAGE="Report to the co-ordinates 663993 691216."
+    drawMessage $char_one_text_x $char_one_text_y "I am well aware of that Captain!"
+    sleep 1
+    drawMessage $char_one_text_x $char_one_text_y "Report back when you've arrived at the outpost."
+    sleep 1
+
+    #Abraham
+    PREV_MESSAGE="Sector 663993, Admiral that puts in the Rosia Empire?!"
+    drawMessage $char_two_text_x $char_two_text_y "But Rich, the Rosia treaty? They'll see this as an act of.."
+    sleep 1
+
+    #Byrd
+    PREV_MESSAGE="Report back when you've arrived at the outpost."
+    drawMessage $char_one_text_x $char_one_text_y "You have your order's John...God speed."
+    sleep 1
+    drawMessage $char_one_text_x $char_one_text_y "Byrd out."
+    sleep 1
+
+    controls
 }
