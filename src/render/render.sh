@@ -1,7 +1,7 @@
 #!/bin/bash
 
 RENDER_PATH=${PWD}
-GFX_PATH=$PWD/../gfx/
+GFX_PATH=$PWD/rendered/
 
 if (( `ls $RENDER_PATH/*.png 2>/dev/null | wc -l` )); then
 	for src in $(ls $RENDER_PATH/*.png); do
