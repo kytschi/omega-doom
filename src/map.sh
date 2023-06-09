@@ -2,6 +2,8 @@
 
 function drawGalaxyMap()
 {
+	clearView
+
 	start_row=0
 	tput cup 0 0
 

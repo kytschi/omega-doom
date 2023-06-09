@@ -1,5 +1,6 @@
 #!/bin/bash
 
+SUB_SELECT_ONE="";
 function controls()
 {
 	while true; do
@@ -22,6 +23,9 @@ function controls()
 			[qQ])
 				quit
 				;;
+			[1])
+				eval "$SUB_SELECT_ONE"
+				;;
 		esac
 	done
 }
@@ -31,5 +35,6 @@ function quit()
 	clear
 	tput cup 0 0
 	echo "Good-bye"
+	tput cnorm
 	exit 1
 }
