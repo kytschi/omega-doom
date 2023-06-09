@@ -3,190 +3,95 @@
 current_location="RosiaEmpire"
 ZONE_PATH=$UNIVERSE_PATH/rosia-empire
 
-LOCATIONS["${current_location}SolarisPrime"]=true
+LOCATIONS["${current_location}RosiaPrime"]=true
 LOCATIONS["${current_location}Triu"]=false
 
-function atRosiaEmpireSolarisPrime()
+function atRosiaEmpireRosiaPrime()
 {
-	LOCATION_TITLE="SOLARIS PRIME"
-	drawGfx "$ZONE_PATH/gfx/solaris-prime.gfx"
-	source "$ZONE_PATH/comms.sh"
+	LOCATION_TITLE="ROSIA PRIME"
+	drawGfx "$ZONE_PATH/sector/rosia-prime.gfx"
 }
 
 function atRosiaEmpireTriu()
 {
 	LOCATION_TITLE="TRIU"
-	drawGfx "$ZONE_PATH/gfx/triu.gfx"
+	drawGfx "$ZONE_PATH/sector/triu.gfx"
 }
 
 function atRosiaEmpireMortuus()
 {
 	LOCATION_TITLE="MORTUUS"
-	drawGfx "$ZONE_PATH/gfx/mortuus.gfx"
+	drawGfx "$ZONE_PATH/sector/mortuus.gfx"
 }
 
 function atRosiaEmpireGaea()
 {
 	LOCATION_TITLE="GAEA"
-	drawGfx "$ZONE_PATH/gfx/gaea.gfx"
+	drawGfx "$ZONE_PATH/sector/gaea.gfx"
 }
 
 function atRosiaEmpireElatus()
 {
 	LOCATION_TITLE="ELATUS"
-	drawGfx "$ZONE_PATH/gfx/elatus.gfx"
+	drawGfx "$ZONE_PATH/sector/elatus.gfx"
 }
 
 function atRosiaEmpireHellhound()
 {
 	LOCATION_TITLE="HELLHOUND"
-	drawGfx "$ZONE_PATH/gfx/hellhound.gfx"
+	drawGfx "$ZONE_PATH/sector/hellhound.gfx"
 }
 
 function atRosiaEmpirePholus()
 {
 	LOCATION_TITLE="PHOLUS"
-	drawGfx "$ZONE_PATH/gfx/pholus.gfx"
+	drawGfx "$ZONE_PATH/sector/pholus.gfx"
 }
 
 function atRosiaEmpireCrommyon()
 {
 	LOCATION_TITLE="CROMMYON"
-	drawGfx "$ZONE_PATH/gfx/crommyon.gfx"
+	drawGfx "$ZONE_PATH/sector/crommyon.gfx"
 }
 
-function drawRosiaEmpireMapLocations()
+function gotoRosiaEmpireRosiaPrime()
 {
-	start_row=2
+	GOTO_LOCATION="RosiaEmpireRosiaPrime"
+	menuItem $((SUB_MENU_START_Y+1)) "1" "Rosia Prime" 1
+	menuEngage $((SUB_MENU_START_Y+3))
+}
 
-	tput cup $((start_row+3)) 15
-	printf " \e[38;5;15m[\e[38;5;${OC}m1\e[0m\e[38;5;15m] Solaris Prime "
+function menuRosiaEmpire()
+{
+	clearSub
 
-	tput cup $((start_row+8)) 25
-	printf " Triu \e[38;5;15m[\e[38;5;${OC}m2\e[0m\e[38;5;15m] "
+	menuItem $SUB_MENU_START_Y "b" "Back" 0
 
-	tput cup $((start_row+3)) 58
-    printf " Mortuus \e[38;5;15m[\e[38;5;${OC}m3\e[0m\e[38;5;15m] "
+	menuItem $((SUB_MENU_START_Y+1)) "1" "Rosia Prime" 0
+	SUB_SELECT_ONE="gotoRosiaEmpireRosiaPrime"
 
-	tput cup $((start_row+15)) 23
-    printf " \e[38;5;15m[\e[38;5;${OC}m4\e[0m\e[38;5;15m] Gaea "
-
-	tput cup $((start_row+16)) 50
-    printf " Elatus \e[38;5;15m[\e[38;5;${OC}m5\e[0m\e[38;5;15m] "
-
-	tput cup $((start_row+21)) 48
-    printf " \e[38;5;15m[\e[38;5;${OC}m6\e[0m\e[38;5;15m] Hellhound"
-
-	tput cup $((start_row+27)) 27
-    printf " \e[38;5;15m[\e[38;5;${OC}m7\e[0m\e[38;5;15m] Pholus"
-
-	tput cup $((start_row+26)) 69
-    printf " \e[38;5;15m[\e[38;5;${OC}m8\e[0m\e[38;5;15m] Crommyon"
+	#menuItem $((SUB_MENU_START_Y+2)) "2" "Triu" 0
 }
 
 function drawRosiaEmpireMap()
 {
-    start_row=2
-
-	tput cup 1 0
-	echo -e "  \e[38;5;${color}m Rosia Empire \e[0m"
-
+	start_row=2
 	while IFS= read -r line; do
 		tput cup $start_row 0
 
 		printf '%s' "$line"
 
 		start_row=$((start_row+1))
-	done < $ZONE_PATH/gfx/sawous-empire-map.gfx
+	done < $ZONE_PATH/sector/rosia-empire-map.gfx
 
-	drawRosiaEmpireMapLocations
+	mapItem 2 4 "Rosia Prime" 0
+	mapItem 7 60 "Triu" 0
+	mapItem 1 110 "Mortuus" 0
+	mapItem 17 14 "Gaea" 0
+	mapItem 18 104 "Elatus" 0
+	mapItem 27 54 "Hellhound" 0
+	mapItem 34 22 "Pholus" 0
+	mapItem 36 88 "Crommyon" 0
 
-	while true; do
-		read -t 0.01 -s -n 10000 key
-
-		case "$key" in
-			[1])
-				TO_LOCATION="${current_location}SolarisPrime"
-
-				drawRosiaEmpireMapLocations
-				tput cup $((start_row+3)) 15
-				printf " \e[38;5;15m[\e[38;5;${OC}m1\e[0m\e[38;5;15m] \e[38;5;32mSolaris Prime\e[0m "
-
-				drawEngage
-				;;
-			[2])
-				TO_LOCATION="${current_location}Triu"
-
-				drawSawousEmpireMapLocations
-				tput cup $((start_row+8)) 25
-				printf " \e[38;5;32mTriu\e[0m \e[38;5;15m[\e[38;5;${OC}m2\e[0m\e[38;5;15m] "
-
-				drawEngage
-				;;
-			[3])
-				TO_LOCATION="${current_location}Mortuus"
-
-				drawSawousEmpireMapLocations
-				tput cup $((start_row+3)) 58
-				printf " \e[38;5;32mMortuus\e[0m \e[38;5;15m[\e[38;5;${OC}m3\e[0m\e[38;5;15m] "
-
-				drawEngage
-				;;
-			[4])
-				TO_LOCATION="${current_location}Gaea"
-
-				drawSawousEmpireMapLocations
-				tput cup $((start_row+15)) 23
-				printf " \e[38;5;15m[\e[38;5;${OC}m4\e[0m\e[38;5;15m] \e[38;5;32mGaea\e[0m "
-
-				drawEngage
-				;;
-			[5])
-				TO_LOCATION="${current_location}Elatus"
-
-				drawSawousEmpireMapLocations
-				tput cup $((start_row+16)) 50
-				printf " \e[38;5;32mElatus\e[0m \e[38;5;15m[\e[38;5;${OC}m5\e[0m\e[38;5;15m] "
-
-				drawEngage
-				;;
-			[6])
-				TO_LOCATION="${current_location}Hellhound"
-
-				drawSawousEmpireMapLocations
-				tput cup $((start_row+21)) 48
-				printf " \e[38;5;15m[\e[38;5;${OC}m6\e[0m\e[38;5;15m] \e[38;5;32mHellhound\e[0m"
-
-				drawEngage
-				;;
-			[7])
-				TO_LOCATION="${current_location}Pholus"
-
-				drawSawousEmpireMapLocations
-				tput cup $((start_row+27)) 27
-				printf " \e[38;5;15m[\e[38;5;${OC}m7\e[0m\e[38;5;15m] \e[38;5;32mPholus\e[0m"
-
-				drawEngage
-				;;
-			[8])
-				TO_LOCATION="${current_location}Crommyon"
-
-				drawSawousEmpireMapLocations
-				tput cup $((start_row+26)) 69
-				printf " \e[38;5;15m[\e[38;5;${OC}m8\e[0m\e[38;5;15m] \e[38;5;32mCrommyon\e[0m"
-
-				drawEngage
-				;;
-			[eE])
-				engage
-				break
-				;;
-			[bB])
-				break
-				;;
-			[qQ])
-				quit
-				;;
-		esac
-	done
+	menuRosiaEmpire
 }

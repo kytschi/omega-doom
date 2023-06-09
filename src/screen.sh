@@ -1,13 +1,10 @@
 #!/bin/bash
 
-LOCATION_RENDER=""
-
 function drawLocation()
 {
 	for screen_key in "${!LOCATIONS[@]}"; do
 		if  ${LOCATIONS[$screen_key]} ; then
-			LOCATION_RENDER="at$screen_key"
-			eval "$LOCATION_RENDER"
+			eval "at$screen_key"
 			break
 		fi
 	done
@@ -127,9 +124,17 @@ function clearView()
 
 function drawScreen()
 {
+	tput clear
+	tput cup 0 0
 	drawLocation
 	drawLocationTitle
 	drawHUD
+}
+
+function drawTitle()
+{
+	tput cup 1 0
+	echo -e "  \e[38;5;${color}m Rosia Empire \e[0m"
 }
 
 function drawGfx()
@@ -149,13 +154,34 @@ function engage()
 		LOCATIONS[$screen_key]=false
 	done
 
-	LOCATIONS[$TO_LOCATION]=true
+	LOCATIONS[$GOTO_LOCATION]=true
+
+	char_one_x=2
+    char_one_text_x=43
+    char_one_y=6
+    char_one_text_y=17
+
+	char_two_x=100
+    char_two_text_x=89
+    char_two_y=20
+    char_two_text_y=32
+
+    charCyrusDraw $char_one_x $char_one_y
+	charAbrahamDraw $char_two_x $char_two_y
+
+	#Cyrus
+	PREV_MESSAGE=""
+    drawMessage $char_one_text_x $char_one_text_y "Course plotted sir."
+
+    #Abraham
+	PREV_MESSAGE=""
+    drawMessage $char_two_text_x $char_two_text_y "Engage."
+    sleep 1
 
 	tput clear
 	tput cup 0 0
 
 	iLoop=0
-
 	while (( iLoop <= 15 )); do
 		iLoop2=0
 		while IFS= read -r line; do
@@ -166,4 +192,22 @@ function engage()
 
 		iLoop=$((iLoop+1))
 	done
+
+	charCyrusDraw $char_one_x $char_one_y
+	charAbrahamDraw $char_two_x $char_two_y
+
+	#Cyrus
+    drawMessage $char_one_text_x $char_one_text_y "Captain, we've arrive at our destination sir."
+
+    #Abraham
+    char_two_text_x=65
+	PREV_MESSAGE=""
+    drawMessage $char_two_text_x $char_two_text_y "Very well, take us out of warp."
+
+	#Cyrus
+	PREV_MESSAGE="Captain, we've arrive at our destination sir."
+    drawMessage $char_one_text_x $char_one_text_y "Dropping to impulse power."
+    sleep 1
+
+	drawScreen
 }

@@ -1,7 +1,4 @@
 #!/bin/bash
-
-SUB_SELECT_MENU="";
-SUB_SELECT_ONE="";
 function controls()
 {
 	while true; do
@@ -9,15 +6,18 @@ function controls()
 
 		case "$key" in
 			[bB])
-				clear
 				drawScreen
 				;;
 			[cC])
-				drawComms
+				menuComms
 				;;
 			[nN])
-				drawGalaxyMap
+				clearComms
+				drawQuadrantMap
 				mapControls
+				;;
+			[eE])
+				engage
 				;;
 			[qQ])
 				quit
@@ -25,13 +25,37 @@ function controls()
 			[1])
 				eval "$SUB_SELECT_ONE"
 				;;
+			[2])
+				eval "$SUB_SELECT_TWO"
+				;;
+			[3])
+				eval "$SUB_SELECT_THREE"
+				;;
+			[4])
+				eval "$SUB_SELECT_FOUR"
+				;;
+			[5])
+				eval "$SUB_SELECT_FIVE"
+				;;
+			[6])
+				eval "$SUB_SELECT_SIX"
+				;;
+			[7])
+				eval "$SUB_SELECT_SEVEN"
+				;;
+			[8])
+				eval "$SUB_SELECT_EIGHT"
+				;;
+			[9])
+				eval "$SUB_SELECT_NINE"
+				;;
 		esac
 	done
 }
 
 function quit()
 {
-	clear
+	tput clear
 	tput cup 0 0
 	echo "Good-bye"
 	tput cnorm

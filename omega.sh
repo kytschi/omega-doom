@@ -1,6 +1,7 @@
 #!/bin/bash
 
-clear
+tput clear
+tput cup 0 0
 tput civis
 
 APP=$(dirname "$0")/$(basename "$0")
@@ -18,7 +19,6 @@ source $SRC_PATH/hud.sh
 source $SRC_PATH/screen.sh
 
 declare -A LOCATIONS
-TO_LOCATION=""
 COMMS_MENU=""
 
 SCREEN_WIDTH=640

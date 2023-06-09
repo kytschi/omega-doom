@@ -33,32 +33,20 @@ function drawIntro()
     if ((SKIP_INTRO==0)); then
         intro
     fi
+    clearComms
     controls
 }
 
 function intro()
 {
     SUB_SELECT_ONE="introScreen1"
-    SUB_SELECT_MENU="introControls"
 
-    drawComms
-    introControls
-
-    sleep 1
+    menuComms
     introScreen1
-}
-
-function introControls()
-{
-    tput cup 12 $((start_col+menu_pad))
-	printf "\e[38;5;15m[\e[38;5;${OC}m1\e[0m\e[38;5;15m] Incoming Hail"
 }
 
 function introScreen1()
 {
-    tput cup 12 $((start_col+menu_pad))
-    printf "\e[38;5;15m[\e[38;5;${OC}m1\e[0m\e[38;5;15m]\e[38;5;32m Incoming Hail\e[0m"
-
     char_one_x=2
     char_one_text_x=43
     char_one_y=6
@@ -72,9 +60,14 @@ function introScreen1()
     charAmbroseDraw $char_one_x $char_one_y
     charAbrahamDraw $char_two_x $char_two_y
 
+    menuItem $SUB_MENU_START_Y "1" "Incoming Hail" 0 1
+    
     #Ambrose    
     drawMessage $char_one_text_x $char_one_text_y "Captain, incoming hail from Federation Command."
-    sleep 1
+    sleep 2
+
+    menuItem $SUB_MENU_START_Y "1" "Incoming Hail" 1
+
     drawMessage $char_one_text_x $char_one_text_y "Priority One message from Admiral Byrd sir."
     sleep 1
     
@@ -115,7 +108,7 @@ function introScreen1()
 
     #Abraham
     PREV_MESSAGE="Output 3366, I don't recall it?"
-    drawMessage $char_two_text_x $char_two_text_y "Sector 663993, Admiral that puts in the Rosia Empire?!"
+    drawMessage $char_two_text_x $char_two_text_y "Sector 663993, Admiral that the Rosia Empire border?!"
     sleep 1
 
     #Byrd
@@ -126,8 +119,8 @@ function introScreen1()
     sleep 1
 
     #Abraham
-    PREV_MESSAGE="Sector 663993, Admiral that puts in the Rosia Empire?!"
-    drawMessage $char_two_text_x $char_two_text_y "But Rich, the Rosia treaty? They'll see this as an act of.."
+    PREV_MESSAGE="Sector 663993, Admiral that the Rosia Empire border?!"
+    drawMessage $char_two_text_x $char_two_text_y "But Rich, the treaty? They'll see this as an act of..."
     sleep 1
 
     #Byrd
@@ -137,5 +130,19 @@ function introScreen1()
     drawMessage $char_one_text_x $char_one_text_y "Byrd out."
     sleep 1
 
-    controls
+    #Abraham
+    PREV_MESSAGE="But Rich, the treaty? They'll see this as an act of..."
+    drawMessage $char_two_text_x $char_two_text_y "Helm..."
+    sleep 1
+
+    #Cyrus
+    charCyrusDraw $char_one_x $char_one_y
+    PREV_MESSAGE="Byrd out."
+    drawMessage $char_one_text_x $char_one_text_y "Aye sir."
+    sleep 1
+
+    #Abraham
+    PREV_MESSAGE="Helm..."
+    drawMessage $char_two_text_x $char_two_text_y "Set a course for 663993 691216. Maximum warp."
+    sleep 1
 }

@@ -1,6 +1,7 @@
 #!/bin/bash
 
-function drawGalaxyMap()
+GOTO_LOCATION=""
+function drawQuadrantMap()
 {
 	clearView
 
@@ -12,60 +13,81 @@ function drawGalaxyMap()
         printf '%s' "$line"
 
 		start_row=$((start_row+1))
-    done < $GFX_PATH/galaxy-map.gfx
+    done < $SRC_PATH/universe/quadrant/alpha.gfx
 
 	start_row=6
 
-	tput cup $start_row 32
-	printf "\e[38;5;15m Kazaria Syndicate "
-
-	tput cup $((start_row+6)) 31
-    printf "\e[38;5;15m Federation "
-
-	tput cup $((start_row+9)) 60
-    printf "\e[38;5;15m Rosia Empire "
-
-	tput cup $((start_row+15)) 44
-    printf "\e[38;5;15m Aris Republic "
-
-	tput cup $((start_row+19)) 46
-    printf "\e[38;5;15m Garis Republic "
-
-	tput cup $((start_row+17)) 27
-    printf "\e[38;5;15m Stovacor "
-
-	tput cup $((start_row+12)) 8
-    printf "\e[38;5;15m House of Moog "
+	mapItem 10 54 "Kazaria Syndicate" 0
+	mapItem 21 56 "Federation" 0
+	mapItem 24 103 "Rosia Empire" 0
+	mapItem 36 72 "Aris Republic" 0
+	mapItem 44 70 "Garis Republic" 0
+	mapItem 39 46 "Stovacor" 0
+	mapItem 30 30 "House of Moong" 0
+	mapItem 28 74 "The Void" 0
 
 	mapControls
 }
 
 function mapControls()
 {
-	tput cup 6 $((start_col+menu_pad))
-	printf "\e[38;5;15m[\e[38;5;${OC}mn\e[0m\e[38;5;15m]\e[38;5;32m Navigation\e[0m"
+	clearSub
+	menuItem 6 "n" "Navigation" 1
+	
+	start_row=$SUB_MENU_START_Y
+	menuItem $start_row "b" "Back" 0
 
-	tput cup 7 $((start_col+menu_pad))
-	printf "\e[38;5;15m[\e[38;5;${OC}mb\e[0m\e[38;5;15m] Back"
+	start_row=$((start_row+1))
+	menuItem $start_row "1" "Kazaria Syndicate" 0
+	SUB_SELECT_ONE="drawRosiaEmpireMap"
+    
+	start_row=$((start_row+1))
+	menuItem $start_row "2" "Federation" 0
+	SUB_SELECT_TWO="drawRosiaEmpireMap"
 
-	tput cup 12 $((start_col+menu_pad))
-	printf "\e[38;5;15m[\e[38;5;${OC}m1\e[0m\e[38;5;15m] Kazaria Syndicate"
+	start_row=$((start_row+1))
+	menuItem $start_row "3" "Rosia Empire" 0
+	SUB_SELECT_THREE="drawRosiaEmpireMap"
 
-	tput cup 13 $((start_col+menu_pad))
-	printf "\e[38;5;15m[\e[38;5;${OC}m2\e[0m\e[38;5;15m] Federation"
+	start_row=$((start_row+1))
+	menuItem $start_row "4" "Aris Republic" 0
+	SUB_SELECT_FOUR="drawRosiaEmpireMap"
 
-	tput cup 14 $((start_col+menu_pad))
-	printf "\e[38;5;15m[\e[38;5;${OC}m3\e[0m\e[38;5;15m] Rosia Empire"
+	start_row=$((start_row+1))
+	menuItem $start_row "5" "Garis Republic" 0
+	SUB_SELECT_FIVE="drawRosiaEmpireMap"
 
-	tput cup 15 $((start_col+menu_pad))
-	printf "\e[38;5;15m[\e[38;5;${OC}m4\e[0m\e[38;5;15m] Aris Republic"
+	start_row=$((start_row+1))
+	menuItem $start_row "6" "Stovacor" 0
+	SUB_SELECT_SIX="drawRosiaEmpireMap"
 
-	tput cup 16 $((start_col+menu_pad))
-	printf "\e[38;5;15m[\e[38;5;${OC}m5\e[0m\e[38;5;15m] Garis Republic"
+	start_row=$((start_row+1))
+	menuItem $start_row "7" "House of Moong" 0
+	SUB_SELECT_SEVEN="drawRosiaEmpireMap"
+}
 
-	tput cup 17 $((start_col+menu_pad))
-	printf "\e[38;5;15m[\e[38;5;${OC}m6\e[0m\e[38;5;15m] Stovacor"
+function mapItem()
+{
+	y=$1
+	x=$2
+	label=$3
+	active=$4
 
-	tput cup 18 $((start_col+menu_pad))
-	printf "\e[38;5;15m[\e[38;5;${OC}m7\e[0m\e[38;5;15m] House of Moog"
+	if ((active==1)); then
+		label="\e[38;5;32m$label\e[0m"
+	fi
+
+	line=""
+	for (( iLoop=0; iLoop<${#label}; iLoop++ )); do
+		line="$line "
+	done
+
+	tput cup $y $x
+	printf "\e[38;5;0m  $line  "
+
+	tput cup $((y+1)) $x
+	printf "\e[38;5;15m  $label  "
+
+	tput cup $((y+2)) $x
+	printf "\e[38;5;0m  $line  "
 }
