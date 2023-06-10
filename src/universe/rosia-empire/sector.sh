@@ -1,10 +1,7 @@
 #!/bin/bash
 
-current_location="RosiaEmpire"
+GOTO_LOCATION="RosiaEmpireOutPost3366"
 ZONE_PATH=$UNIVERSE_PATH/rosia-empire
-
-LOCATIONS["${current_location}RosiaPrime"]=true
-LOCATIONS["${current_location}Triu"]=false
 
 function atRosiaEmpireRosiaPrime()
 {
@@ -54,11 +51,73 @@ function atRosiaEmpireCrommyon()
 	drawGfx "$ZONE_PATH/sector/crommyon.gfx"
 }
 
+function atRosiaEmpireOutPost3366()
+{
+	LOCATION_TITLE="Outpost 3366"
+	drawGfx "$ZONE_PATH/sector/outpost3366.gfx"
+}
+
 function gotoRosiaEmpireRosiaPrime()
 {
 	GOTO_LOCATION="RosiaEmpireRosiaPrime"
 	menuItem $((SUB_MENU_START_Y+1)) "1" "Rosia Prime" 1
-	menuEngage $((SUB_MENU_START_Y+3))
+	menuEngage $((SUB_MENU_START_Y+10))
+}
+
+function gotoRosiaEmpireTriu()
+{
+	GOTO_LOCATION="RosiaEmpireTriu"
+	menuItem $((SUB_MENU_START_Y+2)) "2" "Triu" 1
+	menuEngage $((SUB_MENU_START_Y+10))
+}
+
+function gotoRosiaEmpireMortuus()
+{
+	GOTO_LOCATION="RosiaEmpireMortuus"
+	menuItem $((SUB_MENU_START_Y+3)) "3" "Mortuus" 1
+	menuEngage $((SUB_MENU_START_Y+10))
+}
+
+function gotoRosiaEmpireGaea()
+{
+	GOTO_LOCATION="RosiaEmpireGaea"
+	menuItem $((SUB_MENU_START_Y+4)) "4" "Gaea" 1
+	menuEngage $((SUB_MENU_START_Y+10))
+}
+
+function gotoRosiaEmpireElatus()
+{
+	GOTO_LOCATION="RosiaEmpireElatus"
+	menuItem $((SUB_MENU_START_Y+5)) "5" "Elatus" 1
+	menuEngage $((SUB_MENU_START_Y+10))
+}
+
+function gotoRosiaEmpireHellhound()
+{
+	GOTO_LOCATION="RosiaEmpireHellhound"
+	menuItem $((SUB_MENU_START_Y+6)) "6" "Hellhound" 1
+	menuEngage $((SUB_MENU_START_Y+10))
+}
+
+function gotoRosiaEmpirePholus()
+{
+	GOTO_LOCATION="RosiaEmpirePholus"
+	menuItem $((SUB_MENU_START_Y+7)) "7" "Pholus" 1
+	menuEngage $((SUB_MENU_START_Y+10))
+}
+
+function gotoRosiaEmpireCrommyon()
+{
+	GOTO_LOCATION="RosiaEmpireCrommyon"
+	menuItem $((SUB_MENU_START_Y+8)) "8" "Crommyon" 1
+	menuEngage $((SUB_MENU_START_Y+10))
+}
+
+function gotoRosiaEmpireOutPost3366()
+{
+	GOTO_LOCATION="RosiaEmpireOutPost3366"
+	menuItem $((SUB_MENU_START_Y+9)) "9" "OutPost 3366" 1
+	menuEngage $((SUB_MENU_START_Y+10))
 }
 
 function menuRosiaEmpire()
@@ -70,7 +129,29 @@ function menuRosiaEmpire()
 	menuItem $((SUB_MENU_START_Y+1)) "1" "Rosia Prime" 0
 	SUB_SELECT_ONE="gotoRosiaEmpireRosiaPrime"
 
-	#menuItem $((SUB_MENU_START_Y+2)) "2" "Triu" 0
+	menuItem $((SUB_MENU_START_Y+2)) "2" "Triu" 0
+	SUB_SELECT_TWO="gotoRosiaEmpireTriu"
+
+	menuItem $((SUB_MENU_START_Y+3)) "3" "Mortuus" 0
+	SUB_SELECT_THREE="gotoRosiaEmpireMortuus"
+
+	menuItem $((SUB_MENU_START_Y+4)) "4" "Gaea" 0
+	SUB_SELECT_FOUR="gotoRosiaEmpireGaea"
+
+	menuItem $((SUB_MENU_START_Y+5)) "5" "Elatus" 0
+	SUB_SELECT_FIVE="gotoRosiaEmpireElatus"
+
+	menuItem $((SUB_MENU_START_Y+6)) "6" "Hellhound" 0
+	SUB_SELECT_SIX="gotoRosiaEmpireHellhound"
+
+	menuItem $((SUB_MENU_START_Y+7)) "7" "Pholus" 0
+	SUB_SELECT_SEVEN="gotoRosiaEmpirePholus"
+
+	menuItem $((SUB_MENU_START_Y+8)) "8" "Crommyon" 0
+	SUB_SELECT_EIGHT="gotoRosiaEmpireCrommyon"
+
+	menuItem $((SUB_MENU_START_Y+9)) "9" "OutPost 3366" 0
+	SUB_SELECT_NINE="gotoRosiaEmpireOutPost3366"
 }
 
 function drawRosiaEmpireMap()
@@ -88,10 +169,11 @@ function drawRosiaEmpireMap()
 	mapItem 7 60 "Triu" 0
 	mapItem 1 110 "Mortuus" 0
 	mapItem 17 14 "Gaea" 0
-	mapItem 18 104 "Elatus" 0
+	mapItem 15 100 "Elatus" 0
 	mapItem 27 54 "Hellhound" 0
 	mapItem 34 22 "Pholus" 0
-	mapItem 36 88 "Crommyon" 0
+	mapItem 36 80 "Crommyon" 0
+	mapItem 35 108 "Outpost 3366" 0
 
 	menuRosiaEmpire
 }

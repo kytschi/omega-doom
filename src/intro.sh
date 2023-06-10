@@ -77,7 +77,7 @@ function introScreen1()
     drawMessage "Byrd" "Report to the co-ordinates 663993 691216."
     
     #Abraham
-    drawMessage "Abraham" "Sector 663993, Admiral that the Rosia Empire border?!"
+    drawMessage "Abraham" "Sector 663993, Admiral that's on the Rosia Empire border?!"
 
     #Byrd
     drawMessage "Byrd" "I am well aware of that Captain!"

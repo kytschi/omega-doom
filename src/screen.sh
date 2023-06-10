@@ -2,12 +2,7 @@
 
 function drawLocation()
 {
-	for screen_key in "${!LOCATIONS[@]}"; do
-		if  ${LOCATIONS[$screen_key]} ; then
-			eval "at$screen_key"
-			break
-		fi
-	done
+	eval "at$GOTO_LOCATION"
 }
 
 function drawLocationTitle()
@@ -50,25 +45,27 @@ function drawMessage()
 {
 	character=$1
 	message=$2
-	borderless=$3
+	full=$3
 
 	if (( MESSAGE_BOX_UP==0 )); then
 		rows=`tput lines`
 		rows=$((rows-1))
 		cols=`tput cols`
-		cols=$((cols-HUD_WIDTH))
-
+		if [[ ! $full ]];then
+			cols=$((cols-HUD_WIDTH))
+		fi
+		
 		blank_line=""
 		line=""
 		for (( col=0; col<cols; col++ )); do
 			blank_line="$blank_line "
 			line="$line="
 		done
+
 		for (( row=rows; row>=$((rows-23)); row-- )); do
-			if [[ ! $borderless ]];then
-				tput cup $((row-1)) 0
-				printf "\e[38;5;83m$line\e[0m"
-			fi
+			tput cup $((row-1)) 0
+			printf "\e[38;5;83m$line\e[0m"
+
 			tput cup $row 0
 			printf "\e[0;47;0m$blank_line\e[0m"
 		done
@@ -100,7 +97,7 @@ function drawMessage()
 		tput cup $y $x
 		printf "\e[0;47;30m${message:$iLoop:1}\e[0m"
 		x=$((x+1))
-		sleep 0.05
+		sleep $MESSAGE_SPEED
 	done
 
 	tput cup $y $x
@@ -153,12 +150,6 @@ function drawGfx()
 
 function engage()
 {
-	for screen_key in "${!LOCATIONS[@]}"; do
-		LOCATIONS[$screen_key]=false
-	done
-
-	LOCATIONS[$GOTO_LOCATION]=true
-
 	#Cyrus
 	drawMessage "Cyrus" "Course plotted sir."
 

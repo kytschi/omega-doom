@@ -26,15 +26,14 @@ function drawHUD()
 	rows=$((rows-1))
 
 	tput cup 5 $HUD_COL
-	tput setaf 2
-
+	
 	iLoop=0
 	while true; do
 		tput cup 0 $((HUD_COL+iLoop))
-		printf "="
+		printf "\e[38;5;83m=\e[0m"
 
 		tput cup $rows $((HUD_COL+iLoop))
-		printf "="
+		printf "\e[38;5;83m=\e[0m"
 
 		iLoop=$((iLoop+1))
 		if (( iLoop == HUD_WIDTH )); then
@@ -45,10 +44,10 @@ function drawHUD()
 	iLoop=1
 	while true; do
 		tput cup $iLoop $HUD_COL
-		printf "|"
+		printf "\e[38;5;83m|\e[0m"
 
 		tput cup $iLoop $((HUD_COL+HUD_WIDTH))
-		printf "|"
+		printf "\e[38;5;83m|\e[0m"
 
 		iLoop=$((iLoop+1))
 		if (( iLoop == rows )); then
@@ -57,29 +56,8 @@ function drawHUD()
 	done
 
 	tput cup 2 $((HUD_COL+MENU_PAD))
-	printf "\e[38;5;15mFUEL\e[0m"
+	printf "\e[38;5;83mSHIELDS\e[0m %d%%" $SHIELDS
 
-	iLoop=1
-	color=196
-
-	while true; do
-		tput cup 2 $((HUD_COL+MENU_PAD+iLoop+5))
-
-		printf "\e[38;5;${color}m:\e[0m"
-
-		if (( iLoop >= 11 && iLoop < 22 )); then
-			color=214
-		elif (( iLoop >= 22 )); then
-			color=83
-		fi
-
-		if (( iLoop == FUEL )); then
-			break
-		fi
-		iLoop=$((iLoop+1))
-	done
-
-	tput setaf 1
 	drawMenu
 }
 
@@ -156,7 +134,7 @@ function clearSub()
 	SUB_SELECT_NINE=""
 
 	line=""
-	for (( col=0; col<HUD_WIDTH; col++ )); do
+	for (( col=0; col<HUD_WIDTH-MENU_PAD-2; col++ )); do
 		line="$line "
 	done
 

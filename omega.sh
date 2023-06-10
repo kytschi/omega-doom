@@ -18,7 +18,6 @@ source $SRC_PATH/controls.sh
 source $SRC_PATH/hud.sh
 source $SRC_PATH/screen.sh
 
-declare -A LOCATIONS
 COMMS_MENU=""
 
 SCREEN_WIDTH=640
@@ -28,10 +27,11 @@ LOCATION_TITLE=""
 NEW_LOCATION=true
 PLAYER_X=0 #$(( SCREEN_WIDTH / 1 ))
 PLAYER_Y=0 #$(( SCREEN_HEIGHT / 1 ))
-FUEL=32
+SHIELDS=100
 
 SKIP_LOGO=1
-SKIP_INTRO=0
+SKIP_INTRO=1
+MESSAGE_SPEED=0.01
 
 source $SRC_PATH/characters.sh
 source $SRC_PATH/map.sh
