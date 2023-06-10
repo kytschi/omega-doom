@@ -1,7 +1,6 @@
 #!/bin/bash
 
 AT_LOCATION=""
-SECTOR_PATH=""
 
 function drawQuadrantMap()
 {

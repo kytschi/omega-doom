@@ -2,13 +2,12 @@
 
 function storyIntroProgress1()
 {
+    AT_LOCATION="atRosiaEmpireOutPost3366"
     drawScreen
     
     SUB_SELECT_ONE="introScreen1"
 
     menuItem $MENU_START_Y "c" "Communications" 1
-    
-    menuItem $SUB_MENU_START_Y "1" "Incoming Hail" 0 1
     
     #Ambrose    
     drawMessage "Ambrose" "Captain, incoming hail from Federation Command."
@@ -61,9 +60,9 @@ function storyIntroProgress1()
 
     menuItem $((MENU_START_Y+1)) "n" "Navigation" 0 1
 
-    clearComms
+    clearCommunications
 
-    STORY_PROGRESS_FILE=$SECTOR_PATH/story/outpost3366/progress1
+    STORY_PROGRESS_FILE=$UNIVERSE_PATH/rosia-empire/story/outpost3366/progress1
     STORY_PROGRESS="storyOutpost3366Progress1"
 
     controls

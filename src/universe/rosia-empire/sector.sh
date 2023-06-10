@@ -3,55 +3,55 @@
 function atRosiaEmpireRosiaPrime()
 {
 	LOCATION_TITLE="ROSIA PRIME"
-	drawGfx "$SECTOR_PATH/sector/rosia-prime.gfx"
+	drawGfx "$UNIVERSE_PATH/rosia-empire/sector/rosia-prime.gfx"
 }
 
 function atRosiaEmpireTriu()
 {
 	LOCATION_TITLE="TRIU"
-	drawGfx "$SECTOR_PATH/sector/triu.gfx"
+	drawGfx "$UNIVERSE_PATH/rosia-empire/sector/triu.gfx"
 }
 
 function atRosiaEmpireMortuus()
 {
 	LOCATION_TITLE="MORTUUS"
-	drawGfx "$SECTOR_PATH/sector/mortuus.gfx"
+	drawGfx "$UNIVERSE_PATH/rosia-empire/sector/mortuus.gfx"
 }
 
 function atRosiaEmpireGaea()
 {
 	LOCATION_TITLE="GAEA"
-	drawGfx "$SECTOR_PATH/sector/gaea.gfx"
+	drawGfx "$UNIVERSE_PATH/rosia-empire/sector/gaea.gfx"
 }
 
 function atRosiaEmpireElatus()
 {
 	LOCATION_TITLE="ELATUS"
-	drawGfx "$SECTOR_PATH/sector/elatus.gfx"
+	drawGfx "$UNIVERSE_PATH/rosia-empire/sector/elatus.gfx"
 }
 
 function atRosiaEmpireHellhound()
 {
 	LOCATION_TITLE="HELLHOUND"
-	drawGfx "$SECTOR_PATH/sector/hellhound.gfx"
+	drawGfx "$UNIVERSE_PATH/rosia-empire/sector/hellhound.gfx"
 }
 
 function atRosiaEmpirePholus()
 {
 	LOCATION_TITLE="PHOLUS"
-	drawGfx "$SECTOR_PATH/sector/pholus.gfx"
+	drawGfx "$UNIVERSE_PATH/rosia-empire/sector/pholus.gfx"
 }
 
 function atRosiaEmpireCrommyon()
 {
 	LOCATION_TITLE="CROMMYON"
-	drawGfx "$SECTOR_PATH/sector/crommyon.gfx"
+	drawGfx "$UNIVERSE_PATH/rosia-empire/sector/crommyon.gfx"
 }
 
 function atRosiaEmpireOutPost3366()
 {
 	LOCATION_TITLE="Outpost 3366"
-	drawGfx "$SECTOR_PATH/sector/outpost3366.gfx"
+	drawGfx "$UNIVERSE_PATH/rosia-empire/sector/outpost3366.gfx"
 }
 
 function gotoRosiaEmpireRosiaPrime()
@@ -160,7 +160,7 @@ function drawRosiaEmpireMap()
 		printf '%s' "$line"
 
 		start_row=$((start_row+1))
-	done < $SECTOR_PATH/sector/rosia-empire-map.gfx
+	done < $UNIVERSE_PATH/rosia-empire/sector/rosia-empire-map.gfx
 
 	mapItem 2 4 "Rosia Prime" 0
 	mapItem 7 60 "Triu" 0

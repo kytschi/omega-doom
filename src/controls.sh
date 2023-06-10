@@ -1,4 +1,12 @@
 #!/bin/bash
+
+MENU_COMMUNICATIONS_LOCK=0
+MENU_ENGINEERING_LOCK=0
+MENU_NAVIGATION_LOCK=0
+MENU_SENSORS_LOCK=0
+MENU_WEAPONS_LOCK=0
+MENU_ENGAGE_LOCK=0
+
 function controls()
 {
 	while true; do
@@ -6,21 +14,63 @@ function controls()
 
 		case "$key" in
 			[bB])
-				drawScreen
+				clearCommunications
+				clearEngineering
+				clearNavigation
+
+				eval "$STORY_PROGRESS"
 				;;
 			[cC])
+				clearEngineering
 				menuComms
 				;;
-			[nN])
-				clearComms
-				drawQuadrantMap
-				mapControls
-				;;
 			[eE])
-				engage
+				if [ "$MENU_ENGINEERING_LOCK" == "0" ]; then
+					clearCommunications
+					clearEngineering
+					clearNavigation
+					menuEngineering
+				else
+					eval "$MENU_ENGINEERING_LOCK engineering"
+				fi				
+				;;
+			[gG])
+				if [ "$MENU_ENGAGE_LOCK" == "0" ]; then
+					engage
+				else
+					eval "$MENU_ENGAGE_LOCK engines"
+				fi
+				;;
+			[nN])
+				if [ "$MENU_NAVIGATION_LOCK" == "0" ]; then
+					clearCommunications
+					clearEngineering
+					drawQuadrantMap
+					mapControls
+				else
+					eval "$MENU_NAVIGATION_LOCK navigation"
+				fi
 				;;
 			[qQ])
 				quit
+				;;
+			[sS])
+				if [ "$MENU_SENSORS_LOCK" == "0" ]; then
+					clearCommunications
+					clearEngineering
+					clearNavigation
+				else
+					eval "$MENU_SENSORS_LOCK sensors"
+				fi
+				;;
+			[wW])
+				if [ "$MENU_WEAPONS_LOCK" == "0" ]; then
+					clearCommunications
+					clearEngineering
+					clearNavigation
+				else
+					eval "$MENU_WEAPONS_LOCK weapons"
+				fi				
 				;;
 			[1])
 				eval "$SUB_SELECT_ONE"
@@ -57,7 +107,9 @@ function quit()
 {
 	tput clear
 	tput cup 0 0
-	echo "Good-bye"
+	echo ""
+	echo "Thanks for playing, Good-bye"
+	echo ""
 	tput cnorm
 	exit 1
 }

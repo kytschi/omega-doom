@@ -2,7 +2,16 @@
 
 function storyOutpost3366Progress1()
 {
+    MENU_COMMUNICATIONS_LOCK=0
+    MENU_ENGINEERING_LOCK="storyOutpost3366Progress1NavLock"
+    MENU_NAVIGATION_LOCK="storyOutpost3366Progress1NavLock"
+    MENU_SENSORS_LOCK="storyOutpost3366Progress1NavLock"
+    MENU_WEAPONS_LOCK="storyOutpost3366Progress1NavLock"
+    MENU_ENGAGE_LOCK="storyOutpost3366Progress1NavLock"
+    
+    AT_LOCATION="atRosiaEmpireOutPost3366"
     drawScreen
+    SCREEN_REDRAW=0
 
     #Simons
 	drawMessage "Simons" "Captain, thats a Kazaria Syndicate outpost."
@@ -12,23 +21,31 @@ function storyOutpost3366Progress1()
     drawMessage "Abraham" "Ambrose, hail the outpost."
 
     menuItem $MENU_START_Y "c" "Communications" 0 1
-    SUB_SELECT_MENU="storyOutpost3366Progress1SubMenu"
+    SUB_MENU_COMMUNICATIONS="storyOutpost3366Progress1SubMenu"
 
     controls
 }
 
+function storyOutpost3366Progress1NavLock()
+{
+    #Abraham
+    drawMessage "Abraham" "I don't need $1 right now."
+    drawMessage "Abraham" "Ambrose, hail the outpost."
+}
+
 function storyOutpost3366Progress1SubMenu()
 {
-    SUB_SELECT_MENU=""
-    menuItem $SUB_MENU_START_Y "1" "Hail Output" 0
+    SUB_MENU_COMMUNICATIONS=""
+    menuItem $SUB_MENU_START_Y "b" "Back" 0
+    menuItem $((SUB_MENU_START_Y+1)) "1" "Hail Output" 0
     SUB_SELECT_ONE="storyOutpost3366Progress1Hail"
 }
 
 function storyOutpost3366Progress1Hail()
 {
     SUB_SELECT_ONE=""
-    menuItem $SUB_MENU_START_Y "1" "Hail Output" 1
-
+    menuItem $((SUB_MENU_START_Y+1)) "1" "Hail Output" 1
+    
     #Ambrose    
     drawMessage "Ambrose" "Outpost 3366, this is the SS Liberty."
     drawMessage "Ambrose" "Outpost 3366, this is the SS Liberty, please respond."
@@ -74,11 +91,11 @@ function storyOutpost3366Progress1Hail()
     #Thomas
     drawMessage "Thomas" "Aye Captain."
     
-    clearComms
+    clearCommunications
 
     SCREEN_REDRAW=0
 
-    STORY_PROGRESS_FILE=$SECTOR_PATH/story/outpost3366/progress2
+    STORY_PROGRESS_FILE=$UNIVERSE_PATH/rosia-empire/story/outpost3366/progress2
     STORY_PROGRESS="storyOutpost3366Progress2"
-    progressStory    
+    progressStory
 }

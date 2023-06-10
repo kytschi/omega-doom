@@ -24,16 +24,15 @@ SKIP_TITLE=0
 MESSAGE_SPEED=0.05
 
 source $SRC_PATH/characters.sh
+source $SRC_PATH/ships.sh
 source $SRC_PATH/map.sh
 source $SRC_PATH/universe/rosia-empire/sector.sh
 
 # Just for temp till I sort the story progress functionality
-AT_LOCATION="atRosiaEmpireOutPost3366"
-SECTOR_PATH=$UNIVERSE_PATH/rosia-empire
 STORY_PROGRESS_FILE=$SRC_PATH/story/intro
 STORY_PROGRESS="storyIntroProgress1"
-#STORY_PROGRESS_FILE=$SECTOR_PATH/story/outpost3366/progress1
-#STORY_PROGRESS="storyOutpost3366Progress1"
+#STORY_PROGRESS_FILE=$UNIVERSE_PATH/rosia-empire/story/outpost3366/progress3
+#STORY_PROGRESS="storyOutpost3366Progress3"
 
 if (( SKIP_TITLE==0 )); then
     drawTitle

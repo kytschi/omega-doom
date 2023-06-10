@@ -113,6 +113,8 @@ function drawMessage()
 
 function clearView()
 {
+	MESSAGE_BOX_UP=0
+	
 	cols=`tput cols`
 	cols=$((cols-HUD_WIDTH))
 	rows=`tput lines`

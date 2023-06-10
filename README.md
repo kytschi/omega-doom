@@ -14,3 +14,6 @@ This game is not part of the Star Trek universe or any other scifi one, its part
 ## Credits
 PNGWING for most of the images used to render the ASCII.
 https://www.pngwing.com
+
+BIG BIG SHOUT OUT TO Christian Stigen Larsen and Christoph Raitzig for the jp2a command, without it none of the renders would have been possible!
+https://github.com/Talinx/jp2a
