@@ -43,13 +43,53 @@ function drawLocationTitle()
 	done
 }
 
-PREV_MESSAGE=""
+MESSAGE_BOX_UP=0
+MESSAGE_BOX_BLANK_LINE=""
+MESSAGE_TOP_Y=0
 function drawMessage()
 {
-	x=$1
-	y=$2
-	message=" $3 "
-	
+	character=$1
+	message=$2
+	borderless=$3
+
+	if (( MESSAGE_BOX_UP==0 )); then
+		rows=`tput lines`
+		rows=$((rows-1))
+		cols=`tput cols`
+		cols=$((cols-HUD_WIDTH))
+
+		blank_line=""
+		line=""
+		for (( col=0; col<cols; col++ )); do
+			blank_line="$blank_line "
+			line="$line="
+		done
+		for (( row=rows; row>=$((rows-23)); row-- )); do
+			if [[ ! $borderless ]];then
+				tput cup $((row-1)) 0
+				printf "\e[38;5;83m$line\e[0m"
+			fi
+			tput cup $row 0
+			printf "\e[0;47;0m$blank_line\e[0m"
+		done
+
+		MESSAGE_BOX_BLANK_LINE=""
+		for (( col=0; col<cols-44; col++ )); do
+			MESSAGE_BOX_BLANK_LINE="$MESSAGE_BOX_BLANK_LINE "
+		done
+
+		MESSAGE_BOX_UP=1
+		MESSAGE_TOP_Y=$row
+	fi
+
+	eval "char$character 2 $((MESSAGE_TOP_Y+2))"
+
+	y=$((MESSAGE_TOP_Y+10))
+	x=44
+
+	tput cup $y $x
+	printf "\e[0;47;0m$MESSAGE_BOX_BLANK_LINE\e[0m"
+
 	tput cup $y $x
 	printf "\e[0;40;30m \e[0m"
 
@@ -65,44 +105,7 @@ function drawMessage()
 
 	tput cup $y $x
 	printf "\e[0;40;0m \e[0m"
-
-	end=${#PREV_MESSAGE}
-	end=$((end-length+1))
-	for (( iLoop=0; iLoop<end; iLoop++ )); do
-		tput cup $y $((x+1))
-		printf "\e[0;40;30m \e[0m"
-		tput cup $y $x
-		printf "\e[0;40;0m \e[0m"
-		x=$((x+1))
-		sleep 0.05
-	done
-
-	tput cup $y $x
-	printf "\e[0;40;0m \e[0m"
-
-	PREV_MESSAGE=$message
-}
-
-function clearMessage()
-{
-	x=$1
-	y=$2
-	message=" $3 "
-	
-	tput cup $y $x
-	printf "\e[0;40;30m \e[0m"
-
-	length=${#message}
-	for (( iLoop=0; iLoop<length; iLoop++ )); do
-		tput cup $y $((x+1))
-		printf "\e[0;40;30m \e[0m"
-		tput cup $y $x
-		printf "\e[0;47;0m \e[0m"
-		x=$((x+1))
-	done
-
-	tput cup $y $x
-	printf "\e[0;40;0m \e[0m"
+	sleep 1
 }
 
 function clearView()
@@ -156,27 +159,12 @@ function engage()
 
 	LOCATIONS[$GOTO_LOCATION]=true
 
-	char_one_x=2
-    char_one_text_x=43
-    char_one_y=6
-    char_one_text_y=17
-
-	char_two_x=100
-    char_two_text_x=89
-    char_two_y=20
-    char_two_text_y=32
-
-    charCyrusDraw $char_one_x $char_one_y
-	charAbrahamDraw $char_two_x $char_two_y
-
 	#Cyrus
-	PREV_MESSAGE=""
-    drawMessage $char_one_text_x $char_one_text_y "Course plotted sir."
+	drawMessage "Cyrus" "Course plotted sir."
 
     #Abraham
-	PREV_MESSAGE=""
-    drawMessage $char_two_text_x $char_two_text_y "Engage."
-    sleep 1
+    drawMessage "Abraham" "Engage."
+	MESSAGE_BOX_UP=0
 
 	tput clear
 	tput cup 0 0
@@ -193,21 +181,15 @@ function engage()
 		iLoop=$((iLoop+1))
 	done
 
-	charCyrusDraw $char_one_x $char_one_y
-	charAbrahamDraw $char_two_x $char_two_y
-
 	#Cyrus
-    drawMessage $char_one_text_x $char_one_text_y "Captain, we've arrive at our destination sir."
+    drawMessage "Cyrus" "Captain, we've arrive at our destination sir." 1
 
     #Abraham
-    char_two_text_x=65
-	PREV_MESSAGE=""
-    drawMessage $char_two_text_x $char_two_text_y "Very well, take us out of warp."
+    drawMessage "Abraham" "Very well, take us out of warp."
 
 	#Cyrus
-	PREV_MESSAGE="Captain, we've arrive at our destination sir."
-    drawMessage $char_one_text_x $char_one_text_y "Dropping to impulse power."
-    sleep 1
+    drawMessage "Cyrus" "Dropping to impulse power."
+	MESSAGE_BOX_UP=0
 
 	drawScreen
 }

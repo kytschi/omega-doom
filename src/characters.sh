@@ -1,6 +1,6 @@
 # John Abraham, Captain
 # Captain of the SS Liberty
-function charAbrahamDraw()
+function charAbraham()
 {
     x=$1
     y=$2
@@ -15,7 +15,7 @@ function charAbrahamDraw()
 
 # Teal Ambrose, Lieutenant
 # Communication's officer of the SS Liberty
-function charAmbroseDraw()
+function charAmbrose()
 {
     x=$1
     y=$2
@@ -30,7 +30,7 @@ function charAmbroseDraw()
 
 # Jake Cyrus, Lieutenant
 # Navigation's officer of the SS Liberty
-function charCyrusDraw()
+function charCyrus()
 {
     x=$1
     y=$2
@@ -45,7 +45,7 @@ function charCyrusDraw()
 
 # Richard Byrd, Admiral
 # Admiral in Federation Command
-function charByrdDraw()
+function charByrd()
 {
     x=$1
     y=$2
