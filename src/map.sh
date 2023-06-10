@@ -1,6 +1,8 @@
 #!/bin/bash
 
-GOTO_LOCATION=""
+AT_LOCATION=""
+SECTOR_PATH=""
+
 function drawQuadrantMap()
 {
 	clearView

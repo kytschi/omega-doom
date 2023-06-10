@@ -1,54 +1,15 @@
 #!/bin/bash
 
-function drawIntro()
+function storyIntroProgress1()
 {
-    rows=`tput lines`
-	cols=`tput cols`
-    x=$((cols/3))
-    x=$((x-13))
-    
-    if ((SKIP_LOGO==0)); then
-        for (( iLoop=1; iLoop<=7; iLoop++ )); do
-            y=5
-            while IFS= read -r line; do
-                tput cup $y $x
-                printf '%s\n' "$line"
-                y=$((y+1))
-            done < $GFX_PATH/intro/game-title$iLoop.gfx
-            sleep 0.5
-        done
-        for (( iLoop=7; iLoop>=1; iLoop-- )); do
-            y=5
-            while IFS= read -r line; do
-                tput cup $y $x
-                printf '%s\n' "$line"
-                y=$((y+1))
-            done < $GFX_PATH/intro/game-title$iLoop.gfx
-            sleep 0.5
-        done
-    fi
-
     drawScreen
-    sleep 1
-    if ((SKIP_INTRO==0)); then
-        intro
-    fi
-    clearComms
-    controls
-}
-
-function intro()
-{
+    
     SUB_SELECT_ONE="introScreen1"
 
-    menuItem $MENU_START_Y "c" "Communications" 0 1
-    sleep 2
+    #menuItem $MENU_START_Y "c" "Communications" 0 1
+    #sleep 2
     menuItem $MENU_START_Y "c" "Communications" 1
-    introScreen1
-}
-
-function introScreen1()
-{
+    
     menuItem $SUB_MENU_START_Y "1" "Incoming Hail" 0 1
     
     #Ambrose    
@@ -99,4 +60,13 @@ function introScreen1()
     #Abraham
     drawMessage "Abraham" "Set a course for 663993 691216. Maximum warp."
     MESSAGE_BOX_UP=0
+
+    menuItem $((MENU_START_Y+1)) "n" "Navigation" 0 1
+
+    clearComms
+
+    STORY_PROGRESS_FILE=$SECTOR_PATH/story/outpost3366/progress1
+    STORY_PROGRESS="storyOutpost3366Progress1"
+
+    controls
 }

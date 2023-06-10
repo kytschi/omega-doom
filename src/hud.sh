@@ -71,10 +71,6 @@ function drawMenu()
 	
 	start_row=$((start_row+1))
 	menuItem $start_row "q" "Save & Quit" 0
-	
-	# Clear engage
-	tput cup 11 $((HUD_COL+MENU_PAD))
-    printf "                              "
 }
 
 function menuComms()
