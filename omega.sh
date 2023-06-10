@@ -18,19 +18,10 @@ source $SRC_PATH/controls.sh
 source $SRC_PATH/hud.sh
 source $SRC_PATH/screen.sh
 
-COMMS_MENU=""
-
-SCREEN_WIDTH=640
-SCREEN_HEIGHT=480
-
-LOCATION_TITLE=""
-NEW_LOCATION=true
-PLAYER_X=0 #$(( SCREEN_WIDTH / 1 ))
-PLAYER_Y=0 #$(( SCREEN_HEIGHT / 1 ))
 SHIELDS=100
 
-SKIP_TITLE=1
-MESSAGE_SPEED=0.01
+SKIP_TITLE=0
+MESSAGE_SPEED=0.05
 
 source $SRC_PATH/characters.sh
 source $SRC_PATH/map.sh
@@ -39,18 +30,15 @@ source $SRC_PATH/universe/rosia-empire/sector.sh
 # Just for temp till I sort the story progress functionality
 AT_LOCATION="atRosiaEmpireOutPost3366"
 SECTOR_PATH=$UNIVERSE_PATH/rosia-empire
-#STORY_PROGRESS_FILE=$SRC_PATH/story/intro
-#STORY_PROGRESS="storyIntroProgress1"
-STORY_PROGRESS_FILE=$SECTOR_PATH/story/outpost3366/progress1
-STORY_PROGRESS="storyOutpost3366Progress1"
+STORY_PROGRESS_FILE=$SRC_PATH/story/intro
+STORY_PROGRESS="storyIntroProgress1"
+#STORY_PROGRESS_FILE=$SECTOR_PATH/story/outpost3366/progress1
+#STORY_PROGRESS="storyOutpost3366Progress1"
 
 if (( SKIP_TITLE==0 )); then
     drawTitle
 fi
 
 progressStory
-
-# Clean up
-#rm $TMP_PATH/*.png 2> /dev/null
 
 tput cnorm

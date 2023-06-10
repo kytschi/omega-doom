@@ -6,8 +6,6 @@ function storyIntroProgress1()
     
     SUB_SELECT_ONE="introScreen1"
 
-    #menuItem $MENU_START_Y "c" "Communications" 0 1
-    #sleep 2
     menuItem $MENU_START_Y "c" "Communications" 1
     
     menuItem $SUB_MENU_START_Y "1" "Incoming Hail" 0 1

@@ -9,6 +9,8 @@ All copyrights go to those of the original creators and copyright holders of any
 
 I am a big scifi fan, Star Trek being one of the biggest, so if I've used any visuals, words or likeness it was not in any attempt to rip off said original creators or copyright holders. I just want to create something for fun and let my imagine run for some cathodic development for once :-)
 
+This game is not part of the Star Trek universe or any other scifi one, its part of a new one I've created.
+
 ## Credits
 PNGWING for most of the images used to render the ASCII.
 https://www.pngwing.com

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+LOCATION_TITLE=""
+
 function drawLocation()
 {
 	eval "$AT_LOCATION"
@@ -41,10 +43,11 @@ function drawLocationTitle()
 MESSAGE_BOX_UP=0
 MESSAGE_BOX_BLANK_LINE=""
 MESSAGE_TOP_Y=0
+MESSAGE_CURRENT_CHAR=""
 function drawMessage()
 {
 	character=$1
-	message=$2
+	message=" $2 "
 	full=$3
 
 	if (( MESSAGE_BOX_UP==0 )); then
@@ -79,7 +82,10 @@ function drawMessage()
 		MESSAGE_TOP_Y=$row
 	fi
 
-	eval "char$character 2 $((MESSAGE_TOP_Y+2))"
+	if [ "$MESSAGE_CURRENT_CHAR" != "$character" ]; then
+		MESSAGE_CURRENT_CHAR=$character
+		eval "char$character 2 $((MESSAGE_TOP_Y+2))"
+	fi
 
 	y=$((MESSAGE_TOP_Y+10))
 	x=44
@@ -122,13 +128,17 @@ function clearView()
 	done
 }
 
+SCREEN_REDRAW=1
 function drawScreen()
 {
-	tput clear
-	tput cup 0 0
-	drawLocation
-	drawLocationTitle
-	drawHUD
+	if (( SCREEN_REDRAW==1 )); then
+		MESSAGE_BOX_UP=0
+		tput clear
+		tput cup 0 0
+		drawLocation
+		drawLocationTitle
+		drawHUD
+	fi
 }
 
 function drawTitle()

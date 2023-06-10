@@ -56,7 +56,7 @@ function drawHUD()
 	done
 
 	tput cup 2 $((HUD_COL+MENU_PAD))
-	printf "\e[38;5;83mSHIELDS\e[0m %d%%" $SHIELDS
+	printf '\e[38;5;83mSHIELDS\e[0m %d%%' "$SHIELDS"
 
 	drawMenu
 }
@@ -68,6 +68,12 @@ function drawMenu()
 
 	start_row=$((start_row+1))
 	menuItem $start_row "n" "Navigation" 0
+
+	start_row=$((start_row+1))
+	menuItem $start_row "s" "Sensors" 0
+
+	start_row=$((start_row+1))
+	menuItem $start_row "w" "Weapons" 0
 	
 	start_row=$((start_row+1))
 	menuItem $start_row "q" "Save & Quit" 0
