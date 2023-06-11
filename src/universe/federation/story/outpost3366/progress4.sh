@@ -123,9 +123,13 @@ function storyOutpost3366Progress4FireSensors()
     drawMessage "Thomas" "All hands brace for impact!"
     drawMessage "Thomas" "Probe away."
 
-    drawMessage "Abraham" "Jake I just want you to know that I lo"
+    drawMessage "Abraham" "Jake I just want you to know that I lo *EXPLOSION*"
 
     # TODO Omega Doom destroying the Liberty.
+
+    STORY_PROGRESS_FILE=$UNIVERSE_PATH/garis-republic/story/penal_colony/progress1
+    STORY_PROGRESS="storyPenalColonyProgress1"
+    progressStory
 }
 
 function storyOutpost3366Progress4FireShields()

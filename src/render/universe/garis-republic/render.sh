@@ -1,7 +1,7 @@
 #!/bin/bash
 
 RENDER_PATH=${PWD}
-GFX_PATH=$PWD/../../../universe/rosia-empire/sector/
+GFX_PATH=$PWD/../../../universe/garis-republic/sector/
 
 rm $GFX_PATH*.gfx 2> /dev/null
 rm $RENDER_PATH/*.png~ 2> /dev/null
@@ -14,7 +14,7 @@ if (( `ls $RENDER_PATH/*.png 2>/dev/null | wc -l` )); then
 
 		echo "Rendering $src to ${desc}.gfx"
 
-		if [ $src != "rosia-empire-map.png" ]; then
+		if [ $src != "garis-republic-map.png" ]; then
 			convert \
 				$src \
 				-background none \

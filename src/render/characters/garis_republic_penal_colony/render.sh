@@ -1,7 +1,7 @@
 #!/bin/bash
 
 RENDER_PATH=${PWD}
-GFX_PATH=$PWD/../../../gfx/ships/omega_doom/
+GFX_PATH=$PWD/../../../gfx/characters/garis_republic_penal_colony/
 
 rm $GFX_PATH*.gfx 2> /dev/null
 rm $RENDER_PATH/*.png~ 2> /dev/null
@@ -18,6 +18,6 @@ if (( `ls $RENDER_PATH/*.png 2>/dev/null | wc -l` )); then
 			$src \
 			-background none \
 			-layers flatten \
-			jpg:- | jp2a - --width=150 --color > $GFX_PATH$desc.gfx
+			jpg:- | jp2a - --width=40 --color > $GFX_PATH$desc.gfx
 	done
 fi

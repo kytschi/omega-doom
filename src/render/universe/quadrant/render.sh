@@ -3,6 +3,10 @@
 RENDER_PATH=${PWD}
 GFX_PATH=$PWD/../../../universe/quadrant/
 
+rm $GFX_PATH*.gfx 2> /dev/null
+rm $RENDER_PATH/*.png~ 2> /dev/null
+rm $RENDER_PATH/*.kra~ 2> /dev/null
+
 if (( `ls $RENDER_PATH/*.png 2>/dev/null | wc -l` )); then
 	for src in $(ls $RENDER_PATH/*.png); do
 		src=${src##*/}

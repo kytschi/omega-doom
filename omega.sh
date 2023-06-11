@@ -29,6 +29,7 @@ source $SRC_PATH/ships.sh
 source $SRC_PATH/map.sh
 source $SRC_PATH/universe/federation/sector.sh
 source $SRC_PATH/universe/rosia-empire/sector.sh
+source $SRC_PATH/universe/garis-republic/sector.sh
 
 # Just for temp till I sort the story progress functionality
 #STORY_PROGRESS_FILE=$UNIVERSE_PATH/rosia-empire/story/outpost3366/progress3

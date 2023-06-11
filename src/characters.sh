@@ -47,6 +47,19 @@ function charPeters()
     charDraw $1 $2 $GFX_PATH/characters/ss_liberty/peters.gfx "Chief Peters <SS Liberty> "
 }
 
+# Taki
+# Inmate at Garis Republic Penal Colony
+function charTaki()
+{
+    charDraw $1 $2 $GFX_PATH/characters/garis_republic_penal_colony/taki.gfx "Taki <cell mate> "
+}
+
+# Jake Abraham
+function charJake()
+{
+    charDraw $1 $2 $GFX_PATH/characters/omega_doom/jake.gfx "Jake"
+}
+
 function charDraw()
 {
     x=$1
