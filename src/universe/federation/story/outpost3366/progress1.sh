@@ -36,6 +36,7 @@ function storyOutpost3366Progress1NavLock()
 function storyOutpost3366Progress1SubMenu()
 {
     SUB_MENU_COMMUNICATIONS=""
+    MENU_BACK="progressStory"
     menuItem $SUB_MENU_START_Y "b" "Back" 0
     menuItem $((SUB_MENU_START_Y+1)) "1" "Hail Output" 0
     SUB_SELECT_ONE="storyOutpost3366Progress1Hail"

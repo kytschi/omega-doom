@@ -148,6 +148,7 @@ function drawScreen()
 function drawTitle()
 {
 	tput clear
+	SCREEN_REDRAW=1
 
 	cols=`tput cols`
     x=$((cols/3))
@@ -175,7 +176,7 @@ function drawTitle()
 	printf "\e[38;5;15m[\e[38;5;208mo\e[0m\e[38;5;15m] Options"
 
 	tput cup $((y+6)) $x
-	printf "\e[38;5;15m[\e[38;5;208mq\e[0m\e[38;5;15m] Save & Quit"
+	printf "\e[38;5;15m[\e[38;5;208mq\e[0m\e[38;5;15m] Quit"
 	
 	while true; do
 	    read -t 0.01 -s -n 10000 key

@@ -40,6 +40,13 @@ function charSimons()
     charDraw $1 $2 $GFX_PATH/characters/ss_liberty/simons.gfx "Lt. Simons <SS Liberty> "
 }
 
+# Jonathan Peters, Chief Engineer 
+# Chief of engineering of the SS Liberty
+function charPeters()
+{
+    charDraw $1 $2 $GFX_PATH/characters/ss_liberty/peters.gfx "Chief Peters <SS Liberty> "
+}
+
 function charDraw()
 {
     x=$1

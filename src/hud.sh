@@ -60,8 +60,7 @@ function drawHUD()
 		fi
 	done
 
-	tput cup 2 $((HUD_COL+MENU_PAD))
-	printf '\e[38;5;83mSHIELDS\e[0m %d%%' "$SHIELDS"
+	updateShields $SHIELDS
 
 	drawMenu
 }
@@ -174,4 +173,30 @@ function clearSub()
 		tput cup $((SUB_MENU_START_Y+row)) $((HUD_COL+MENU_PAD))
 		printf "\e[0;47;0m$line\e[0m"
 	done
+}
+
+function menuWeapons()
+{
+	menuItem $((MENU_START_Y+3)) "w" "Weapons" 1
+	
+	if [ !"$SUB_MENU_WEAPONS" ]; then
+		eval "$SUB_MENU_WEAPONS"
+	fi
+}
+
+function clearWeapons()
+{
+	menuItem $((MENU_START_Y+3)) "w" "Weapons" 0
+	clearSub
+}
+
+function updateShields()
+{
+	SHIELDS=$1
+	tput cup 2 $((HUD_COL+MENU_PAD))
+	if (( SHIELDS < 10 )); then
+		printf '\e[38;5;83mSHIELDS\e[0m \e[0;91m%d%%\e[0m' "$SHIELDS"
+	else
+		printf '\e[38;5;83mSHIELDS\e[0m %d%%' "$SHIELDS"
+	fi
 }

@@ -19,6 +19,8 @@ SUB_MENU_LOCK_NINE=0
 
 SUB_MENU_LOCK_RESET=""
 
+MENU_BACK=""
+
 function controls()
 {
 	while true; do
@@ -30,7 +32,7 @@ function controls()
 				clearEngineering
 				clearNavigation
 
-				eval "$STORY_PROGRESS"
+				eval "$MENU_BACK"
 				;;
 			[cC])
 				clearEngineering
@@ -81,6 +83,7 @@ function controls()
 					clearCommunications
 					clearEngineering
 					clearNavigation
+					menuWeapons
 				else
 					eval "$MENU_WEAPONS_LOCK weapons"
 				fi				
@@ -194,6 +197,9 @@ function load()
 					MS)
 						MESSAGE_SPEED=${splits[1]}
 						;;
+					SH)
+						SHIELDS=${splits[1]}
+						;;
 					SP)
 						STORY_PROGRESS=${splits[1]}
 						;;
@@ -262,7 +268,7 @@ function quit()
 
 function save()
 {
-	echo "MS:$MESSAGE_SPEED;SPF:$STORY_PROGRESS_FILE;SP:$STORY_PROGRESS;" > $BASE_PATH/.save
+	echo "MS:$MESSAGE_SPEED;SPF:$STORY_PROGRESS_FILE;SP:$STORY_PROGRESS;SH:$SHIELDS;" > $BASE_PATH/.save
 }
 
 function setMessageSpeed()
@@ -327,4 +333,16 @@ function setMessageSpeed()
 
 	save
 	optionsMenu
+}
+
+function gameover()
+{
+	tput clear
+	tput cup 0 0
+	echo ""
+	echo "$1"
+	echo "GAME OVER"
+	echo ""
+	sleep 3
+	drawTitle
 }

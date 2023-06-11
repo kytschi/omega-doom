@@ -35,6 +35,8 @@ function mapControls()
 	clearSub
 	menuItem 6 "n" "Navigation" 1
 	
+	MENU_BACK="progressStory"
+
 	start_row=$SUB_MENU_START_Y
 	menuItem $start_row "b" "Back" 0
 

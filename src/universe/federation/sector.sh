@@ -94,6 +94,7 @@ function gotoFederationYidowPrime()
 function menuFederation()
 {
 	clearSub
+	MENU_BACK="progressStory"
 
 	y=$SUB_MENU_START_Y
 	menuItem $y "b" "Back" 0
