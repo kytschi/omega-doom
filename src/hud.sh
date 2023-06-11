@@ -126,7 +126,7 @@ function clearNavigation()
 function menuEngage()
 {
 	tput cup $1 $((HUD_COL+MENU_PAD))
-	printf "\e[38;5;15m[\e[38;5;208me\e[0m\e[38;5;15m] \e[33;5;15mEngage\e[0m"
+	printf "\e[38;5;15m[\e[38;5;208mg\e[0m\e[38;5;15m] \e[33;5;15mEngage\e[0m"
 }
 
 PREV_MENU_Y=0

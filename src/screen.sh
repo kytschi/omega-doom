@@ -1,6 +1,7 @@
 #!/bin/bash
 
 LOCATION_TITLE=""
+WARP_COMPLETE=""
 
 function drawLocation()
 {
@@ -157,8 +158,51 @@ function drawTitle()
 			printf '%s\n' "$line"
 			y=$((y+1))
 		done < $GFX_PATH/intro/game-title$iLoop.gfx
-		sleep 0.5
+		sleep 0.08
 	done
+
+	x=$((cols/2))
+    x=$((x-4))
+	tput cup $((y+3)) $x
+	printf "\e[38;5;15m[\e[38;5;208mc\e[0m\e[38;5;15m] Continue"
+
+	tput cup $((y+4)) $x
+	printf "\e[38;5;15m[\e[38;5;208mn\e[0m\e[38;5;15m] New"
+
+	tput cup $((y+5)) $x
+	printf "\e[38;5;15m[\e[38;5;208mq\e[0m\e[38;5;15m] Quit"
+	
+	while true; do
+	    read -t 0.01 -s -n 10000 key
+
+		case "$key" in
+			[cC])
+				hideTitle
+				progressStory
+				;;
+			[nN])
+				STORY_PROGRESS_FILE=$SRC_PATH/story/intro
+				STORY_PROGRESS="storyIntroProgress1"
+				save
+				hideTitle
+				progressStory
+				;;
+			[qQ])
+				quit
+				;;
+		esac
+	done
+}
+
+function hideTitle()
+{
+	for (( iLoop=3; iLoop<6; iLoop++ )); do
+		tput cup $((y+iLoop)) $x
+		echo "                                 "
+	done
+
+	x=$((cols/3))
+    x=$((x-13))
 	for (( iLoop=7; iLoop>=1; iLoop-- )); do
 		y=5
 		while IFS= read -r line; do
@@ -166,7 +210,7 @@ function drawTitle()
 			printf '%s\n' "$line"
 			y=$((y+1))
 		done < $GFX_PATH/intro/game-title$iLoop.gfx
-		sleep 0.5
+		sleep 0.08
 	done
 }
 
@@ -215,7 +259,7 @@ function engage()
     drawMessage "Cyrus" "Dropping to impulse power."
 	MESSAGE_BOX_UP=0
 
-	progressStory
+	eval "$WARP_COMPLETE"
 }
 
 function progressStory()

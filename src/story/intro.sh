@@ -4,9 +4,7 @@ function storyIntroProgress1()
 {
     AT_LOCATION="atRosiaEmpireOutPost3366"
     drawScreen
-    
-    SUB_SELECT_ONE="introScreen1"
-
+        
     menuItem $MENU_START_Y "c" "Communications" 1
     
     #Ambrose    
@@ -54,16 +52,47 @@ function storyIntroProgress1()
     #Cyrus
     drawMessage "Cyrus" "Aye sir."
 
+    STORY_PROGRESS_FILE=$SRC_PATH/story/intro
+	STORY_PROGRESS="storyIntroProgress2"
+
+    progressStory
+}
+
+function storyIntroProgress2MenuLock()
+{
     #Abraham
-    drawMessage "Abraham" "Set a course for 663993 691216. Maximum warp."
+    drawMessage "Abraham" "I don't need $1 right now."
+    drawMessage "Abraham" "Set a course for 663993 691216 on the Rosia border. Maximum warp."
+}
+
+
+function storyIntroProgress2()
+{
+    MENU_COMMUNICATIONS_LOCK="storyIntroProgress2MenuLock"
+    MENU_ENGINEERING_LOCK="storyIntroProgress2MenuLock"
+    MENU_NAVIGATION_LOCK=0
+    MENU_SENSORS_LOCK="storyIntroProgress2MenuLock"
+    MENU_WEAPONS_LOCK="storyIntroProgress2MenuLock"
+    MENU_ENGAGE_LOCK=0
+
+    AT_LOCATION="atRosiaEmpireOutPost3366"
+    drawScreen
+
+    #Abraham
+    drawMessage "Abraham" "Set a course for 663993 691216 on the Rosia border. Maximum warp."
     MESSAGE_BOX_UP=0
 
     menuItem $((MENU_START_Y+1)) "n" "Navigation" 0 1
 
     clearCommunications
 
-    STORY_PROGRESS_FILE=$UNIVERSE_PATH/rosia-empire/story/outpost3366/progress1
-    STORY_PROGRESS="storyOutpost3366Progress1"
-
+    WARP_COMPLETE="storyIntroProgress3"
     controls
+}
+
+function storyIntroProgress3()
+{
+    STORY_PROGRESS_FILE=$UNIVERSE_PATH/rosia-empire/story/outpost3366/progress1
+	STORY_PROGRESS="storyOutpost3366Progress1"
+    progressStory
 }

@@ -52,6 +52,7 @@ function controls()
 				fi
 				;;
 			[qQ])
+				save
 				quit
 				;;
 			[sS])
@@ -103,6 +104,33 @@ function controls()
 	done
 }
 
+function load()
+{
+	while IFS= read -r line; do
+		if [ !"$line" ]; then
+			IFS=';'
+			read -a settings <<< "$line"
+			
+			for val in "${settings[@]}"
+			do
+				IFS=':'
+				read -a splits <<< "$val"
+				case ${splits[0]} in
+					MS)
+						MESSAGE_SPEED=${splits[1]}
+						;;
+					SP)
+						STORY_PROGRESS=${splits[1]}
+						;;
+					SPF)
+						STORY_PROGRESS_FILE=${splits[1]}
+						;;
+				esac
+			done
+		fi
+	done < $BASE_PATH/.save
+}
+
 function quit()
 {
 	tput clear
@@ -112,4 +140,9 @@ function quit()
 	echo ""
 	tput cnorm
 	exit 1
+}
+
+function save()
+{
+	echo "MS:$MESSAGE_SPEED;SPF:$STORY_PROGRESS_FILE;SP:$STORY_PROGRESS;" > $BASE_PATH/.save
 }
