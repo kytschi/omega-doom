@@ -55,16 +55,9 @@ function storyIntroProgress1()
     STORY_PROGRESS_FILE=$SRC_PATH/story/intro
 	STORY_PROGRESS="storyIntroProgress2"
 
+    SCREEN_REDRAW=0
     progressStory
 }
-
-function storyIntroProgress2MenuLock()
-{
-    #Abraham
-    drawMessage "Abraham" "I don't need $1 right now."
-    drawMessage "Abraham" "Set a course for 663993 691216 in Federation space on Rosia border. Maximum warp."
-}
-
 
 function storyIntroProgress2()
 {
@@ -75,9 +68,21 @@ function storyIntroProgress2()
     MENU_WEAPONS_LOCK="storyIntroProgress2MenuLock"
     MENU_ENGAGE_LOCK=0
 
+    SUB_MENU_LOCK_ONE="storyIntroProgress2NavLock"
+    SUB_MENU_LOCK_TWO=0
+    SUB_MENU_LOCK_THREE="storyIntroProgress2NavLock"
+    SUB_MENU_LOCK_FOUR="storyIntroProgress2NavLock"
+    SUB_MENU_LOCK_FIVE="storyIntroProgress2NavLock"
+    SUB_MENU_LOCK_SIX="storyIntroProgress2NavLock"
+    SUB_MENU_LOCK_SEVEN="storyIntroProgress2NavLock"
+    SUB_MENU_LOCK_EIGHT="storyIntroProgress2NavLock"
+    SUB_MENU_LOCK_NINE="storyIntroProgress2NavLock"
+
+    SUB_MENU_LOCK_RESET="storyIntroProgress2NavLockReset"
+
     AT_LOCATION="atFederationEarth"
     drawScreen
-
+    
     #Abraham
     drawMessage "Abraham" "Set a course for 663993 691216 in Federation space on Rosia border. Maximum warp."
 
@@ -87,6 +92,29 @@ function storyIntroProgress2()
 
     WARP_COMPLETE="storyIntroProgress3"
     controls
+}
+
+function storyIntroProgress2NavLock()
+{
+    #Cyrus
+    drawMessage "Cyrus" "Captain, the Admiral said to go to the outpost in Federation space on Rosia border."
+
+    #Abraham
+    drawMessage "Abraham" "Your right Cyrus."
+    drawMessage "Abraham" "Set a course for 663993 691216 in Federation space on Rosia border. Maximum warp."
+}
+
+function storyIntroProgress2NavLockReset()
+{
+    SUB_MENU_LOCK_TWO="storyIntroProgress2NavLock"
+    SUB_MENU_LOCK_SEVEN=0
+}
+
+function storyIntroProgress2MenuLock()
+{
+    #Abraham
+    drawMessage "Abraham" "I don't need $1 right now."
+    drawMessage "Abraham" "Set a course for 663993 691216 in Federation space on Rosia border. Maximum warp."
 }
 
 function storyIntroProgress3()

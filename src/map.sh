@@ -65,6 +65,10 @@ function mapControls()
 	start_row=$((start_row+1))
 	menuItem $start_row "7" "House of Moong" 0
 	SUB_SELECT_SEVEN="drawRosiaEmpireMap"
+
+	start_row=$((start_row+1))
+	menuItem $start_row "8" "The Void" 0
+	SUB_SELECT_EIGHT="drawRosiaEmpireMap"
 }
 
 function mapItem()

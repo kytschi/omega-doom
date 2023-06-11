@@ -7,6 +7,18 @@ MENU_SENSORS_LOCK=0
 MENU_WEAPONS_LOCK=0
 MENU_ENGAGE_LOCK=0
 
+SUB_MENU_LOCK_ONE=0
+SUB_MENU_LOCK_TWO=0
+SUB_MENU_LOCK_THREE=0
+SUB_MENU_LOCK_FOUR=0
+SUB_MENU_LOCK_FIVE=0
+SUB_MENU_LOCK_SIX=0
+SUB_MENU_LOCK_SEVEN=0
+SUB_MENU_LOCK_EIGHT=0
+SUB_MENU_LOCK_NINE=0
+
+SUB_MENU_LOCK_RESET=""
+
 function controls()
 {
 	while true; do
@@ -74,31 +86,94 @@ function controls()
 				fi				
 				;;
 			[1])
-				eval "$SUB_SELECT_ONE"
+				if [ "$SUB_MENU_LOCK_ONE" == "0" ]; then
+					if [ !"$SUB_MENU_LOCK_RESET" ]; then
+						eval "$SUB_MENU_LOCK_RESET"
+					fi
+					eval "$SUB_SELECT_ONE"
+				else
+					eval "$SUB_MENU_LOCK_ONE"
+				fi
 				;;
 			[2])
-				eval "$SUB_SELECT_TWO"
+				if [ "$SUB_MENU_LOCK_TWO" == "0" ]; then
+					if [ !"$SUB_MENU_LOCK_RESET" ]; then
+						eval "$SUB_MENU_LOCK_RESET"
+					fi
+					eval "$SUB_SELECT_TWO"
+				else
+					eval "$SUB_MENU_LOCK_TWO"
+				fi
 				;;
 			[3])
-				eval "$SUB_SELECT_THREE"
+				if [ "$SUB_MENU_LOCK_THREE" == "0" ]; then
+					if [ !"$SUB_MENU_LOCK_RESET" ]; then
+						eval "$SUB_MENU_LOCK_RESET"
+					fi
+					eval "$SUB_SELECT_THREE"
+				else
+					eval "$SUB_MENU_LOCK_THREE"
+				fi
 				;;
 			[4])
-				eval "$SUB_SELECT_FOUR"
+				if [ "$SUB_MENU_LOCK_FOUR" == "0" ]; then
+					if [ !"$SUB_MENU_LOCK_RESET" ]; then
+						eval "$SUB_MENU_LOCK_RESET"
+					fi
+					eval "$SUB_SELECT_FOUR"
+				else
+					eval "$SUB_MENU_LOCK_FOUR"
+				fi
 				;;
 			[5])
-				eval "$SUB_SELECT_FIVE"
+				if [ "$SUB_MENU_LOCK_FIVE" == "0" ]; then
+					if [ !"$SUB_MENU_LOCK_RESET" ]; then
+						eval "$SUB_MENU_LOCK_RESET"
+					fi
+					eval "$SUB_SELECT_FIVE"
+				else
+					eval "$SUB_MENU_LOCK_FIVE"
+				fi
 				;;
 			[6])
-				eval "$SUB_SELECT_SIX"
+				if [ "$SUB_MENU_LOCK_SIX" == "0" ]; then
+					if [ !"$SUB_MENU_LOCK_RESET" ]; then
+						eval "$SUB_MENU_LOCK_RESET"
+					fi
+					eval "$SUB_SELECT_SIX"
+				else
+					eval "$SUB_MENU_LOCK_SIX"
+				fi
 				;;
 			[7])
-				eval "$SUB_SELECT_SEVEN"
+				if [ "$SUB_MENU_LOCK_SEVEN" == "0" ]; then
+					if [ !"$SUB_MENU_LOCK_RESET" ]; then
+						eval "$SUB_MENU_LOCK_RESET"
+					fi
+					eval "$SUB_SELECT_SEVEN"
+				else
+					eval "$SUB_MENU_LOCK_SEVEN"
+				fi
 				;;
 			[8])
-				eval "$SUB_SELECT_EIGHT"
+				if [ "$SUB_MENU_LOCK_EIGHT" == "0" ]; then
+					if [ !"$SUB_MENU_LOCK_RESET" ]; then
+						eval "$SUB_MENU_LOCK_RESET"
+					fi
+					eval "$SUB_SELECT_EIGHT"
+				else
+					eval "$SUB_MENU_LOCK_EIGHT"
+				fi
 				;;
 			[9])
-				eval "$SUB_SELECT_NINE"
+				if [ "$SUB_MENU_LOCK_NINE" == "0" ]; then
+					if [ !"$SUB_MENU_LOCK_RESET" ]; then
+						eval "$SUB_MENU_LOCK_RESET"
+					fi
+					eval "$SUB_SELECT_NINE"
+				else
+					eval "$SUB_MENU_LOCK_NINE"
+				fi
 				;;
 		esac
 	done

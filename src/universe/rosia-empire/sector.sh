@@ -137,6 +137,7 @@ function menuRosiaEmpire()
 
 function drawRosiaEmpireMap()
 {
+	clearView
 	start_row=2
 	while IFS= read -r line; do
 		tput cup $start_row 0
