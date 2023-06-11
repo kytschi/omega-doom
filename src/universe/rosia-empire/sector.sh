@@ -48,12 +48,6 @@ function atRosiaEmpireCrommyon()
 	drawGfx "$UNIVERSE_PATH/rosia-empire/sector/crommyon.gfx"
 }
 
-function atRosiaEmpireOutPost3366()
-{
-	LOCATION_TITLE="Outpost 3366"
-	drawGfx "$UNIVERSE_PATH/rosia-empire/sector/outpost3366.gfx"
-}
-
 function gotoRosiaEmpireRosiaPrime()
 {
 	AT_LOCATION="atRosiaEmpireRosiaPrime"
@@ -110,13 +104,6 @@ function gotoRosiaEmpireCrommyon()
 	menuEngage $((SUB_MENU_START_Y+10))
 }
 
-function gotoRosiaEmpireOutPost3366()
-{
-	AT_LOCATION="atRosiaEmpireOutPost3366"
-	menuItem $((SUB_MENU_START_Y+9)) "9" "OutPost 3366" 1
-	menuEngage $((SUB_MENU_START_Y+10))
-}
-
 function menuRosiaEmpire()
 {
 	clearSub
@@ -146,9 +133,6 @@ function menuRosiaEmpire()
 
 	menuItem $((SUB_MENU_START_Y+8)) "8" "Crommyon" 0
 	SUB_SELECT_EIGHT="gotoRosiaEmpireCrommyon"
-
-	menuItem $((SUB_MENU_START_Y+9)) "9" "OutPost 3366" 0
-	SUB_SELECT_NINE="gotoRosiaEmpireOutPost3366"
 }
 
 function drawRosiaEmpireMap()

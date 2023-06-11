@@ -27,6 +27,7 @@ STORY_PROGRESS="storyIntroProgress1"
 source $SRC_PATH/characters.sh
 source $SRC_PATH/ships.sh
 source $SRC_PATH/map.sh
+source $SRC_PATH/universe/federation/sector.sh
 source $SRC_PATH/universe/rosia-empire/sector.sh
 
 # Just for temp till I sort the story progress functionality

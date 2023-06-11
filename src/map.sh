@@ -44,7 +44,7 @@ function mapControls()
     
 	start_row=$((start_row+1))
 	menuItem $start_row "2" "Federation" 0
-	SUB_SELECT_TWO="drawRosiaEmpireMap"
+	SUB_SELECT_TWO="drawFederationMap"
 
 	start_row=$((start_row+1))
 	menuItem $start_row "3" "Rosia Empire" 0

@@ -9,7 +9,7 @@ function storyOutpost3366Progress1()
     MENU_WEAPONS_LOCK="storyOutpost3366Progress1NavLock"
     MENU_ENGAGE_LOCK="storyOutpost3366Progress1NavLock"
     
-    AT_LOCATION="atRosiaEmpireOutPost3366"
+    AT_LOCATION="atFederationOutPost3366"
     drawScreen
     SCREEN_REDRAW=0
 
@@ -95,7 +95,7 @@ function storyOutpost3366Progress1Hail()
 
     SCREEN_REDRAW=0
 
-    STORY_PROGRESS_FILE=$UNIVERSE_PATH/rosia-empire/story/outpost3366/progress2
+    STORY_PROGRESS_FILE=$UNIVERSE_PATH/federation/story/outpost3366/progress2
     STORY_PROGRESS="storyOutpost3366Progress2"
     progressStory
 }

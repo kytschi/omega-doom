@@ -9,7 +9,7 @@ function storyOutpost3366Progress2()
     MENU_WEAPONS_LOCK="storyOutpost3366Progress2NavLock"
     MENU_ENGAGE_LOCK="storyOutpost3366Progress2NavLock"
 
-    AT_LOCATION="atRosiaEmpireOutPost3366"
+    AT_LOCATION="atFederationOutPost3366"
     drawScreen
     SCREEN_REDRAW=0
 
@@ -88,7 +88,7 @@ function storyOutpost3366Progress2Hail()
 
     clearView
     MESSAGE_CURRENT_CHAR=""
-    drawGfx $GFX_PATH/ships/omega_doom/omega_doom.gfx
+    shipOmegaDoomExteriaBlinkAppear
 
     #Abraham
     drawMessage "Abraham" "What the hell kind of ship is that?"
@@ -120,7 +120,7 @@ function storyOutpost3366Progress2Hail()
 
     SCREEN_REDRAW=0
 
-    STORY_PROGRESS_FILE=$UNIVERSE_PATH/rosia-empire/story/outpost3366/progress3
+    STORY_PROGRESS_FILE=$UNIVERSE_PATH/federation/story/outpost3366/progress3
     STORY_PROGRESS="storyOutpost3366Progress3"
     progressStory
 }

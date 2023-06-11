@@ -81,6 +81,7 @@ function drawMessage()
 
 		MESSAGE_BOX_UP=1
 		MESSAGE_TOP_Y=$row
+		MESSAGE_CURRENT_CHAR=""
 	fi
 
 	if [ "$MESSAGE_CURRENT_CHAR" != "$character" ]; then

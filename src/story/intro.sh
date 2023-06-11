@@ -2,7 +2,7 @@
 
 function storyIntroProgress1()
 {
-    AT_LOCATION="atRosiaEmpireOutPost3366"
+    AT_LOCATION="atFederationEarth"
     drawScreen
         
     menuItem $MENU_START_Y "c" "Communications" 1
@@ -62,7 +62,7 @@ function storyIntroProgress2MenuLock()
 {
     #Abraham
     drawMessage "Abraham" "I don't need $1 right now."
-    drawMessage "Abraham" "Set a course for 663993 691216 on the Rosia border. Maximum warp."
+    drawMessage "Abraham" "Set a course for 663993 691216 in Federation space on Rosia border. Maximum warp."
 }
 
 
@@ -75,12 +75,11 @@ function storyIntroProgress2()
     MENU_WEAPONS_LOCK="storyIntroProgress2MenuLock"
     MENU_ENGAGE_LOCK=0
 
-    AT_LOCATION="atRosiaEmpireOutPost3366"
+    AT_LOCATION="atFederationEarth"
     drawScreen
 
     #Abraham
-    drawMessage "Abraham" "Set a course for 663993 691216 on the Rosia border. Maximum warp."
-    MESSAGE_BOX_UP=0
+    drawMessage "Abraham" "Set a course for 663993 691216 in Federation space on Rosia border. Maximum warp."
 
     menuItem $((MENU_START_Y+1)) "n" "Navigation" 0 1
 
@@ -92,7 +91,7 @@ function storyIntroProgress2()
 
 function storyIntroProgress3()
 {
-    STORY_PROGRESS_FILE=$UNIVERSE_PATH/rosia-empire/story/outpost3366/progress1
+    STORY_PROGRESS_FILE=$UNIVERSE_PATH/federation/story/outpost3366/progress1
 	STORY_PROGRESS="storyOutpost3366Progress1"
     progressStory
 }

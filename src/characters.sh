@@ -30,14 +30,14 @@ function charByrd()
 # Science officer of the SS Liberty
 function charThomas()
 {
-    charDraw $1 $2 $GFX_PATH/characters/ss_liberty/thomas.gfx "Cmdr. Thomas <SS Liberty>"
+    charDraw $1 $2 $GFX_PATH/characters/ss_liberty/thomas.gfx "Cmdr. Thomas <SS Liberty> "
 }
 
 # Paul Simons, Lieutenant
 # Weapon's officer of the SS Liberty
 function charSimons()
 {
-    charDraw $1 $2 $GFX_PATH/characters/ss_liberty/simons.gfx "Lt. Simons <SS Liberty>"
+    charDraw $1 $2 $GFX_PATH/characters/ss_liberty/simons.gfx "Lt. Simons <SS Liberty> "
 }
 
 function charDraw()
