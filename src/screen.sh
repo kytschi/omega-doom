@@ -146,7 +146,8 @@ function drawScreen()
 
 function drawTitle()
 {
-	rows=`tput lines`
+	tput clear
+
 	cols=`tput cols`
     x=$((cols/3))
     x=$((x-13))
@@ -170,7 +171,10 @@ function drawTitle()
 	printf "\e[38;5;15m[\e[38;5;208mn\e[0m\e[38;5;15m] New"
 
 	tput cup $((y+5)) $x
-	printf "\e[38;5;15m[\e[38;5;208mq\e[0m\e[38;5;15m] Quit"
+	printf "\e[38;5;15m[\e[38;5;208mo\e[0m\e[38;5;15m] Options"
+
+	tput cup $((y+6)) $x
+	printf "\e[38;5;15m[\e[38;5;208mq\e[0m\e[38;5;15m] Save & Quit"
 	
 	while true; do
 	    read -t 0.01 -s -n 10000 key
@@ -187,6 +191,9 @@ function drawTitle()
 				hideTitle
 				progressStory
 				;;
+			[oO])
+				options
+				;;
 			[qQ])
 				quit
 				;;
@@ -196,7 +203,7 @@ function drawTitle()
 
 function hideTitle()
 {
-	for (( iLoop=3; iLoop<6; iLoop++ )); do
+	for (( iLoop=3; iLoop<7; iLoop++ )); do
 		tput cup $((y+iLoop)) $x
 		echo "                                 "
 	done
