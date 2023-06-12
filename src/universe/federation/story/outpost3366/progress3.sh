@@ -15,7 +15,7 @@ function storyOutpost3366Progress3()
     drawScreen
     SCREEN_REDRAW=0
 
-    drawMessage "Abraham" "Engineering damage report!"
+    drawMessage "Abrahams" "Engineering damage report!"
 
     menuItem $((MENU_START_Y+4)) "e" "Engineering" 0 1
     SUB_MENU_ENGINEERING="storyOutpost3366Progress3SubEng"
@@ -25,8 +25,8 @@ function storyOutpost3366Progress3()
 
 function storyOutpost3366Progress3NavLock()
 {
-    drawMessage "Abraham" "I don't need $1 right now."
-    drawMessage "Abraham" "Engineering damage report!"
+    drawMessage "Abrahams" "I don't need $1 right now."
+    drawMessage "Abrahams" "Engineering damage report!"
 }
 
 function storyOutpost3366Progress3SubEng()
@@ -49,11 +49,11 @@ function storyOutpost3366Progress3DamageReport()
     drawMessage "Peters" "Captain, engines are offline. We've took major damage to the core."
     drawMessage "Peters" "Shields are failing and life support isn't fairing much better!"
 
-    drawMessage "Abraham" "Lifepods?"
+    drawMessage "Abrahams" "Lifepods?"
     
     drawMessage "Peters" "Out of action."
 
-    drawMessage "Abraham" "Weapons?!"
+    drawMessage "Abrahams" "Weapons?!"
 
     drawMessage "Peters" "Aye sir, I've rerouted what's left of impluse power to the weapons."
 

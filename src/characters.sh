@@ -1,8 +1,8 @@
-# John Abraham, Captain
+# John Abrahams, Captain
 # Captain of the SS Liberty
-function charAbraham()
+function charAbrahams()
 {
-    charDraw $1 $2 $GFX_PATH/characters/ss_liberty/abraham.gfx "Capt. Abraham <SS Liberty>"
+    charDraw $1 $2 $GFX_PATH/characters/ss_liberty/abrahams.gfx "Capt. Abrahams <SS Liberty>"
 }
 
 # Teal Ambrose, Lieutenant
@@ -54,7 +54,7 @@ function charTaki()
     charDraw $1 $2 $GFX_PATH/characters/garis_republic_penal_colony/taki.gfx "Taki <cell mate> "
 }
 
-# Jake Abraham
+# Jake Abrahams
 function charJake()
 {
     charDraw $1 $2 $GFX_PATH/characters/omega_doom/jake.gfx "Jake"

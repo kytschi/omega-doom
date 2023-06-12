@@ -166,16 +166,23 @@ function drawTitle()
 
 	x=$((cols/2))
     x=$((x-4))
-	tput cup $((y+3)) $x
-	printf "\e[38;5;15m[\e[38;5;208mc\e[0m\e[38;5;15m] Continue"
+	y=$((y+3))
 
-	tput cup $((y+4)) $x
+	if [ -f "$BASE_PATH/.save" ]; then
+		tput cup $y $x
+		printf "\e[38;5;15m[\e[38;5;208mc\e[0m\e[38;5;15m] Continue"
+	fi
+
+	y=$((y+1))
+	tput cup $y $x
 	printf "\e[38;5;15m[\e[38;5;208mn\e[0m\e[38;5;15m] New"
 
-	tput cup $((y+5)) $x
+	y=$((y+1))
+	tput cup $y $x
 	printf "\e[38;5;15m[\e[38;5;208mo\e[0m\e[38;5;15m] Options"
 
-	tput cup $((y+6)) $x
+	y=$((y+1))
+	tput cup $y $x
 	printf "\e[38;5;15m[\e[38;5;208mq\e[0m\e[38;5;15m] Quit"
 	
 	while true; do
@@ -239,8 +246,8 @@ function engage()
 	#Cyrus
 	drawMessage "Cyrus" "Course plotted sir."
 
-    #Abraham
-    drawMessage "Abraham" "Engage."
+    #Abrahams
+    drawMessage "Abrahams" "Engage."
 	MESSAGE_BOX_UP=0
 
 	tput clear
@@ -261,8 +268,8 @@ function engage()
 	#Cyrus
     drawMessage "Cyrus" "Captain, we've arrive at our destination sir." 1
 
-    #Abraham
-    drawMessage "Abraham" "Very well, take us out of warp."
+    #Abrahams
+    drawMessage "Abrahams" "Very well, take us out of warp."
 
 	#Cyrus
     drawMessage "Cyrus" "Dropping to impulse power."

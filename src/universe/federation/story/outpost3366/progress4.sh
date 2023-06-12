@@ -13,7 +13,7 @@ function storyOutpost3366Progress4()
     drawScreen
     SCREEN_REDRAW=0
 
-    drawMessage "Abraham" "Mr Simons, target that ship and fire at will!"
+    drawMessage "Abrahams" "Mr Simons, target that ship and fire at will!"
     drawMessage "Simons" "Aye aye Captain!"
 
     menuItem $((MENU_START_Y+3)) "w" "Weapons" 0 1
@@ -25,8 +25,8 @@ function storyOutpost3366Progress4()
 
 function storyOutpost3366Progress4NavLock()
 {
-    drawMessage "Abraham" "I don't need $1 right now."
-    drawMessage "Abraham" "Mr Simons, target that ship and fire at will!"
+    drawMessage "Abrahams" "I don't need $1 right now."
+    drawMessage "Abrahams" "Mr Simons, target that ship and fire at will!"
     drawMessage "Simons" "Aye aye Captain!"
 }
 
@@ -84,38 +84,38 @@ function storyOutpost3366Progress4FireSensors()
     drawMessage "Simons" "Direct hit!"
     drawMessage "Simons" "She's as blind as a bat."
     
-    drawMessage "Abraham" "Good work Mr Simons, target her weapons and fire at will!"
-    drawMessage "Abraham" "Number one, download all the data collected from the outpost to a subspace probe."
-    drawMessage "Abraham" "Launch it when ready."
+    drawMessage "Abrahams" "Good work Mr Simons, target her weapons and fire at will!"
+    drawMessage "Abrahams" "Number one, download all the data collected from the outpost to a subspace probe."
+    drawMessage "Abrahams" "Launch it when ready."
 
     drawMessage "Thomas" "Captain, the sensors and navigation computers are completely offline..."
     drawMessage "Thomas" "...I'll not be able to launch the probe to anywhere 100 percent certain."
 
-    drawMessage "Abraham" "Just use your best judgement Thomas."
+    drawMessage "Abrahams" "Just use your best judgement Thomas."
 
     drawMessage "Thomas" "Understood."
 
-    drawMessage "Abraham" "Start sending out destress calls to anyone and everyone..."
+    drawMessage "Abrahams" "Start sending out destress calls to anyone and everyone..."
 
     drawMessage "Ambrose" "Already on it Captain but we aren't getting any responses."
 
-    drawMessage "Abraham" "Don't tell me comms is down too?!"
+    drawMessage "Abrahams" "Don't tell me comms is down too?!"
 
     drawMessage "Ambrose" "Negative Captain, its like they aren't answering."
 
-    drawMessage "Abraham" "Hmmm, comms blackout..."
+    drawMessage "Abrahams" "Hmmm, comms blackout..."
 
     drawMessage "Ambrose" "Captain?"
 
-    drawMessage "Abraham" "Open a channel to the penal colony Solara in the Garis Republic..."
-    drawMessage "Abraham" "Inmate 405298."
+    drawMessage "Abrahams" "Open a channel to the penal colony Solara in the Garis Republic..."
+    drawMessage "Abrahams" "Inmate 405298."
 
     drawMessage "Ambrose" "Channel open."
 
     drawMessage "Thomas" "John, I'm detecting a massive build up of neutronic radiation again."
 
-    drawMessage "Abraham" "Jake, I know I wasn't much of a father to you."
-    drawMessage "Abraham" "And we've had our problems over the years."
+    drawMessage "Abrahams" "Jake, I know I wasn't much of a father to you."
+    drawMessage "Abrahams" "And we've had our problems over the years."
 
     drawMessage "Simons" "Captain, we are having little effect to their weapons."
     drawMessage "Simons" "Our constant firing has given the Omega Doom a lock!"
@@ -123,7 +123,7 @@ function storyOutpost3366Progress4FireSensors()
     drawMessage "Thomas" "All hands brace for impact!"
     drawMessage "Thomas" "Probe away."
 
-    drawMessage "Abraham" "Jake I just want you to know that I lo *EXPLOSION*"
+    drawMessage "Abrahams" "Jake I just want you to know that I lo *EXPLOSION*"
 
     # TODO Omega Doom destroying the Liberty.
 

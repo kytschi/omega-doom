@@ -184,6 +184,10 @@ function controls()
 
 function load()
 {
+	if [ ! -f "$BASE_PATH/.save" ]; then
+    	return
+	fi
+
 	while IFS= read -r line; do
 		if [ !"$line" ]; then
 			IFS=';'

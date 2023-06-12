@@ -13,9 +13,9 @@ function storyPenalColonyProgress1()
     drawScreen
     SCREEN_REDRAW=0
 
-	drawMessage "Abraham" "Jake I just want you to know that I lo *EXPLOSION*"
+	drawMessage "Abrahams" "Jake I just want you to know that I lo *EXPLOSION*"
     
-    drawMessage "Taki" "Jesus, do we have to be listening to that again?!"
+    drawMessage "Taki" "Jesus Abrahams, do we have to be listening to that again?!"
     drawMessage "Taki" "How many times must we hear about Omega Doom?"
     drawMessage "Taki" "Oooo, the ghost ship that appears out of thin air...it's a MYTH!"
 
@@ -26,7 +26,7 @@ function storyPenalColonyProgress1()
 
 function storyPenalColonyProgress1NavLock()
 {
-    #Abraham
-    drawMessage "Abraham" "I don't need $1 right now."
-    drawMessage "Abraham" "Ambrose, hail the outpost."
+    #Abrahams
+    drawMessage "Abrahams" "I don't need $1 right now."
+    drawMessage "Abrahams" "Ambrose, hail the outpost."
 }
