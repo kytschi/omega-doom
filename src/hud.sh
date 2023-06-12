@@ -6,22 +6,6 @@ MENU_PAD=5
 MENU_START_Y=5
 SUB_MENU_START_Y=12
 
-SUB_MENU_COMMUNICATIONS=""
-SUB_MENU_ENGINEERING=""
-SUB_MENU_NAVIGATION=""
-SUB_MENU_SENSORS=""
-SUB_MENU_WEAPONS=""
-
-SUB_SELECT_ONE=""
-SUB_SELECT_TWO=""
-SUB_SELECT_THREE=""
-SUB_SELECT_FOUR=""
-SUB_SELECT_FIVE=""
-SUB_SELECT_SIX=""
-SUB_SELECT_SEVEN=""
-SUB_SELECT_EIGHT=""
-SUB_SELECT_NINE=""
-
 function drawHUD()
 {
 	cols=`tput cols`
@@ -61,71 +45,57 @@ function drawHUD()
 	done
 
 	updateShields $SHIELDS
-
-	drawMenu
 }
 
+MENU=()
 function drawMenu()
 {
+	tput cup 0 0
+
+	with_save=$1
+	with_back=$2
+
+	line=""
+	for (( col=0; col<HUD_WIDTH-MENU_PAD-2; col++ )); do
+		line="$line "
+	done
+
+	rows=10	
+	for (( row=0; row<rows; row++ )); do
+		tput cup $((MENU_START_Y+row)) $((HUD_COL+MENU_PAD))
+		printf "\e[0;47;0m$line\e[0m"
+	done
+
 	start_row=$MENU_START_Y
-	menuItem $start_row "c" "Communications" 0
 
-	start_row=$((start_row+1))
-	menuItem $start_row "n" "Navigation" 0
-
-	start_row=$((start_row+1))
-	menuItem $start_row "s" "Sensors" 0
-
-	start_row=$((start_row+1))
-	menuItem $start_row "w" "Weapons" 0
-
-	start_row=$((start_row+1))
-	menuItem $start_row "e" "Engineering" 0
-	
-	start_row=$((start_row+1))
-	menuItem $start_row "q" "Save & Quit" 0
-}
-
-function menuComms()
-{
-	menuItem $MENU_START_Y "c" "Communications" 1
-	
-	if [ !"$SUB_MENU_COMMUNICATIONS" ]; then
-		eval "$SUB_MENU_COMMUNICATIONS"
+	if (( $with_back==1 ));then
+		menuItem $start_row "b" "Back" 0
+		start_row=$((start_row+1))
 	fi
-}
 
-function clearCommunications()
-{
-	menuItem $MENU_START_Y "c" "Communications" 0
-	clearSub
-}
+	for key in ${!MENU[@]}; do
+		IFS=':'
+		read -a splits <<< ${MENU[$key]}
 
-function menuEngineering()
-{
-	menuItem $((MENU_START_Y+4)) "e" "Engineering" 1
-	
-	if [ !"$SUB_MENU_ENGINEERING" ]; then
-		eval "$SUB_MENU_ENGINEERING"
+		menuItem $start_row ${splits[0]} ${splits[1]} ${splits[2]}
+		start_row=$((start_row+1))
+	done
+
+	if (( $with_save==1 )); then
+		menuItem $start_row "q" "Save & Quit" 0
 	fi
-}
-
-function clearEngineering()
-{
-	menuItem $((MENU_START_Y+4)) "e" "Engineering" 0
-	clearSub
-}
-
-function clearNavigation()
-{
-	menuItem $((MENU_START_Y+1)) "n" "Navigation" 0
-	clearSub
 }
 
 function menuEngage()
 {
 	tput cup $1 $((HUD_COL+MENU_PAD))
-	printf "\e[38;5;15m[\e[38;5;208mg\e[0m\e[38;5;15m] \e[33;5;15mEngage\e[0m"
+	printf "\e[38;5;15m[\e[38;5;208me\e[0m\e[38;5;15m] \e[33;5;15mEngage\e[0m"
+}
+
+function clearEngage()
+{
+	tput cup $1 $((HUD_COL+MENU_PAD))
+	printf "                                      "
 }
 
 PREV_MENU_Y=0
@@ -149,45 +119,6 @@ function menuItem()
 	printf "\e[38;5;15m[\e[38;5;208m$button\e[0m\e[38;5;15m] $label"
 
 	PREV_MENU_Y=$y
-}
-
-function clearSub()
-{
-	SUB_SELECT_ONE=""
-	SUB_SELECT_TWO=""
-	SUB_SELECT_THREE=""
-	SUB_SELECT_FOUR=""
-	SUB_SELECT_FIVE=""
-	SUB_SELECT_SIX=""
-	SUB_SELECT_SEVEN=""
-	SUB_SELECT_EIGHT=""
-	SUB_SELECT_NINE=""
-
-	line=""
-	for (( col=0; col<HUD_WIDTH-MENU_PAD-2; col++ )); do
-		line="$line "
-	done
-
-	rows=10	
-	for (( row=0; row<rows; row++ )); do
-		tput cup $((SUB_MENU_START_Y+row)) $((HUD_COL+MENU_PAD))
-		printf "\e[0;47;0m$line\e[0m"
-	done
-}
-
-function menuWeapons()
-{
-	menuItem $((MENU_START_Y+3)) "w" "Weapons" 1
-	
-	if [ !"$SUB_MENU_WEAPONS" ]; then
-		eval "$SUB_MENU_WEAPONS"
-	fi
-}
-
-function clearWeapons()
-{
-	menuItem $((MENU_START_Y+3)) "w" "Weapons" 0
-	clearSub
 }
 
 function updateShields()

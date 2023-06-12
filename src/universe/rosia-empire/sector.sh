@@ -106,8 +106,6 @@ function gotoRosiaEmpireCrommyon()
 
 function menuRosiaEmpire()
 {
-	clearSub
-
 	MENU_BACK="progressStory"
 	menuItem $SUB_MENU_START_Y "b" "Back" 0
 

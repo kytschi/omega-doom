@@ -1,63 +1,241 @@
 # !/bin/bash
+source $UNIVERSE_PATH/federation/story/outpost3366/misc.sh
 
 function storyOutpost3366Progress3()
 {
-    updateShields 5
+    updateShields 50
     
-    MENU_COMMUNICATIONS_LOCK="storyOutpost3366Progress3NavLock"
-    MENU_ENGINEERING_LOCK=0
-    MENU_NAVIGATION_LOCK="storyOutpost3366Progress3NavLock"
-    MENU_SENSORS_LOCK="storyOutpost3366Progress3NavLock"
-    MENU_WEAPONS_LOCK="storyOutpost3366Progress3NavLock"
-    MENU_ENGAGE_LOCK="storyOutpost3366Progress3NavLock"
-
     AT_LOCATION="shipOmegaDoomExteria"    
     drawScreen
     SCREEN_REDRAW=0
 
+    MENU=("c:Communications:0" "n:Navigation:0" "s:Sensors:0" "w:Weapons:0" "e:Engineering:0")
+    drawMenu 1 0
+
     drawMessage "Abrahams" "Engineering damage report!"
 
     menuItem $((MENU_START_Y+4)) "e" "Engineering" 0 1
-    SUB_MENU_ENGINEERING="storyOutpost3366Progress3SubEng"
+    
+    while true; do
+	    read -t 0.01 -s -n 10000 key
 
-    controls
+		case "$key" in
+			[cC])
+				storyOutpost3366Progress3CommsMenu
+				;;
+			[eE])
+				storyOutpost3366Progress3EngineMenu			
+				;;
+			[nN])                
+				storyOutpost3366Progress3NavigationMenu
+				;;
+			[qQ])
+				save
+				quit
+				;;
+			[sS])
+				storyOutpost3366Progress3SensorsMenu
+				;;
+			[wW])
+				storyOutpost3366Progress3WeaponsMenu			
+				;;
+        esac
+    done
 }
 
-function storyOutpost3366Progress3NavLock()
+function storyOutpost3366Progress3CommsMenu()
 {
-    drawMessage "Abrahams" "I don't need $1 right now."
-    drawMessage "Abrahams" "Engineering damage report!"
+    MENU=("1:Hail the Outpost:0" "2:Hail the Omega Doom:0")
+    drawMenu 0 1
+
+    while true; do
+	    read -t 0.01 -s -n 10000 key
+
+		case "$key" in
+            [bB])
+                storyOutpost3366Progress3
+                ;;
+			[1])
+				storyOutpost3366Progress3CommsStatus
+                break
+				;;
+            [2])
+				storyOutpost3366Progress3CommsHailOmega
+                break
+				;;
+        esac
+    done
 }
 
-function storyOutpost3366Progress3SubEng()
+function storyOutpost3366Progress3CommsStatus()
 {
-    SUB_MENU_ENGINEERING=""
-    MENU_BACK="progressStory"
-    menuItem $SUB_MENU_START_Y "b" "Back" 0
-    menuItem $((SUB_MENU_START_Y+1)) "1" "Damage report" 0
-    SUB_SELECT_ONE="storyOutpost3366Progress3DamageReport"
+    storyOutpost3366CommsStatus
+    storyOutpost3366Progress3CommsMenu
+}
+
+function storyOutpost3366Progress3CommsHailOmega()
+{
+    storyOutpost3366CommsOmegaStatus
+    storyOutpost3366Progress3CommsMenu
 }
 
 function storyOutpost3366Progress3DamageReport()
 {
     SCREEN_REDRAW=0
-    SUB_SELECT_ONE=""
     menuItem $((MENU_START_Y+4)) "e" "Engineering" 0
 
-    clearEngineering
+    drawMessage "Abrahams" "Cheif, what the status?"
 
-    drawMessage "Peters" "Captain, engines are offline. We've took major damage to the core."
-    drawMessage "Peters" "Shields are failing and life support isn't fairing much better!"
-
-    drawMessage "Abrahams" "Lifepods?"
-    
-    drawMessage "Peters" "Out of action."
+    drawMessage "Peters" "Captain, engines are offline."
+    drawMessage "Peters" "Whatever that beam was, it completely ripped through our shields like it was butter!"
+    drawMessage "Peters" "They've completely collapsed the warp field."
+    drawMessage "Peters" "Shields took a beating but are holding at 50 percent efficiency."
+    drawMessage "Peters" "There are reports from all over the ship that systems are offline..."
+    drawMessage "Peters" "...and in some sections they reporting catastrophic structural damages."
+    drawMessage "Peters" "Most the damage is confined to the port side."
+    drawMessage "Peters" "I've got all repair crews I can spare attempting to plug the breaches."
+    #drawMessage "Peters" "Life support isn't fairing much better!"
+    #drawMessage "Abrahams" "Lifepods?"
+    #drawMessage "Peters" "Out of action."
 
     drawMessage "Abrahams" "Weapons?!"
 
-    drawMessage "Peters" "Aye sir, I've rerouted what's left of impluse power to the weapons."
+    drawMessage "Peters" "Aye sir, I've rerouted what's left of impluse power to the weapons and shields."
+    drawMessage "Peters" "Captain..."
+
+    drawMessage "Abrahams" "Yes Cheif?"
+
+    drawMessage "Peters" "Another hit like that I don't think she'll survive it!"
+
+    drawMessage "Abrahams" "Understood Cheif, Abrahams out."
 
     STORY_PROGRESS_FILE=$UNIVERSE_PATH/federation/story/outpost3366/progress4
     STORY_PROGRESS="storyOutpost3366Progress4"
     progressStory
+}
+
+function storyOutpost3366Progress3EngineMenu()
+{
+    MENU=("1:Status Report:0")
+    drawMenu 0 1
+
+    while true; do
+	    read -t 0.01 -s -n 10000 key
+
+		case "$key" in
+            [bB])
+                storyOutpost3366Progress3
+                ;;
+			[1])
+				storyOutpost3366Progress3DamageReport
+                break
+				;;
+        esac
+    done
+}
+
+function storyOutpost3366Progress3NavigationMenu()
+{
+    MENU=("1:Status Report:0")
+    drawMenu 0 1
+
+    while true; do
+	    read -t 0.01 -s -n 10000 key
+
+		case "$key" in
+            [bB])
+                storyOutpost3366Progress3
+                ;;
+			[1])
+				storyOutpost3366Progress3NavigationStatus
+                break
+				;;
+        esac
+    done
+}
+
+function storyOutpost3366Progress3NavigationStatus()
+{
+    storyOutpost3366NavigationDead
+    storyOutpost3366Progress3
+}
+
+function storyOutpost3366Progress3SensorsMenu()
+{
+    MENU=("1:Scan the Outpost 3366:0" "2:Scan the Region:0" "3:Scan the Omega Doom:0")
+    drawMenu 0 1
+
+    while true; do
+	    read -t 0.01 -s -n 10000 key
+
+		case "$key" in
+            [bB])
+                storyOutpost3366Progress3
+                ;;
+			[1])
+				storyOutpost3366Progress3ScanOutpost
+                break
+				;;
+			[2])
+				storyOutpost3366Progress3ScanRegion
+                break
+				;;
+            [3])
+				storyOutpost3366Progress3ScanOmega
+                break
+				;;
+        esac
+    done
+}
+
+function storyOutpost3366Progress3ScanOmega()
+{
+    storyOutpost3366ScanOmega
+    storyOutpost3366Progress3SensorsMenu
+}
+
+function storyOutpost3366Progress3ScanOutpost()
+{
+    storyOutpost3366ScanOutpost
+    storyOutpost3366Progress3SensorsMenu
+}
+
+function storyOutpost3366Progress3ScanRegion()
+{
+    storyOutpost3366ScanRegion
+    storyOutpost3366Progress3SensorsMenu
+}
+
+function storyOutpost3366Progress3WeaponsMenu()
+{
+    MENU=("1:Status Report:0")
+    drawMenu 0 1
+
+    while true; do
+	    read -t 0.01 -s -n 10000 key
+
+		case "$key" in
+            [bB])
+                storyOutpost3366Progress3
+                ;;
+			[1])
+				storyOutpost3366Progress3WeaponsStatus
+                break
+				;;
+        esac
+    done
+}
+
+function storyOutpost3366Progress3WeaponsStatus()
+{
+    menuItem $((MENU_START_Y+1)) "1" "Status Report" 1
+
+    drawMessage "Abrahams" "Mr Simons, status report."
+
+    drawMessage "Simons" "Weapons systems are reporting 100 percent across the board Captain."
+    drawMessage "Simons" "I have a sensor lock on the ship."
+
+    drawMessage "Abrahams" "Acknowledged Mr Simons."
+
+    storyOutpost3366Progress3
 }

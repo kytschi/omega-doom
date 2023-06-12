@@ -18,8 +18,8 @@ source $SRC_PATH/hud.sh
 source $SRC_PATH/screen.sh
 
 SHIELDS=100
-
 MESSAGE_SPEED=0.05
+
 # Default story progress
 STORY_PROGRESS_FILE=$SRC_PATH/story/intro
 STORY_PROGRESS="storyIntroProgress1"
@@ -30,10 +30,6 @@ source $SRC_PATH/map.sh
 source $SRC_PATH/universe/federation/sector.sh
 source $SRC_PATH/universe/rosia-empire/sector.sh
 source $SRC_PATH/universe/garis-republic/sector.sh
-
-# Just for temp till I sort the story progress functionality
-#STORY_PROGRESS_FILE=$UNIVERSE_PATH/rosia-empire/story/outpost3366/progress3
-#STORY_PROGRESS="storyOutpost3366Progress3"
 
 load
 drawTitle

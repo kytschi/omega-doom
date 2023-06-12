@@ -1,45 +1,121 @@
 # !/bin/bash
+source $UNIVERSE_PATH/federation/story/outpost3366/misc.sh
 
 function storyOutpost3366Progress2()
 {
-    MENU_COMMUNICATIONS_LOCK=0
-    MENU_ENGINEERING_LOCK="storyOutpost3366Progress2NavLock"
-    MENU_NAVIGATION_LOCK="storyOutpost3366Progress2NavLock"
-    MENU_SENSORS_LOCK="storyOutpost3366Progress2NavLock"
-    MENU_WEAPONS_LOCK="storyOutpost3366Progress2NavLock"
-    MENU_ENGAGE_LOCK="storyOutpost3366Progress2NavLock"
-
+    MENU_BACK=""
     AT_LOCATION="atFederationOutPost3366"
     drawScreen
     SCREEN_REDRAW=0
 
+    MENU=("c:Communications:0" "n:Navigation:0" "s:Sensors:0" "w:Weapons:0" "e:Engineering:0")
+    drawMenu 1 0
+
     drawMessage "Abrahams" "Ambrose, contact Federation Command, put me through to Admiral Byrd."
 
     menuItem $MENU_START_Y "c" "Communications" 0 1
-    SUB_MENU_COMMUNICATIONS="storyOutpost3366Progress2SubMenu"
+    
+    while true; do
+	    read -t 0.01 -s -n 10000 key
 
-    controls
+		case "$key" in
+			[cC])
+				storyOutpost3366Progress2SubMenu
+				;;
+			[eE])
+				storyOutpost3366Progress2EngineMenu			
+				;;
+			[nN])                
+				storyOutpost3366Progress2NavigationMenu
+				;;
+			[qQ])
+				save
+				quit
+				;;
+			[sS])
+				storyOutpost3366Progress2SensorsMenu
+				;;
+			[wW])
+				storyOutpost3366Progress2WeaponsMenu			
+				;;
+        esac
+    done
 }
 
-function storyOutpost3366Progress2NavLock()
+function storyOutpost3366Progress2NavigationMenu()
 {
-    drawMessage "Abrahams" "I don't need $1 right now."
-    drawMessage "Abrahams" "Ambrose, contact Federation Command, put me through to Admiral Byrd."
+    MENU=("1:Status Report:0")
+    drawMenu 0 1
+
+    while true; do
+	    read -t 0.01 -s -n 10000 key
+
+		case "$key" in
+            [bB])
+                storyOutpost3366Progress2
+                ;;
+			[1])
+				storyOutpost3366Progress2NavigationStatus
+                break
+				;;
+        esac
+    done
+}
+
+function storyOutpost3366Progress2NavigationStatus()
+{
+    storyOutpost3366NavigationStatus
+    storyOutpost3366Progress2
+}
+
+function storyOutpost3366Progress2EngineMenu()
+{
+    MENU=("1:Status Report:0")
+    drawMenu 0 1
+
+    while true; do
+	    read -t 0.01 -s -n 10000 key
+
+		case "$key" in
+            [bB])
+                storyOutpost3366Progress2
+                ;;
+			[1])
+				storyOutpost3366Progress2EngStatus
+                break
+				;;
+        esac
+    done
+}
+
+function storyOutpost3366Progress2EngStatus()
+{
+    storyOutpost3366EngStatus
+    storyOutpost3366Progress2
 }
 
 function storyOutpost3366Progress2SubMenu()
 {
-    SUB_MENU_COMMUNICATIONS=""
-    MENU_BACK="progressStory"
-    menuItem $SUB_MENU_START_Y "b" "Back" 0    
-    menuItem $((SUB_MENU_START_Y+1)) "1" "Hail Federation Command" 0
-    SUB_SELECT_ONE="storyOutpost3366Progress2Hail"
+    MENU=("1:Hail Federation Command:0")
+    drawMenu 0 1
+
+    while true; do
+	    read -t 0.01 -s -n 10000 key
+
+		case "$key" in
+			[bB])
+				storyOutpost3366Progress2
+				;;
+			[1])
+				storyOutpost3366Progress2Hail			
+				;;
+        esac
+    done
 }
 
 function storyOutpost3366Progress2Hail()
 {
-    SUB_SELECT_ONE=""
-    menuItem $((SUB_MENU_START_Y+1)) "1" "Hail Federation Command" 1
+    menuItem $((MENU_START_Y+1)) "1" "Hail Federation Command" 1
 
     drawMessage "Ambrose" "Aye sir. Hailing Admiral Bryd at Federation Command."
     drawMessage "Ambrose" "Captain, I have Admiral Byrd standing by."
@@ -95,11 +171,71 @@ function storyOutpost3366Progress2Hail()
 
     #TODO Omega Firing
 
-    clearCommunications   
-
     SCREEN_REDRAW=0
 
     STORY_PROGRESS_FILE=$UNIVERSE_PATH/federation/story/outpost3366/progress3
     STORY_PROGRESS="storyOutpost3366Progress3"
     progressStory
+}
+
+function storyOutpost3366Progress2SensorsMenu()
+{
+    MENU=("1:Outpost 3366:0" "2:Scan Region:0")
+    drawMenu 0 1
+
+    while true; do
+	    read -t 0.01 -s -n 10000 key
+
+		case "$key" in
+            [bB])
+                storyOutpost3366Progress2
+                ;;
+			[1])
+				storyOutpost3366Progress2ScanOutpost
+                break
+				;;
+			[2])
+				storyOutpost3366Progress2ScanRegion
+                break
+				;;
+        esac
+    done
+}
+
+function storyOutpost3366Progress2ScanOutpost()
+{
+    storyOutpost3366ScanOutpost
+    storyOutpost3366Progress2SensorsMenu
+}
+
+function storyOutpost3366Progress2ScanRegion()
+{
+    storyOutpost3366ScanRegion
+    storyOutpost3366Progress2SensorsMenu
+}
+
+function storyOutpost3366Progress2WeaponsMenu()
+{
+    MENU=("1:Status Report:0")
+    drawMenu 0 1
+
+    while true; do
+	    read -t 0.01 -s -n 10000 key
+
+		case "$key" in
+            [bB])
+                storyOutpost3366Progress2
+                ;;
+			[1])
+				storyOutpost3366Progress2WeaponsStatus
+                break
+				;;
+        esac
+    done
+}
+
+function storyOutpost3366Progress2WeaponsStatus()
+{
+    storyOutpost3366WeaponsStatus
+    storyOutpost3366Progress2
 }

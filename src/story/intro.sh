@@ -4,13 +4,20 @@ function storyIntroProgress1()
 {
     AT_LOCATION="atFederationEarth"
     drawScreen
-        
+    SCREEN_REDRAW=0
+
+    MENU=("c:Communications:0" "n:Navigation:0" "s:Sensors:0" "w:Weapons:0" "e:Engineering:0")
+    drawMenu 0 0
+    sleep 1
     menuItem $MENU_START_Y "c" "Communications" 1
     
     drawMessage "Ambrose" "Captain, incoming hail from Federation Command."
-    sleep 1
+    sleep 1 1
 
-    menuItem $SUB_MENU_START_Y "1" "Incoming Hail" 1
+    MENU=("1:Incoming Hail:0")
+    drawMenu 0 0
+    sleep 1
+    menuItem $MENU_START_Y "1" "Incoming Hail" 1
 
     drawMessage "Ambrose" "Priority One message from Admiral Byrd sir."
     
@@ -44,42 +51,54 @@ function storyIntroProgress1()
     STORY_PROGRESS_FILE=$SRC_PATH/story/intro
 	STORY_PROGRESS="storyIntroProgress2"
 
-    SCREEN_REDRAW=0
     progressStory
 }
 
 function storyIntroProgress2()
 {
-    MENU_COMMUNICATIONS_LOCK="storyIntroProgress2MenuLock"
-    MENU_ENGINEERING_LOCK="storyIntroProgress2MenuLock"
-    MENU_NAVIGATION_LOCK=0
-    MENU_SENSORS_LOCK="storyIntroProgress2MenuLock"
-    MENU_WEAPONS_LOCK="storyIntroProgress2MenuLock"
-    MENU_ENGAGE_LOCK=0
-
-    SUB_MENU_LOCK_ONE="storyIntroProgress2NavLock"
-    SUB_MENU_LOCK_TWO=0
-    SUB_MENU_LOCK_THREE="storyIntroProgress2NavLock"
-    SUB_MENU_LOCK_FOUR="storyIntroProgress2NavLock"
-    SUB_MENU_LOCK_FIVE="storyIntroProgress2NavLock"
-    SUB_MENU_LOCK_SIX="storyIntroProgress2NavLock"
-    SUB_MENU_LOCK_SEVEN="storyIntroProgress2NavLock"
-    SUB_MENU_LOCK_EIGHT="storyIntroProgress2NavLock"
-    SUB_MENU_LOCK_NINE="storyIntroProgress2NavLock"
-
-    SUB_MENU_LOCK_RESET="storyIntroProgress2NavLockReset"
-
     AT_LOCATION="atFederationEarth"
     drawScreen
+    SCREEN_REDRAW=0
+
+    MENU=("c:Communications" "n:Navigation" "s:Sensors" "w:Weapons" "e:Engineering")
+    drawMenu 1 0
     
     drawMessage "Abrahams" "Set a course for 663993 691216 in Federation space on Rosia border. Maximum warp."
 
     menuItem $((MENU_START_Y+1)) "n" "Navigation" 0 1
 
-    clearCommunications
-
+    WARP_LOCK="atFederationOutPost3366"
+    WARP_INCOMPLETE="storyIntroProgress2NavLock"
     WARP_COMPLETE="storyIntroProgress3"
-    controls
+
+    MENU_BACK="storyIntroProgress2"
+
+	while true; do
+	    read -t 0.01 -s -n 10000 key
+
+		case "$key" in
+			[cC])
+				storyIntroProgress2NavLock
+				;;
+			[eE])
+				storyIntroProgress2NavLock			
+				;;
+			[nN])                
+				drawQuadrantMap
+                break
+				;;
+			[qQ])
+				save
+				quit
+				;;
+			[sS])
+				storyIntroProgress2NavLock
+				;;
+			[wW])
+				storyIntroProgress2NavLock			
+				;;
+        esac
+    done
 }
 
 function storyIntroProgress2NavLock()
@@ -88,12 +107,6 @@ function storyIntroProgress2NavLock()
 
     drawMessage "Abrahams" "Your right Cyrus."
     drawMessage "Abrahams" "Set a course for 663993 691216 in Federation space on Rosia border. Maximum warp."
-}
-
-function storyIntroProgress2NavLockReset()
-{
-    SUB_MENU_LOCK_TWO="storyIntroProgress2NavLock"
-    SUB_MENU_LOCK_SEVEN=0
 }
 
 function storyIntroProgress2MenuLock()

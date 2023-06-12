@@ -27,50 +27,43 @@ function drawQuadrantMap()
 	mapItem 30 30 "House of Moong" 0
 	mapItem 28 74 "The Void" 0
 
-	mapControls
-}
+	MENU=("1:Kazaria Syndicate:0" "2:Federation:0" "3:Rosia Empire:0" "4:Aris Republic:0" "5:Garis Republic:0" "6:Stovacor:0" "7:House of Moong:0" "8:The Void:0")
+    drawMenu 0 1
 
-function mapControls()
-{
-	clearSub
-	menuItem 6 "n" "Navigation" 1
-	
-	MENU_BACK="progressStory"
+	while true; do
+	    read -t 0.01 -s -n 10000 key
 
-	start_row=$SUB_MENU_START_Y
-	menuItem $start_row "b" "Back" 0
-
-	start_row=$((start_row+1))
-	menuItem $start_row "1" "Kazaria Syndicate" 0
-	SUB_SELECT_ONE="drawRosiaEmpireMap"
-    
-	start_row=$((start_row+1))
-	menuItem $start_row "2" "Federation" 0
-	SUB_SELECT_TWO="drawFederationMap"
-
-	start_row=$((start_row+1))
-	menuItem $start_row "3" "Rosia Empire" 0
-	SUB_SELECT_THREE="drawRosiaEmpireMap"
-
-	start_row=$((start_row+1))
-	menuItem $start_row "4" "Aris Republic" 0
-	SUB_SELECT_FOUR="drawRosiaEmpireMap"
-
-	start_row=$((start_row+1))
-	menuItem $start_row "5" "Garis Republic" 0
-	SUB_SELECT_FIVE="drawRosiaEmpireMap"
-
-	start_row=$((start_row+1))
-	menuItem $start_row "6" "Stovacor" 0
-	SUB_SELECT_SIX="drawRosiaEmpireMap"
-
-	start_row=$((start_row+1))
-	menuItem $start_row "7" "House of Moong" 0
-	SUB_SELECT_SEVEN="drawRosiaEmpireMap"
-
-	start_row=$((start_row+1))
-	menuItem $start_row "8" "The Void" 0
-	SUB_SELECT_EIGHT="drawRosiaEmpireMap"
+		case "$key" in
+			[bB])
+				eval "$MENU_BACK"
+				break
+				;;
+			[1])
+				drawRosiaEmpireMap
+				;;
+			[2])
+				drawFederationMap
+				;;
+			[3])
+				drawFederationMap
+				;;
+			[4])
+				drawFederationMap
+				;;
+			[5])
+				drawFederationMap
+				;;
+			[6])
+				drawFederationMap
+				;;
+			[7])
+				drawFederationMap
+				;;
+			[8])
+				drawFederationMap
+				;;
+        esac
+    done
 }
 
 function mapItem()

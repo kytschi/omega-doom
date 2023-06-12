@@ -1,7 +1,6 @@
 #!/bin/bash
 
 LOCATION_TITLE=""
-WARP_COMPLETE=""
 
 function drawLocation()
 {
@@ -270,6 +269,10 @@ function drawGfx()
 	done < $file
 }
 
+ENGAGE=0
+WARP_COMPLETE=""
+WARP_INCOMPLETE=""
+WARP_LOCK=""
 function engage()
 {
 	#Cyrus
@@ -303,6 +306,8 @@ function engage()
 	#Cyrus
     drawMessage "Cyrus" "Dropping to impulse power."
 	MESSAGE_BOX_UP=0
+	ENGAGE=0
+	SCREEN_REDRAW=1
 
 	eval "$WARP_COMPLETE"
 }
