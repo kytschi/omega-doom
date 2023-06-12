@@ -51,13 +51,19 @@ function charPeters()
 # Inmate at Garis Republic Penal Colony
 function charTaki()
 {
-    charDraw $1 $2 $GFX_PATH/characters/garis_republic_penal_colony/taki.gfx " Taki <cell mate> "
+    charDraw $1 $2 $GFX_PATH/characters/garis_republic_penal_colony/taki.gfx " Taki <cellmate> "
 }
 
 # Jake Abrahams
 function charJake()
 {
     charDraw $1 $2 $GFX_PATH/characters/omega_doom/jake.gfx "Jake"
+}
+
+# Prison Guard
+function charGRPCPrisonGuard()
+{
+    charDraw $1 $2 $GFX_PATH/characters/garis_republic_penal_colony/prison-guard.gfx "Prison Guard"
 }
 
 function charDraw()
