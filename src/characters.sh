@@ -2,7 +2,7 @@
 # Captain of the SS Liberty
 function charAbrahams()
 {
-    charDraw $1 $2 $GFX_PATH/characters/ss_liberty/abrahams.gfx "Capt. Abrahams <SS Liberty>"
+    charDraw $1 $2 $GFX_PATH/characters/ss_liberty/abrahams.gfx "Capt. Abrahams <SS Liberty> "
 }
 
 # Teal Ambrose, Lieutenant
@@ -51,7 +51,7 @@ function charPeters()
 # Inmate at Garis Republic Penal Colony
 function charTaki()
 {
-    charDraw $1 $2 $GFX_PATH/characters/garis_republic_penal_colony/taki.gfx "Taki <cell mate> "
+    charDraw $1 $2 $GFX_PATH/characters/garis_republic_penal_colony/taki.gfx " Taki <cell mate> "
 }
 
 # Jake Abrahams

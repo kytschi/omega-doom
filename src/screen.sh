@@ -10,15 +10,22 @@ function drawLocation()
 
 function drawLocationTitle()
 {
+	animateTitle $LOCATION_TITLE
+}
+
+function animateTitle()
+{
 	tput cup 2 0
+
+	fadeout=$2
 
 	running=true
 	iLoop=1
 
 	color=16
-
+	
 	while $running; do
-		echo -e "  \e[38;5;${color}m $LOCATION_TITLE \e[0m"
+		echo -e "  \e[38;5;${color}m $1 \e[0m"
 		printf "\033[A"
 
 		sleep 0.2
@@ -30,13 +37,18 @@ function drawLocationTitle()
 		fi
 
 		iLoop=$((iLoop+1))
-		if (( iLoop == 6 )); then
-			sleep 1
-			running=false
-		fi
-
-		if (( iLoop == 6 )); then
-			running=false
+		if (( iLoop >= 6 )); then
+			if (( fadeout )); then
+				if (( iLoop == 6 )); then
+					sleep 2
+				elif (( iLoop == 12 )); then
+					sleep 1
+					running=false
+				fi
+			else
+				sleep 1
+				running=false
+			fi
 		fi
 	done
 }
@@ -132,6 +144,7 @@ function clearView()
 	done
 }
 
+HIDE_HUD=0
 SCREEN_REDRAW=1
 function drawScreen()
 {
@@ -141,10 +154,13 @@ function drawScreen()
 		tput cup 0 0
 		drawLocation
 		drawLocationTitle
-		drawHUD
+		if (( HIDE_HUD==0 )); then
+			drawHUD
+		fi
 	fi
 }
 
+TITLE_MENU_Y=0
 function drawTitle()
 {
 	tput clear
@@ -166,7 +182,8 @@ function drawTitle()
 
 	x=$((cols/2))
     x=$((x-4))
-	y=$((y+3))
+	TITLE_MENU_Y=$((y+3))
+	y=$TITLE_MENU_Y
 
 	if [ -f "$BASE_PATH/.save" ]; then
 		tput cup $y $x
@@ -196,6 +213,7 @@ function drawTitle()
 			[nN])
 				STORY_PROGRESS_FILE=$SRC_PATH/story/intro
 				STORY_PROGRESS="storyIntroProgress1"
+				SHIELDS=100
 				save
 				hideTitle
 				progressStory
@@ -212,7 +230,11 @@ function drawTitle()
 
 function hideTitle()
 {
-	for (( iLoop=3; iLoop<7; iLoop++ )); do
+	x=$((cols/2))
+    x=$((x-4))
+	y=$TITLE_MENU_Y
+	
+	for (( iLoop=0; iLoop<4; iLoop++ )); do
 		tput cup $((y+iLoop)) $x
 		echo "                                 "
 	done
@@ -236,8 +258,15 @@ function drawGfx()
 
 	file=$1
 
+	rows=`tput lines`
+	rows=$((rows-2))
+	iLoop=0
 	while IFS= read -r line; do
+		if (( iLoop==rows )); then
+			break
+		fi
 		printf '%s\n' "$line"
+		iLoop=$((iLoop+1))
 	done < $file
 }
 

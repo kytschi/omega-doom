@@ -10,10 +10,15 @@ function storyPenalColonyProgress1()
     MENU_ENGAGE_LOCK="storyOutpost3366Progress1NavLock"
     
     AT_LOCATION="atGarisRepublicPenalColony"
+
+    tput clear
+    animateTitle "6 months later" 1
+    HIDE_HUD=1
+
     drawScreen
     SCREEN_REDRAW=0
 
-	drawMessage "Abrahams" "Jake I just want you to know that I lo *EXPLOSION*"
+	drawMessage "Abrahams" "Jake I just want you to know that I lo *EXPLOSION*" 1
     
     drawMessage "Taki" "Jesus Abrahams, do we have to be listening to that again?!"
     drawMessage "Taki" "How many times must we hear about Omega Doom?"

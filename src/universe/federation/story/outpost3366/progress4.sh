@@ -99,9 +99,9 @@ function storyOutpost3366Progress4FireSensors()
 
     drawMessage "Ambrose" "Already on it Captain but we aren't getting any responses."
 
-    drawMessage "Abrahams" "Don't tell me comms is down too?!"
+    drawMessage "Abrahams" "Don't tell me the comms are down too?!"
 
-    drawMessage "Ambrose" "Negative Captain, its like they aren't answering."
+    drawMessage "Ambrose" "Negative Captain, it's like they aren't answering."
 
     drawMessage "Abrahams" "Hmmm, comms blackout..."
 
@@ -129,6 +129,7 @@ function storyOutpost3366Progress4FireSensors()
 
     STORY_PROGRESS_FILE=$UNIVERSE_PATH/garis-republic/story/penal_colony/progress1
     STORY_PROGRESS="storyPenalColonyProgress1"
+    SCREEN_REDRAW=1
     progressStory
 }
 
