@@ -2,12 +2,23 @@
 source $UNIVERSE_PATH/federation/story/outpost3366/misc.sh
 
 function storyOutpost3366Progress3()
-{
-    updateShields 50
-    
+{    
     AT_LOCATION="shipOmegaDoomExteria"    
     drawScreen
     SCREEN_REDRAW=0
+
+    drawMessage "Thomas" "Captain! I'm reading a massive build up of neutronic radiation."
+    drawMessage "Thomas" "It's being focused in our direction..."
+
+    clearView
+    shipOmegaDoomExteriaBlinkFireCharging
+
+    drawMessage "Abrahams" "ALL HANDS! BRACE FOR IMPACT!"
+
+    clearView
+    shipOmegaDoomExteriaBlinkFire
+
+    updateShields 50
 
     MENU=("c:Communications:0" "n:Navigation:0" "s:Sensors:0" "w:Weapons:0" "e:Engineering:0")
     drawMenu 1 0
@@ -94,9 +105,6 @@ function storyOutpost3366Progress3DamageReport()
     drawMessage "Peters" "...and in some sections they reporting catastrophic structural damages."
     drawMessage "Peters" "Most the damage is confined to the port side."
     drawMessage "Peters" "I've got all repair crews I can spare attempting to plug the breaches."
-    #drawMessage "Peters" "Life support isn't fairing much better!"
-    #drawMessage "Abrahams" "Lifepods?"
-    #drawMessage "Peters" "Out of action."
 
     drawMessage "Abrahams" "Weapons?!"
 

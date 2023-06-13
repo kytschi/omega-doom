@@ -1,7 +1,6 @@
 # !/bin/bash
 source $UNIVERSE_PATH/federation/story/outpost3366/misc.sh
 
-OUTPOST=1
 OMEGA_ENGINES=1
 function storyOutpost3366Progress4()
 {
@@ -33,7 +32,7 @@ function storyOutpost3366Progress4()
 				storyOutpost3366Progress4NavigationMenu
 				;;
 			[qQ])
-                TO_SAVE+=("storyOutpost3366 $OUTPOST")
+                TO_SAVE+=("storyOutpost3366 $FEDERATION_OUTPOST")
                 TO_SAVE+=("storyOutpost3366OE $OMEGA_ENGINES")
 				save
 				quit
@@ -57,7 +56,7 @@ function storyOutpost3366Progress4FromSave()
         case ${splits[0]} in
             storyOutpost3366)
                 unset 'TO_SAVE[key]'
-                OUTPOST=${splits[1]}
+                FEDERATION_OUTPOST=${splits[1]}
                 ;;
             storyOutpost3366OE)
                 unset 'TO_SAVE[key]'
@@ -333,6 +332,9 @@ function storyOutpost3366Progress4FireSensors()
 
     drawMessage "Thomas" "John, I'm detecting a massive build up of neutronic radiation again."
 
+    clearView
+    shipOmegaDoomExteriaBlinkFireCharging
+
     drawMessage "Abrahams" "Jake, I know I wasn't much of a father to you."
     drawMessage "Abrahams" "And we've had our problems over the years."
 
@@ -343,9 +345,9 @@ function storyOutpost3366Progress4FireSensors()
     drawMessage "Thomas" "Probe away."
 
     drawMessage "Abrahams" "Jake I just want you to know that I lo *EXPLOSION*"
-
-    SCREEN_REDRAW=0
-    # TODO Omega Doom destroying the Liberty.
+    
+    clearView
+    shipOmegaDoomExteriaBlinkFire
 
     STORY_PROGRESS_FILE=$UNIVERSE_PATH/garis-republic/story/penal_colony/progress1
     STORY_PROGRESS="storyPenalColonyProgress1"
@@ -364,6 +366,10 @@ function storyOutpost3366Progress4FireShields()
     drawMessage "Simons" "Captain, the shields are holding."
     drawMessage "Thomas" "She's charging again...incoming..."
 
+    clearView
+    shipOmegaDoomExteriaBlinkFireCharging
+    shipOmegaDoomExteriaBlinkFire
+
     gameover "The SS Liberty was completely destroyed!"
 }
 
@@ -377,6 +383,10 @@ function storyOutpost3366Progress4FireWeapons()
 
     drawMessage "Simons" "Captain, minimal damage to weapons."
     drawMessage "Thomas" "She's charging again...incoming..."
+
+    clearView
+    shipOmegaDoomExteriaBlinkFireCharging
+    shipOmegaDoomExteriaBlinkFire
 
     gameover "The SS Liberty was completely destroyed!"
 }
@@ -428,6 +438,10 @@ function storyOutpost3366Progress4FireOutpostDead()
     drawMessage "Abrahams" "I said target the SHIP!"
 
     drawMessage "Thomas" "She's charging again...incoming..."
+    
+    clearView
+    shipOmegaDoomExteriaBlinkFireCharging
+    shipOmegaDoomExteriaBlinkFire
 
     gameover "The SS Liberty was completely destroyed!"
 }
@@ -456,7 +470,6 @@ function storyOutpost3366Progress4FireOutpostWarpCore()
     drawMessage "Simons" "Direct hit!"
 
     drawMessage "Thomas" "The warp core is going critical Captain!"
-    drawMessage "Thomas" "Incoming shockwave..."
     
     STORY_PROGRESS_FILE=$UNIVERSE_PATH/federation/story/outpost3366/progress4
     STORY_PROGRESS="storyOutpost3366Progress4Explosion"
@@ -476,15 +489,19 @@ function storyOutpost3366Progress4Explosion()
         storyOutpost3366Progress4FromSave
     fi
     updateShields 50
-    OUTPOST=0
+    FEDERATION_OUTPOST=0
 
-    AT_LOCATION="shipOmegaDoomExteria"
+    tput clear
+    federationOutPost3366Explosion
+    
+    AT_LOCATION="atFederationOutPost3366Shockwave"
     drawScreen
-    SCREEN_REDRAW=0
+    SCREEN_REDRAW=0    
 
     MENU=("c:Communications:0" "n:Navigation:0" "s:Sensors:0" "w:Weapons:0" "e:Engineering:0")
     drawMenu 1 0
 
+    drawMessage "Thomas" "Incoming shockwave..."
     drawMessage "Abrahams" "Helm, turn us away from that shockwave!"
     
     menuItem $((MENU_START_Y+1)) "n" "Navigation" 0 1
@@ -503,7 +520,7 @@ function storyOutpost3366Progress4Explosion()
 				storyOutpost3366Progress4NavigationExplosionMenu
 				;;
 			[qQ])
-                TO_SAVE+=("storyOutpost3366 $OUTPOST")
+                TO_SAVE+=("storyOutpost3366 $FEDERATION_OUTPOST")
                 TO_SAVE+=("storyOutpost3366OE $OMEGA_ENGINES")
 				save
 				quit

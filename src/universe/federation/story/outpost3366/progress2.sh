@@ -144,13 +144,34 @@ function storyOutpost3366Progress2Hail()
 
     drawMessage "Abrahams" "Rich? Am I missing something here?"
 
-    drawMessage "Simons" "Captain, a ship just appeared out of nowhere!"
+    SCREEN_REDRAW=0
 
-    drawMessage "Abrahams" "Onscreen."
+    STORY_PROGRESS_FILE=$UNIVERSE_PATH/federation/story/outpost3366/progress2
+    STORY_PROGRESS="storyOutpost3366Progress2OmegaDoom"
+    progressStory
+    
+}
+
+function storyOutpost3366Progress2OmegaDoom()
+{
+    MENU_BACK=""
+    AT_LOCATION="atFederationOutPost3366"
+    drawScreen
+    SCREEN_REDRAW=0
+
+    MENU=("1:Hail Federation Command:1")
+    drawMenu 0 0
+
+    drawMessage "Thomas" "Captain, I'm reading a sigularity forming."
+    
+    drawMessage "Abrahams" "Onscreen Mr Thomas."
 
     clearView
     MESSAGE_CURRENT_CHAR=""
     shipOmegaDoomExteriaBlinkAppear
+    sleep 2
+
+    drawMessage "Simons" "It just appeared out of nowhere!"
 
     drawMessage "Abrahams" "What the hell kind of ship is that?"
 
@@ -163,15 +184,6 @@ function storyOutpost3366Progress2Hail()
     drawMessage "Abrahams" "What is Rich? Omega Doom?"
 
     drawMessage "Byrd" "May God welcome you all. Byrd out."
-
-    drawMessage "Thomas" "Captain! I'm reading a massive build up of neutronic radiation."
-    drawMessage "Thomas" "She's about to fire!"
-
-    drawMessage "Abrahams" "ALL HANDS! BRACE FOR IMPACT!"
-
-    #TODO Omega Firing
-
-    SCREEN_REDRAW=0
 
     STORY_PROGRESS_FILE=$UNIVERSE_PATH/federation/story/outpost3366/progress3
     STORY_PROGRESS="storyOutpost3366Progress3"

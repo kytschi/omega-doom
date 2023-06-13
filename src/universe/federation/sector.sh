@@ -1,5 +1,7 @@
 #!/bin/bash
 
+FEDERATION_OUTPOST=1
+
 function atFederationCratolMoon()
 {
 	LOCATION_TITLE="CRATOL MOON"
@@ -34,6 +36,12 @@ function atFederationOutPost3366()
 {
 	LOCATION_TITLE="OUTPOST 3366"
 	drawGfx "$UNIVERSE_PATH/federation/sector/outpost3366.gfx"
+}
+
+function atFederationOutPost3366Shockwave()
+{
+	LOCATION_TITLE="OUTPOST 3366 SHOCKWAVE"
+	drawGfx "$UNIVERSE_PATH/federation/sector/outpost3366_explosion5.gfx"
 }
 
 function atFederationYidowPrime()
@@ -96,6 +104,21 @@ function gotoFederationOutPost3366()
 	menuItem $((MENU_START_Y+7)) "7" "OutPost 3366" 1
 	menuEngage $((MENU_START_Y+8))
 	ENGAGE=1
+}
+
+function federationOutPost3366Explosion()
+{
+	iLoop=1
+	while (( iLoop <= 5 )); do
+		iLoop2=0
+		while IFS= read -r line; do
+			tput cup $iLoop2 0
+        		printf '%s\n' "$line"
+			iLoop2=$((iLoop2+1))
+        done < $UNIVERSE_PATH/federation/sector/outpost3366_explosion$iLoop.gfx
+		sleep 0.05
+		iLoop=$((iLoop+1))
+	done
 }
 
 function drawFederationMapGfx()

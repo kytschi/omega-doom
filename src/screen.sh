@@ -9,7 +9,7 @@ function drawLocation()
 
 function drawLocationTitle()
 {
-	animateTitle $LOCATION_TITLE
+	animateTitle "$LOCATION_TITLE"
 }
 
 function animateTitle()
@@ -37,7 +37,7 @@ function animateTitle()
 
 		iLoop=$((iLoop+1))
 		if (( iLoop >= 6 )); then
-			if (( fadeout )); then
+			if (( fadeout == 1)); then
 				if (( iLoop == 6 )); then
 					sleep 2
 				elif (( iLoop == 12 )); then
