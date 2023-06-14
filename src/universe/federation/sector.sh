@@ -1,7 +1,5 @@
 #!/bin/bash
 
-FEDERATION_OUTPOST=1
-
 function atFederationCratolMoon()
 {
 	LOCATION_TITLE="CRATOL MOON"

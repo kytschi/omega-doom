@@ -2,14 +2,18 @@
 
 function storyPenalColonyProgress1()
 {   
+    HIDE_HUD=1
+    SHOW_STATS=0
+
     AT_LOCATION="atGarisRepublicPenalColony"
 
     tput clear
     animateTitle "6 months later" 1
-    HIDE_HUD=1
 
+    SCREEN_REDRAW=1
     drawScreen
     SCREEN_REDRAW=0
+    HIDE_HUD=0
 
 	drawMessage "Abrahams" "Jake I just want you to know that I lo *EXPLOSION*" 1
     
@@ -17,23 +21,157 @@ function storyPenalColonyProgress1()
     drawMessage "Taki" "How many times must we hear about Omega Doom?"
     drawMessage "Taki" "Oooo, the ghost ship that appears out of thin air...it's a MYTH!"
 
-    drawMessage "Jake" "All myths start with some sort of truth Taki."
+    drawHUD
 
+    MENU=("1:It's a fact:0" "2:Not all of us are sane:0")
+    drawMenu 1 0
+
+    while true; do
+	    read -t 0.01 -s -n 10000 key
+
+		case "$key" in
+			[1])
+				storyPenalColonyProgress1Dialog1
+				;;
+            [2])
+				storyPenalColonyProgress1Dialog2
+				;;
+			[qQ])
+				save
+				quitMenu
+				;;
+        esac
+    done
+}
+
+function storyPenalColonyProgress1Dialog1()
+{
+    drawMessage "Jake" "All myths start with some sort of truth Taki."
+    storyPenalColonyProgress2
+}
+
+function storyPenalColonyProgress1Dialog2()
+{
+    drawMessage "Jake" "We all can't be as sane as you now can we?"
+    storyPenalColonyProgress2
+}
+
+function storyPenalColonyProgress2()
+{
     drawMessage "Taki" "Well your out of here soon right so you can go on your detective mystery then."
     drawMessage "Taki" "What you got left again? 100 years...AHAHAHAHA"
 
+    MENU=("1:You were there:0" "2:I was framed!:0")
+    drawMenu 1 0
+
+    while true; do
+	    read -t 0.01 -s -n 10000 key
+
+		case "$key" in
+			[1])
+				storyPenalColonyProgress2Dialog1
+				;;
+            [2])
+				storyPenalColonyProgress2Dialog2
+				;;
+			[qQ])
+				save
+				quitMenu
+				;;
+        esac
+    done
+}
+
+function storyPenalColonyProgress2Dialog1()
+{
     drawMessage "Jake" "You should know, you were there."
+    storyPenalColonyProgress3
+}
+
+function storyPenalColonyProgress2Dialog2()
+{
+    drawMessage "Jake" "I was framed!"
+    drawMessage "Taki" "Sure...like the rest of us..."
+    storyPenalColonyProgress3
+}
+
+function storyPenalColonyProgress3()
+{
     drawMessage "Jake" "But don't you worry I'll be out of here soon enough!"
 
     drawMessage "Taki" "Oh yeah, your crews coming back for you to help you escape, right?"
     drawMessage "Taki" "How long we all heard that one! HAHAHAHA!"
 
-    drawMessage "Jake" "Not long my worm brained friend, not long..."
+    MENU=("1:Insult the worm brain:0" "2:I've got friends:0")
+    drawMenu 1 0
 
+    while true; do
+	    read -t 0.01 -s -n 10000 key
+
+		case "$key" in
+			[1])
+				storyPenalColonyProgress3Dialog1
+				;;
+            [2])
+				storyPenalColonyProgress3Dialog2
+				;;
+			[qQ])
+				save
+				quitMenu
+				;;
+        esac
+    done
+}
+
+function storyPenalColonyProgress3Dialog1()
+{
+    drawMessage "Jake" "Not long my worm brained friend, not long..."
     drawMessage "Taki" "WHAT DID YOU CALL ME?!"
+    storyPenalColonyProgress4
+}
+
+function storyPenalColonyProgress3Dialog2()
+{
+    drawMessage "Jake" "Some of us have friends on the outside."
+    drawMessage "Jake" "How many you got again Taki?"
+
+    drawMessage "Taki" "Who needs friends?"
+    drawMessage "Taki" "Taki looks after himself and no one else!"
+
+    drawMessage "Jake" "And how's that working out for you?"
+    storyPenalColonyProgress4
+}
+
+function storyPenalColonyProgress4()
+{
+    drawMessage "Jake" "My crew sent word the other day in a coded message they are ready for the breakout." 0 1
+    drawMessage "Jake" "I just need to get myself sent to the hole..." 0 1
 
     drawMessage "GRPCPrisonGuard" "Pipe down you two!"
 
+    MENU=("1:Provoke the guard:0" "2:Insult Taki some more:0")
+    drawMenu 1 0
+
+    while true; do
+	    read -t 0.01 -s -n 10000 key
+
+		case "$key" in
+			[1])
+				storyPenalColonyProgress4Dialog1
+				;;
+            [2])
+				storyPenalColonyProgress4Dialog2
+				;;
+			[qQ])
+				save
+				quitMenu
+				;;
+        esac
+    done
+}
+
+function storyPenalColonyProgress4Dialog1()
+{
     drawMessage "Jake" "Sorry boss, we'll keep it down to a low roar."
 
     drawMessage "GRPCPrisonGuard" "Keep it up Abrahams, and its 30 days in the hole."
@@ -49,8 +187,22 @@ function storyPenalColonyProgress1()
 
     drawMessage "Jake" "Many thanks boss."
     drawMessage "Jake" "See you in 100 years Taki."
+}
 
-    quitMenu
+function storyPenalColonyProgress4Dialog2()
+{
+    drawMessage "Jake" "Why do they call you worm brain anyway?"
+    drawMessage "Jake" "Oh yeah you've got a parasite in your head...who is the smarter?"
+
+    drawMessage "Taki" "THAT DOES IT!"
+
+    drawMessage "Jake" "With his superior and worm brain mind..." 0 1
+    drawMessage "Jake" "...this isn't going to end well for me!" 0 1
+}
+
+function storyPenalColonyProgress5()
+{
+    
 }
 
 function storyPenalColonyProgress1NavLock()

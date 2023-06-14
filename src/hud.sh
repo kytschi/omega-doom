@@ -5,6 +5,7 @@ HUD_COL=0
 MENU_PAD=5
 MENU_START_Y=5
 SUB_MENU_START_Y=12
+SHOW_STATS=1
 
 function drawHUD()
 {
@@ -16,10 +17,15 @@ function drawHUD()
 
 	tput cup 5 $HUD_COL
 	
+	line=""
+	for (( iLoop=1; iLoop<HUD_WIDTH-1; iLoop++ )); do
+		line+=" "
+	done
 	iLoop=0
 	while true; do
 		tput cup 0 $((HUD_COL+iLoop))
 		printf "\e[38;5;83m=\e[0m"
+		printf "\e[38;5;0m$line\e[0m"
 
 		tput cup $rows $((HUD_COL+iLoop))
 		printf "\e[38;5;83m=\e[0m"
@@ -34,6 +40,7 @@ function drawHUD()
 	while true; do
 		tput cup $iLoop $HUD_COL
 		printf "\e[38;5;83m|\e[0m"
+		printf "\e[38;5;0m$line\e[0m"
 
 		tput cup $iLoop $((HUD_COL+HUD_WIDTH))
 		printf "\e[38;5;83m|\e[0m"
@@ -44,7 +51,9 @@ function drawHUD()
 		fi
 	done
 
-	updateShields $SHIELDS
+	if (( SHOW_STATS== 1 )); then
+		updateShields $SHIELDS
+	fi
 }
 
 MENU=()

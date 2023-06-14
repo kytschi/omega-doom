@@ -1,41 +1,9 @@
 # !/bin/bash
 source $UNIVERSE_PATH/federation/story/outpost3366/misc.sh
 
-OMEGA_ENGINES=1
-OMEGA_SENSORS=1
-OMEGA_WEAPONS=1
-
-function storyOutpost3366Progress4FromSave()
-{
-    for key in ${!TO_SAVE[@]}; do
-        val=${TO_SAVE[$key]}
-        IFS=' '
-		read -a splits <<< "$val"
-        case ${splits[0]} in
-            storyOutpost3366)
-                unset 'TO_SAVE[key]'
-                FEDERATION_OUTPOST=${splits[1]}
-                ;;
-            storyOutpost3366OE)
-                unset 'TO_SAVE[key]'
-                OMEGA_ENGINES=${splits[1]}
-                ;;
-            storyOutpost3366OS)
-                unset 'TO_SAVE[key]'
-                OMEGA_SENSORS=${splits[1]}
-                ;;
-            storyOutpost3366OW)
-                unset 'TO_SAVE[key]'
-                OMEGA_WEAPONS=${splits[1]}
-                ;;
-        esac
-	done    
-}
-
 #storyOutpost3366Progress4
 function storyOutpost3366Progress4()
 {
-    storyOutpost3366Progress4FromSave
     updateShields 70
 
     AT_LOCATION="shipOmegaDoomExteria"
@@ -63,10 +31,6 @@ function storyOutpost3366Progress4()
 				storyOutpost3366Progress4NavigationMenu
 				;;
 			[qQ])
-                TO_SAVE+=("storyOutpost3366 $FEDERATION_OUTPOST")
-                TO_SAVE+=("storyOutpost3366OE $OMEGA_ENGINES")
-                TO_SAVE+=("storyOutpost3366OS $OMEGA_SENSORS")
-                TO_SAVE+=("storyOutpost3366OW $OMEGA_WEAPONS")
 				save
 				quitMenu
 				;;
@@ -469,9 +433,6 @@ function storyOutpost3366Progress4FireOutpostWeapons()
 # storyOutpost3366Progress4Explosion
 function storyOutpost3366Progress4Explosion()
 {
-    if [ -z ${1+x} ]; then
-        storyOutpost3366Progress4FromSave
-    fi    
     FEDERATION_OUTPOST=0
 
     tput clear
@@ -511,10 +472,6 @@ function storyOutpost3366Progress4Explosion()
 				storyOutpost3366Progress4NavigationExplosionMenu
 				;;
 			[qQ])
-                TO_SAVE+=("storyOutpost3366 $FEDERATION_OUTPOST")
-                TO_SAVE+=("storyOutpost3366OE $OMEGA_ENGINES")
-                TO_SAVE+=("storyOutpost3366OW $OMEGA_WEAPONS")
-                TO_SAVE+=("storyOutpost3366OS $OMEGA_SENSORS")
 				save
 				quitMenu
 				;;
@@ -586,13 +543,13 @@ function storyOutpost3366Progress4Starboard()
             drawMessage "Abrahams" "Their shields?"
 
             drawMessage "Simons" "Still holding enough for our weapons."
-            drawMessage "Abrahams" "Good work My Cyrus!"
+            drawMessage "Abrahams" "Good work helm, and good job Mr Simons!"
         fi
     fi
 
     STORY_PROGRESS_FILE=$UNIVERSE_PATH/federation/story/outpost3366/progress4
     STORY_PROGRESS="storyOutpost3366Progress4End"
-    storyOutpost3366Progress4End
+    storyOutpost3366Progress4End 1
 }
 
 function storyOutpost3366Progress4ExplosionLock()
@@ -603,6 +560,24 @@ function storyOutpost3366Progress4ExplosionLock()
 
 function storyOutpost3366Progress4End()
 {
+    FEDERATION_OUTPOST=0
+    AT_LOCATION="shipOmegaDoomExteria"
+
+    updateShields 50
+    if [ -z ${1+x} ]; then
+        SCREEN_REDRAW=1
+        drawScreen
+    else
+        clearView
+        drawLocation
+		drawLocationTitle
+    fi   
+
+    SCREEN_REDRAW=0
+
+    MENU=("c:Communications:0" "n:Navigation:0" "s:Sensors:0" "w:Weapons:0" "e:Engineering:0")
+    drawMenu 0 0
+
     drawMessage "Abrahams" "Start sending out destress calls to anyone and everyone..."
 
     drawMessage "Ambrose" "Already on it Captain but we aren't getting any responses."
@@ -644,7 +619,15 @@ function storyOutpost3366Progress4End()
     clearView
     shipOmegaDoomExteriaBlinkFire
 
+    updateShields 0
+    drawMessage "Simons" "Shields down! Weapons are gone..."
+    drawMessage "Cyrus" "I've lost all control of the ship..."
+    drawMessage "Ambrose" "Comms are down..."
+    drawMessage "Thomas" "Captain...the ship...she's took major damage....we need to..."
+
     drawMessage "Abrahams" "Jake I just want you to know that I lo *EXPLOSION*"
+
+    # TODO Liberty exploding.
 
     STORY_PROGRESS_FILE=$UNIVERSE_PATH/garis-republic/story/penal_colony/progress1
     STORY_PROGRESS="storyPenalColonyProgress1"
@@ -667,6 +650,8 @@ function storyOutpost3366Progress4ProbeDownload()
 
 function storyOutpost3366Progress4ProbeLaunch()
 {
+    # TODO probe launching
+
     drawMessage "Thomas" "Probe away."
     drawMessage "Abrahams" "Good work Mr Thomas!"
 }
@@ -674,6 +659,8 @@ function storyOutpost3366Progress4ProbeLaunch()
 function storyOutpost3366Progress4ProbeLaunchDestoryed()
 {
     storyOutpost3366Progress4ProbeLaunch
+
+    # TODO probe destroyed
 
     drawMessage "Thomas" "Captain, the Omega Doom shot the probe down instantly!"
     drawMessage "Abrahams" "Damn it!"

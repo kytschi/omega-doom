@@ -18,6 +18,7 @@ function shipOmegaDoomExteriaBlinkAppear()
 		iLoop=$((iLoop+1))
 	done
 	drawGfx $GFX_PATH/ships/omega_doom/omega_doom_exteria.gfx
+	drawLocationTitle
 }
 
 function shipOmegaDoomExteriaBlinkFire()
@@ -34,6 +35,7 @@ function shipOmegaDoomExteriaBlinkFire()
 		iLoop=$((iLoop+1))
 	done
 	drawGfx $GFX_PATH/ships/omega_doom/omega_doom_exteria.gfx
+	drawLocationTitle
 }
 
 function shipOmegaDoomExteriaBlinkFireCharging()
@@ -54,4 +56,5 @@ function shipOmegaDoomExteriaBlinkFireCharging()
 			iLoop3=1
 		fi
 	done
+	drawLocationTitle
 }

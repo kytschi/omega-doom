@@ -51,7 +51,7 @@ function charPeters()
 # Inmate at Garis Republic Penal Colony
 function charTaki()
 {
-    charDraw $1 $2 $GFX_PATH/characters/garis_republic_penal_colony/taki.gfx " Taki <cellmate> "
+    charDraw $1 $2 $GFX_PATH/characters/garis_republic_penal_colony/taki.gfx " Taki <cellmate>  "
 }
 
 # Jake Abrahams

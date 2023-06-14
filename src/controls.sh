@@ -3,6 +3,11 @@
 MENU_BACK=""
 TO_SAVE=()
 
+FEDERATION_OUTPOST=1
+OMEGA_ENGINES=1
+OMEGA_SENSORS=1
+OMEGA_WEAPONS=1
+
 function load()
 {
 	if [ ! -f "$BASE_PATH/.save" ]; then
@@ -18,25 +23,31 @@ function load()
 			do
 				IFS=' '
 				read -a splits <<< "$val"
-
-				var=${splits[0]}
-				value=${splits[1]}
 				
-				case $var in
+				case ${splits[0]} in
 					MS)
-						MESSAGE_SPEED=$value
+						MESSAGE_SPEED=${splits[1]}
 						;;
 					SH)
-						SHIELDS=$value
+						SHIELDS=${splits[1]}
 						;;
 					SP)
-						STORY_PROGRESS=$value
+						STORY_PROGRESS=${splits[1]}
 						;;
 					SPF)
-						STORY_PROGRESS_FILE=$value
+						STORY_PROGRESS_FILE=${splits[1]}
 						;;
-					*)
-						TO_SAVE+=("$var $value")
+					storyOutpost3366)
+						FEDERATION_OUTPOST=${splits[1]}
+						;;
+					storyOutpost3366OE)
+						OMEGA_ENGINES=${splits[1]}
+						;;
+					storyOutpost3366OS)						
+						OMEGA_SENSORS=${splits[1]}
+						;;
+					storyOutpost3366OW)
+						OMEGA_WEAPONS=${splits[1]}
 						;;
 				esac
 			done
@@ -111,6 +122,11 @@ function save()
 	TO_SAVE+=("SH $SHIELDS")
 	TO_SAVE+=("SP $STORY_PROGRESS")
 	TO_SAVE+=("SPF $STORY_PROGRESS_FILE")
+
+	TO_SAVE+=("storyOutpost3366 $FEDERATION_OUTPOST")
+    TO_SAVE+=("storyOutpost3366OE $OMEGA_ENGINES")
+    TO_SAVE+=("storyOutpost3366OW $OMEGA_WEAPONS")
+    TO_SAVE+=("storyOutpost3366OS $OMEGA_SENSORS")
 
 	output=""
 	for key in ${!TO_SAVE[@]}; do

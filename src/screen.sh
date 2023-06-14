@@ -61,6 +61,7 @@ function drawMessage()
 	character=$1
 	message=" $2 "
 	full=$3
+	thought=$4
 
 	if (( MESSAGE_BOX_UP==0 )); then
 		rows=`tput lines`
@@ -110,11 +111,15 @@ function drawMessage()
 	printf "\e[0;40;30m \e[0m"
 
 	length=${#message}
+	mode=0
+	if [[ $thought ]];then
+		mode=3
+	fi
 	for (( iLoop=0; iLoop<length; iLoop++ )); do
 		tput cup $y $((x+1))
 		printf "\e[0;40;30m \e[0m"
 		tput cup $y $x
-		printf "\e[0;47;30m${message:$iLoop:1}\e[0m"
+		printf "\e[$mode;47;30m${message:$iLoop:1}\e[0m"
 		x=$((x+1))
 		sleep $MESSAGE_SPEED
 	done
