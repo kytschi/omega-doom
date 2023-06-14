@@ -3,6 +3,7 @@
 Very much in the early phases. I'm just clowning around with some shell scripting and ASCII rendering.
 
 ![Snapshot](https://github.com/kytschi/omega-doom/blob/master/screenshot.jpg)
+![Snapshot](https://github.com/kytschi/omega-doom/blob/master/omega-preview1.gif)
 
 ## Copyrights
 All copyrights go to those of the original creators and copyright holders of any material used.
