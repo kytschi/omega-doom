@@ -47,7 +47,7 @@ function storyOutpost3366Progress1Sub()
 				;;
 			[qQ])
 				save
-				quit
+				quitMenu
 				;;
 			[sS])
 				storyOutpost3366Progress1SensorsMenu
@@ -125,7 +125,7 @@ function storyOutpost3366Progress1Scan()
 				;;
 			[qQ])
 				save
-				quit
+				quitMenu
 				;;
 			[sS])
 				storyOutpost3366Progress1SensorsMenu

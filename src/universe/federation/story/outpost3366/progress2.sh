@@ -30,7 +30,7 @@ function storyOutpost3366Progress2()
 				;;
 			[qQ])
 				save
-				quit
+				quitMenu
 				;;
 			[sS])
 				storyOutpost3366Progress2SensorsMenu

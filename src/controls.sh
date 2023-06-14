@@ -87,6 +87,13 @@ function optionsMenu()
 	done
 }
 
+function quitMenu()
+{
+	tput clear
+	tput cup 0 0
+	drawTitle
+}
+
 function quit()
 {
 	tput clear

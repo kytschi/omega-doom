@@ -89,7 +89,7 @@ function storyIntroProgress2()
 				;;
 			[qQ])
 				save
-				quit
+				quitMenu
 				;;
 			[sS])
 				storyIntroProgress2NavLock

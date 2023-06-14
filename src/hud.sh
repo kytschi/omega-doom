@@ -126,8 +126,8 @@ function updateShields()
 	SHIELDS=$1
 	tput cup 2 $((HUD_COL+MENU_PAD))
 	if (( SHIELDS < 10 )); then
-		printf '\e[38;5;83mSHIELDS\e[0m \e[0;91m%d%%\e[0m' "$SHIELDS"
+		printf '\e[38;5;83mSHIELDS\e[0m \e[0;91m%d%%\e[0m  ' $SHIELDS
 	else
-		printf '\e[38;5;83mSHIELDS\e[0m %d%%' "$SHIELDS"
+		printf '\e[38;5;83mSHIELDS\e[0m %d%%  ' $SHIELDS
 	fi
 }

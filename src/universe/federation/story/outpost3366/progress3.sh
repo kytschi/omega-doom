@@ -42,7 +42,7 @@ function storyOutpost3366Progress3()
 				;;
 			[qQ])
 				save
-				quit
+				quitMenu
 				;;
 			[sS])
 				storyOutpost3366Progress3SensorsMenu
@@ -109,11 +109,14 @@ function storyOutpost3366Progress3DamageReport()
     drawMessage "Abrahams" "Weapons?!"
 
     drawMessage "Peters" "Aye sir, I've rerouted what's left of impluse power to the weapons and shields."
+    updateShields 70
+    drawMessage "Peters" "That'll boost the shields to about 70 percent efficiency."
     drawMessage "Peters" "Captain..."
 
     drawMessage "Abrahams" "Yes Cheif?"
 
-    drawMessage "Peters" "Another hit like that I don't think she'll survive it!"
+    drawMessage "Peters" "She'll survive another blast from that ship but that'll be our shields gone."
+    drawMessage "Peters" "That energy is just too much, it's not like a blast from a warp core shockwave."
 
     drawMessage "Abrahams" "Understood Cheif, Abrahams out."
 

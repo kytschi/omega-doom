@@ -2,10 +2,41 @@
 source $UNIVERSE_PATH/federation/story/outpost3366/misc.sh
 
 OMEGA_ENGINES=1
+OMEGA_SENSORS=1
+OMEGA_WEAPONS=1
+
+function storyOutpost3366Progress4FromSave()
+{
+    for key in ${!TO_SAVE[@]}; do
+        val=${TO_SAVE[$key]}
+        IFS=' '
+		read -a splits <<< "$val"
+        case ${splits[0]} in
+            storyOutpost3366)
+                unset 'TO_SAVE[key]'
+                FEDERATION_OUTPOST=${splits[1]}
+                ;;
+            storyOutpost3366OE)
+                unset 'TO_SAVE[key]'
+                OMEGA_ENGINES=${splits[1]}
+                ;;
+            storyOutpost3366OS)
+                unset 'TO_SAVE[key]'
+                OMEGA_SENSORS=${splits[1]}
+                ;;
+            storyOutpost3366OW)
+                unset 'TO_SAVE[key]'
+                OMEGA_WEAPONS=${splits[1]}
+                ;;
+        esac
+	done    
+}
+
+#storyOutpost3366Progress4
 function storyOutpost3366Progress4()
 {
     storyOutpost3366Progress4FromSave
-    updateShields 50
+    updateShields 70
 
     AT_LOCATION="shipOmegaDoomExteria"
     drawScreen
@@ -26,7 +57,7 @@ function storyOutpost3366Progress4()
 				storyOutpost3366Progress4CommsMenu
 				;;
 			[eE])
-				storyOutpost3366Progress4EngineMenu			
+				storyOutpost3366Progress4EngineMenu
 				;;
 			[nN])                
 				storyOutpost3366Progress4NavigationMenu
@@ -34,8 +65,10 @@ function storyOutpost3366Progress4()
 			[qQ])
                 TO_SAVE+=("storyOutpost3366 $FEDERATION_OUTPOST")
                 TO_SAVE+=("storyOutpost3366OE $OMEGA_ENGINES")
+                TO_SAVE+=("storyOutpost3366OS $OMEGA_SENSORS")
+                TO_SAVE+=("storyOutpost3366OW $OMEGA_WEAPONS")
 				save
-				quit
+				quitMenu
 				;;
 			[sS])
 				storyOutpost3366Progress4SensorsMenu
@@ -45,25 +78,6 @@ function storyOutpost3366Progress4()
 				;;
         esac
     done
-}
-
-function storyOutpost3366Progress4FromSave()
-{
-    for key in ${!TO_SAVE[@]}; do
-        val=${TO_SAVE[$key]}
-        IFS=' '
-		read -a splits <<< "$val"
-        case ${splits[0]} in
-            storyOutpost3366)
-                unset 'TO_SAVE[key]'
-                FEDERATION_OUTPOST=${splits[1]}
-                ;;
-            storyOutpost3366OE)
-                unset 'TO_SAVE[key]'
-                OMEGA_ENGINES=${splits[1]}
-                ;;
-        esac
-	done    
 }
 
 function storyOutpost3366Progress4CommsMenu()
@@ -242,7 +256,9 @@ function storyOutpost3366Progress4WeaponsMenu()
         esac
     done
 }
+# End storyOutpost3366Progress4
 
+# Omega Weapons
 function storyOutpost3366Progress4OmegaTargeting()
 {
     MENU=("1:Target the Engines:0" "2:Target the Shields:0" "3:Target the Sensors:0" "4:Target the Weapons:0")
@@ -299,60 +315,18 @@ function storyOutpost3366Progress4FireSensors()
 
     # TODO Liberty firing effect.
 
-    drawMessage "Simons" "Direct hit!"
-    drawMessage "Simons" "She's as blind as a bat."
-    
-    drawMessage "Abrahams" "Good work Mr Simons, target her weapons and fire at will!"
-    drawMessage "Abrahams" "Number one, download all the data collected from the outpost to a subspace probe."
-    drawMessage "Abrahams" "Launch it when ready."
+    if (( OMEGA_SENSORS == 0 )); then
+        drawMessage "Simons" "Their sensors are already down."
+    else
+        drawMessage "Simons" "Direct hit!"
 
-    drawMessage "Thomas" "Captain, the sensors and navigation computers are completely offline..."
-    drawMessage "Thomas" "...I'll not be able to launch the probe to anywhere 100 percent certain."
+        drawMessage "Simons" "She's as blind as a bat."
+        
+        drawMessage "Abrahams" "Good work Mr Simons, keep firing!"
+        OMEGA_SENSORS=0
+    fi
 
-    drawMessage "Abrahams" "Just use your best judgement Thomas."
-
-    drawMessage "Thomas" "Understood."
-
-    drawMessage "Abrahams" "Start sending out destress calls to anyone and everyone..."
-
-    drawMessage "Ambrose" "Already on it Captain but we aren't getting any responses."
-
-    drawMessage "Abrahams" "Don't tell me the comms are down too?!"
-
-    drawMessage "Ambrose" "Negative Captain, it's like they aren't answering."
-
-    drawMessage "Abrahams" "Hmmm, comms blackout..."
-
-    drawMessage "Ambrose" "Captain?"
-
-    drawMessage "Abrahams" "Open a channel to the penal colony Solara in the Garis Republic..."
-    drawMessage "Abrahams" "Inmate 405298."
-
-    drawMessage "Ambrose" "Channel open."
-
-    drawMessage "Thomas" "John, I'm detecting a massive build up of neutronic radiation again."
-
-    clearView
-    shipOmegaDoomExteriaBlinkFireCharging
-
-    drawMessage "Abrahams" "Jake, I know I wasn't much of a father to you."
-    drawMessage "Abrahams" "And we've had our problems over the years."
-
-    drawMessage "Simons" "Captain, we are having little effect to their weapons."
-    drawMessage "Simons" "Our constant firing has given the Omega Doom a lock!"
-
-    drawMessage "Thomas" "All hands brace for impact!"
-    drawMessage "Thomas" "Probe away."
-
-    drawMessage "Abrahams" "Jake I just want you to know that I lo *EXPLOSION*"
-    
-    clearView
-    shipOmegaDoomExteriaBlinkFire
-
-    STORY_PROGRESS_FILE=$UNIVERSE_PATH/garis-republic/story/penal_colony/progress1
-    STORY_PROGRESS="storyPenalColonyProgress1"
-    SCREEN_REDRAW=1
-    progressStory
+    storyOutpost3366Progress4OmegaTargeting
 }
 
 function storyOutpost3366Progress4FireShields()
@@ -363,14 +337,25 @@ function storyOutpost3366Progress4FireShields()
 
     # TODO Liberty firing effect.
 
-    drawMessage "Simons" "Captain, the shields are holding."
+    drawMessage "Simons" "Captain, their shields are holding."
+
+    menuItem $((MENU_START_Y+2)) "2" "Target the Shields" 0
+    storyOutpost3366Progress4OmegaFiring
+}
+
+function storyOutpost3366Progress4OmegaFiring()
+{
     drawMessage "Thomas" "She's charging again...incoming..."
 
     clearView
     shipOmegaDoomExteriaBlinkFireCharging
     shipOmegaDoomExteriaBlinkFire
 
-    gameover "The SS Liberty was completely destroyed!"
+    updateShields 20
+    drawMessage "Simons" "Captain, the shields are gone, we are a sitting duck!"
+
+    drawMessage "Abrahams" "Damn it! Now what?!"
+    drawMessage "Abrahams" "Mr Simons, target that ship and fire at will!"
 }
 
 function storyOutpost3366Progress4FireWeapons()
@@ -382,15 +367,13 @@ function storyOutpost3366Progress4FireWeapons()
     # TODO Liberty firing effect.
 
     drawMessage "Simons" "Captain, minimal damage to weapons."
-    drawMessage "Thomas" "She's charging again...incoming..."
 
-    clearView
-    shipOmegaDoomExteriaBlinkFireCharging
-    shipOmegaDoomExteriaBlinkFire
-
-    gameover "The SS Liberty was completely destroyed!"
+    menuItem $((MENU_START_Y+4)) "4" "Target the Weapons" 0
+    storyOutpost3366Progress4OmegaFiring
 }
+# End Omega Weapons
 
+# Outpost Weapons
 function storyOutpost3366Progress4OutpostTargeting()
 {
     MENU=("1:Target the Engines:0" "2:Target the Shields:0" "3:Target the Sensors:0" "4:Target the Weapons:0" "5:Target the Warp Core:0")
@@ -465,14 +448,13 @@ function storyOutpost3366Progress4FireOutpostWarpCore()
     menuItem $((MENU_START_Y+5)) "5" "Target the Warp Core" 1
     drawMessage "Simons" "Targeting the outposts warp core...FIRING!"
     
-    # TODO outpost explosion
-
     drawMessage "Simons" "Direct hit!"
 
     drawMessage "Thomas" "The warp core is going critical Captain!"
     
     STORY_PROGRESS_FILE=$UNIVERSE_PATH/federation/story/outpost3366/progress4
     STORY_PROGRESS="storyOutpost3366Progress4Explosion"
+    SCREEN_REDRAW=1
     storyOutpost3366Progress4Explosion 1
 }
 
@@ -482,13 +464,14 @@ function storyOutpost3366Progress4FireOutpostWeapons()
     drawMessage "Simons" "Targeting the weapons...FIRING!"
     storyOutpost3366Progress4FireOutpostDead
 }
+# End Outpost Weapons
 
+# storyOutpost3366Progress4Explosion
 function storyOutpost3366Progress4Explosion()
 {
     if [ -z ${1+x} ]; then
         storyOutpost3366Progress4FromSave
-    fi
-    updateShields 50
+    fi    
     FEDERATION_OUTPOST=0
 
     tput clear
@@ -502,6 +485,14 @@ function storyOutpost3366Progress4Explosion()
     drawMenu 1 0
 
     drawMessage "Thomas" "Incoming shockwave..."
+
+    if (( OMEGA_ENGINES==1 )); then
+        drawMessage "Simons" "Captain, the Omega Doom just vanished from view."
+    else
+        drawMessage "Simons" "Captain, the Omega Doom is in direct path of the shockwave..."
+        drawMessage "Simons" "Her engines are offline, she isn't going anywhere!"
+    fi
+
     drawMessage "Abrahams" "Helm, turn us away from that shockwave!"
     
     menuItem $((MENU_START_Y+1)) "n" "Navigation" 0 1
@@ -522,8 +513,10 @@ function storyOutpost3366Progress4Explosion()
 			[qQ])
                 TO_SAVE+=("storyOutpost3366 $FEDERATION_OUTPOST")
                 TO_SAVE+=("storyOutpost3366OE $OMEGA_ENGINES")
+                TO_SAVE+=("storyOutpost3366OW $OMEGA_WEAPONS")
+                TO_SAVE+=("storyOutpost3366OS $OMEGA_SENSORS")
 				save
-				quit
+				quitMenu
 				;;
 			[sS])
 				storyOutpost3366Progress4ExplosionLock
@@ -560,6 +553,7 @@ function storyOutpost3366Progress4NavigationExplosionMenu()
 
 function storyOutpost3366Progress4Port()
 {
+    drawMessage "Cyrus" "Aye sir, turning port to face the shockwave"
     drawMessage "Abrahams" "Hall hands, brace for IMPACT!"
 
     SCREEN_REDRAW=0
@@ -570,10 +564,117 @@ function storyOutpost3366Progress4Port()
 
 function storyOutpost3366Progress4Starboard()
 {
+    drawMessage "Cyrus" "Aye sir, turning starboard to face the shockwave"
     drawMessage "Abrahams" "Hall hands, brace for IMPACT!"
+
+    # TODO Shockwave hitting Liberty
+
+    if (( SHIELDS<=50 )); then
+        gameover "The SS Liberty was completely destroyed!"
+    else
+        updateShields 50
+
+        if (( OMEGA_ENGINES==1 )); then
+            drawMessage "Simons" "Captain, the Omega Doom just reappeared."
+        else
+            # TODO Shockwave hitting Omega Doom
+            OMEGA_WEAPONS=0
+
+            drawMessage "Simons" "Captain, the Omega Doom took a direct hit from the shockwave..."
+            drawMessage "Simons" "Her weapons are completely down!"
+
+            drawMessage "Abrahams" "Their shields?"
+
+            drawMessage "Simons" "Still holding enough for our weapons."
+            drawMessage "Abrahams" "Good work My Cyrus!"
+        fi
+    fi
+
+    STORY_PROGRESS_FILE=$UNIVERSE_PATH/federation/story/outpost3366/progress4
+    STORY_PROGRESS="storyOutpost3366Progress4End"
+    storyOutpost3366Progress4End
 }
 
 function storyOutpost3366Progress4ExplosionLock()
 {
     drawMessage "Abrahams" "We need to deal with this incoming shockwave!"
+}
+# End storyOutpost3366Progress4Explosion
+
+function storyOutpost3366Progress4End()
+{
+    drawMessage "Abrahams" "Start sending out destress calls to anyone and everyone..."
+
+    drawMessage "Ambrose" "Already on it Captain but we aren't getting any responses."
+
+    drawMessage "Abrahams" "Don't tell me the comms are down too?!"
+
+    drawMessage "Ambrose" "Negative Captain, it's like they aren't answering."
+
+    drawMessage "Abrahams" "Hmmm, comms blackout..."
+
+    drawMessage "Ambrose" "Captain?"
+
+    storyOutpost3366Progress4ProbeDownload
+
+    drawMessage "Abrahams" "Open a channel to the penal colony Solara in the Garis Republic..."
+    drawMessage "Abrahams" "Inmate 405298."
+
+    drawMessage "Ambrose" "Channel open."
+
+    drawMessage "Thomas" "John, I'm detecting a massive build up of neutronic radiation again."
+
+    clearView
+    shipOmegaDoomExteriaBlinkFireCharging
+
+    drawMessage "Abrahams" "Jake, I know I wasn't much of a father to you."
+    drawMessage "Abrahams" "And we've had our problems over the years."
+
+    if (( OMEGA_SENSORS==0 )) && (( OMEGA_WEAPONS==0 )); then
+        storyOutpost3366Progress4ProbeLaunch
+    else
+        storyOutpost3366Progress4ProbeLaunchDestoryed
+    fi
+
+    drawMessage "Simons" "Captain, we are having little effect doing any more damage to the Omega Doom..."
+    drawMessage "Simons" "Our constant firing has given the Omega Doom a lock!"
+
+    drawMessage "Thomas" "All hands brace for impact!"
+    
+    clearView
+    shipOmegaDoomExteriaBlinkFire
+
+    drawMessage "Abrahams" "Jake I just want you to know that I lo *EXPLOSION*"
+
+    STORY_PROGRESS_FILE=$UNIVERSE_PATH/garis-republic/story/penal_colony/progress1
+    STORY_PROGRESS="storyPenalColonyProgress1"
+    SCREEN_REDRAW=1
+    progressStory
+}
+
+function storyOutpost3366Progress4ProbeDownload()
+{
+    drawMessage "Abrahams" "Number one, download all the data collected from the outpost to a subspace probe."
+    drawMessage "Abrahams" "Launch it when ready."
+
+    drawMessage "Thomas" "Captain, the sensors and navigation computers are completely offline..."
+    drawMessage "Thomas" "...I'll not be able to launch the probe to anywhere 100 percent certain."
+
+    drawMessage "Abrahams" "Just use your best judgement Thomas."
+
+    drawMessage "Thomas" "Understood."
+}
+
+function storyOutpost3366Progress4ProbeLaunch()
+{
+    drawMessage "Thomas" "Probe away."
+    drawMessage "Abrahams" "Good work Mr Thomas!"
+}
+
+function storyOutpost3366Progress4ProbeLaunchDestoryed()
+{
+    storyOutpost3366Progress4ProbeLaunch
+
+    drawMessage "Thomas" "Captain, the Omega Doom shot the probe down instantly!"
+    drawMessage "Abrahams" "Damn it!"
 }

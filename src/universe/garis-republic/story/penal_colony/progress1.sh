@@ -1,14 +1,7 @@
 # !/bin/bash
 
 function storyPenalColonyProgress1()
-{
-    MENU_COMMUNICATIONS_LOCK="storyPenalColonyProgress1NavLock"
-    MENU_ENGINEERING_LOCK="storyOutpost3366Progress1NavLock"
-    MENU_NAVIGATION_LOCK="storyOutpost3366Progress1NavLock"
-    MENU_SENSORS_LOCK="storyOutpost3366Progress1NavLock"
-    MENU_WEAPONS_LOCK="storyOutpost3366Progress1NavLock"
-    MENU_ENGAGE_LOCK="storyOutpost3366Progress1NavLock"
-    
+{   
     AT_LOCATION="atGarisRepublicPenalColony"
 
     tput clear
@@ -56,8 +49,8 @@ function storyPenalColonyProgress1()
 
     drawMessage "Jake" "Many thanks boss."
     drawMessage "Jake" "See you in 100 years Taki."
-        
-    controls
+
+    quitMenu
 }
 
 function storyPenalColonyProgress1NavLock()
