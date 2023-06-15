@@ -5,7 +5,7 @@ source $UNIVERSE_PATH/federation/story/outpost3366/misc.sh
 function storyOutpost3366Progress4()
 {
     updateShields 70
-
+    
     AT_LOCATION="shipOmegaDoomExteria"
     drawScreen
     SCREEN_REDRAW=0

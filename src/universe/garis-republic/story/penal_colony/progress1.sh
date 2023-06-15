@@ -85,6 +85,9 @@ function storyPenalColonyProgress2()
 function storyPenalColonyProgress2Dialog1()
 {
     drawMessage "Jake" "You should know, you were there."
+    drawMessage "Taki" "Wasn't my fault the cops turned up."
+    drawMessage "Jake" "I'm not the one who shot the guard and alerted them, am I?"
+    drawMessage "Taki" "He shouldn't have been reaching for that alarm."
     storyPenalColonyProgress3
 }
 
@@ -92,6 +95,9 @@ function storyPenalColonyProgress2Dialog2()
 {
     drawMessage "Jake" "I was framed!"
     drawMessage "Taki" "Sure...like the rest of us..."
+    drawMessage "Jake" "I'm not the one who killed the guard am I?"
+    drawMessage "Taki" "He shouldn't have been reaching for that alarm."
+    drawMessage "Jake" "I was there to break the safe, nothing else!"
     storyPenalColonyProgress3
 }
 
@@ -144,7 +150,8 @@ function storyPenalColonyProgress3Dialog2()
 
 function storyPenalColonyProgress4()
 {
-    drawMessage "Jake" "My crew sent word the other day in a coded message they are ready for the breakout." 0 1
+    drawMessage "Jake" "My crew sent word the other day in a coded message..."
+    drawMessage "Jake" "...they are ready for the breakout." 0 1
     drawMessage "Jake" "I just need to get myself sent to the hole..." 0 1
 
     drawMessage "GRPCPrisonGuard" "Pipe down you two!"
@@ -196,16 +203,11 @@ function storyPenalColonyProgress4Dialog2()
 
     drawMessage "Taki" "THAT DOES IT!"
 
-    drawMessage "Jake" "With his superior and worm brain mind..." 0 1
+    drawMessage "Jake" "With his superior and worm brain..." 0 1
     drawMessage "Jake" "...this isn't going to end well for me!" 0 1
 }
 
 function storyPenalColonyProgress5()
 {
     
-}
-
-function storyPenalColonyProgress1NavLock()
-{
-    drawMessage "GRPCPrisonGuard" "You don't have any priveledges to do that inmate 405298"
 }

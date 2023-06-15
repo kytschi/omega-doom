@@ -2,8 +2,14 @@
 source $UNIVERSE_PATH/federation/story/outpost3366/misc.sh
 
 function storyOutpost3366Progress3()
-{    
-    AT_LOCATION="shipOmegaDoomExteria"    
+{   
+    OMEGA_ENGINES=1
+    OMEGA_SENSORS=1
+    OMEGA_WEAPONS=1
+
+    SCREEN_REDRAW=1
+    updateShields 100
+    AT_LOCATION="shipOmegaDoomExteria"
     drawScreen
     SCREEN_REDRAW=0
 
@@ -11,12 +17,14 @@ function storyOutpost3366Progress3()
     drawMessage "Thomas" "It's being focused in our direction..."
 
     clearView
-    shipOmegaDoomExteriaBlinkFireCharging
+    shipOmegaDoomExteriaBlinkFireCharging 1
 
     drawMessage "Abrahams" "ALL HANDS! BRACE FOR IMPACT!"
 
     clearView
-    shipOmegaDoomExteriaBlinkFire
+    shipOmegaDoomExteriaBlinkFire 1
+
+    drawLocationTitle
 
     updateShields 50
 
@@ -93,7 +101,7 @@ function storyOutpost3366Progress3CommsHailOmega()
 function storyOutpost3366Progress3DamageReport()
 {
     SCREEN_REDRAW=0
-    menuItem $((MENU_START_Y+4)) "e" "Engineering" 0
+    menuItem $((MENU_START_Y+1)) "1" "Status Report" 1
 
     drawMessage "Abrahams" "Cheif, what the status?"
 
@@ -119,6 +127,10 @@ function storyOutpost3366Progress3DamageReport()
     drawMessage "Peters" "That energy is just too much, it's not like a blast from a warp core shockwave."
 
     drawMessage "Abrahams" "Understood Cheif, Abrahams out."
+
+    OMEGA_ENGINES=1
+    OMEGA_SENSORS=1
+    OMEGA_WEAPONS=1
 
     STORY_PROGRESS_FILE=$UNIVERSE_PATH/federation/story/outpost3366/progress4
     STORY_PROGRESS="storyOutpost3366Progress4"

@@ -218,7 +218,7 @@ function storyOutpost3366Progress1NavigationStatus()
 
 function storyOutpost3366Progress1SensorsMenu()
 {
-    MENU=("1:Outpost 3366:0" "2:Scan Region:0")
+    MENU=("1:Scan the Outpost 3366:0" "2:Scan the Region:0")
     drawMenu 0 1
 
     STORY_RETURN="storyOutpost3366Progress1SensorsMenu"

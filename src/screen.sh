@@ -1,6 +1,8 @@
 #!/bin/bash
 
+LOCATION_SECTOR=""
 LOCATION_TITLE=""
+PRE_LOCATION_TITLE=""
 
 function drawLocation()
 {
@@ -14,18 +16,31 @@ function drawLocationTitle()
 
 function animateTitle()
 {
-	tput cup 2 0
+	y=1
+	x=2
+	tput cup $y $x
 
+	title=$1
+
+	if [[ $LOCATION_SECTOR ]];then
+		title="$title <$LOCATION_SECTOR>"
+		PRE_LOCATION_TITLE="$PRE_LOCATION_TITLE <$LOCATION_SECTOR>"
+	fi
+
+	if [[ $PRE_LOCATION_TITLE ]];then
+		printf "\e[0;47;0m  $PRE_LOCATION_TITLE  \e[0m"
+	fi
+	
 	fadeout=$2
-
+	
 	running=true
 	iLoop=1
 
 	color=16
 	
 	while $running; do
-		echo -e "  \e[38;5;${color}m $1 \e[0m"
-		printf "\033[A"
+		tput cup $y $x
+		printf "\e[38;5;${color}m $title \e[0m"
 
 		sleep 0.2
 
@@ -50,6 +65,8 @@ function animateTitle()
 			fi
 		fi
 	done
+
+	PRE_LOCATION_TITLE=$LOCATION_TITLE
 }
 
 MESSAGE_BOX_UP=0
@@ -159,7 +176,7 @@ function drawScreen()
 		drawLocation
 		drawLocationTitle
 		if (( HIDE_HUD==0 )); then
-			drawHUD
+		 	drawHUD
 		fi
 	fi
 }

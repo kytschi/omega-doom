@@ -3,48 +3,56 @@
 function atFederationCratolMoon()
 {
 	LOCATION_TITLE="CRATOL MOON"
+	LOCATION_SECTOR="FEDERATION"
 	drawGfx "$UNIVERSE_PATH/federation/sector/cratol-moon.gfx"
 }
 
 function atFederationEarth()
 {
 	LOCATION_TITLE="EARTH"
+	LOCATION_SECTOR="FEDERATION"
 	drawGfx "$UNIVERSE_PATH/federation/sector/sol-earth.gfx"
 }
 
 function atFederationFasbonPrime()
 {
 	LOCATION_TITLE="FASBON PRIME"
+	LOCATION_SECTOR="FEDERATION"
 	drawGfx "$UNIVERSE_PATH/federation/sector/fasbon-prime.gfx"
 }
 
 function atFederationFuriaPrime()
 {
 	LOCATION_TITLE="FURIA PRIME"
+	LOCATION_SECTOR="FEDERATION"
 	drawGfx "$UNIVERSE_PATH/federation/sector/furia-prime.gfx"
 }
 
 function atFederationOpalusPrime()
 {
 	LOCATION_TITLE="OPALUS PRIME"
+	LOCATION_SECTOR="FEDERATION"
 	drawGfx "$UNIVERSE_PATH/federation/sector/opalus-prime.gfx"
 }
 
 function atFederationOutPost3366()
 {
 	LOCATION_TITLE="OUTPOST 3366"
+	LOCATION_SECTOR="FEDERATION"
 	drawGfx "$UNIVERSE_PATH/federation/sector/outpost3366.gfx"
 }
 
 function atFederationOutPost3366Shockwave()
 {
 	LOCATION_TITLE="OUTPOST 3366 SHOCKWAVE"
+	LOCATION_SECTOR="FEDERATION"
 	drawGfx "$UNIVERSE_PATH/federation/sector/outpost3366_explosion5.gfx"
 }
 
 function atFederationYidowPrime()
 {
 	LOCATION_TITLE="YIDOW PRIME"
+	LOCATION_SECTOR="FEDERATION"
 	drawGfx "$UNIVERSE_PATH/federation/sector/yidow-prime.gfx"
 }
 

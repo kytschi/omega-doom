@@ -18,14 +18,16 @@ function drawHUD()
 	tput cup 5 $HUD_COL
 	
 	line=""
-	for (( iLoop=1; iLoop<HUD_WIDTH-1; iLoop++ )); do
+	for (( iLoop=1; iLoop<HUD_WIDTH; iLoop++ )); do
 		line+=" "
 	done
+	tput cup 0 $HUD_COL
+	printf "\e[38;5;0m$line\e[0m"
+
 	iLoop=0
 	while true; do
 		tput cup 0 $((HUD_COL+iLoop))
 		printf "\e[38;5;83m=\e[0m"
-		printf "\e[38;5;0m$line\e[0m"
 
 		tput cup $rows $((HUD_COL+iLoop))
 		printf "\e[38;5;83m=\e[0m"
@@ -39,8 +41,10 @@ function drawHUD()
 	iLoop=1
 	while true; do
 		tput cup $iLoop $HUD_COL
-		printf "\e[38;5;83m|\e[0m"
 		printf "\e[38;5;0m$line\e[0m"
+
+		tput cup $iLoop $HUD_COL
+		printf "\e[38;5;83m|\e[0m"
 
 		tput cup $iLoop $((HUD_COL+HUD_WIDTH))
 		printf "\e[38;5;83m|\e[0m"

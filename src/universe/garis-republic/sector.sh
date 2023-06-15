@@ -3,6 +3,7 @@
 function atGarisRepublicPenalColony()
 {
 	LOCATION_TITLE="PENAL COLONY"
+	LOCATION_SECTOR="GARIS REPUBLIC"
 	drawGfx "$UNIVERSE_PATH/garis-republic/sector/penal-colony.gfx"
 }
 

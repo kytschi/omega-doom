@@ -160,13 +160,14 @@ function storyOutpost3366Progress2OmegaDoom()
     SCREEN_REDRAW=0
 
     MENU=("1:Hail Federation Command:1")
-    drawMenu 0 0
+    drawMenu 0 1
 
     drawMessage "Thomas" "Captain, I'm reading a sigularity forming."
     
     drawMessage "Abrahams" "Onscreen Mr Thomas."
 
     clearView
+    LOCATION_TITLE="UNKNOWN"
     MESSAGE_CURRENT_CHAR=""
     shipOmegaDoomExteriaBlinkAppear
     sleep 2
@@ -181,6 +182,8 @@ function storyOutpost3366Progress2OmegaDoom()
     drawMessage "Byrd" "They call it the Omega Doom..."
     drawMessage "Byrd" "...John, I'm sorry. This is out of my control."
 
+    LOCATION_TITLE="OMEGA DOOM"
+    drawLocationTitle
     drawMessage "Abrahams" "What is Rich? Omega Doom?"
 
     drawMessage "Byrd" "May God welcome you all. Byrd out."

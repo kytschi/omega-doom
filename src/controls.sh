@@ -1,7 +1,6 @@
 #!/bin/bash
 
 MENU_BACK=""
-TO_SAVE=()
 
 FEDERATION_OUTPOST=1
 OMEGA_ENGINES=1
@@ -118,6 +117,7 @@ function quit()
 
 function save()
 {
+	TO_SAVE=()
 	TO_SAVE+=("MS $MESSAGE_SPEED")
 	TO_SAVE+=("SH $SHIELDS")
 	TO_SAVE+=("SP $STORY_PROGRESS")
