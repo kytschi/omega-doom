@@ -26,7 +26,7 @@ function storyOutpost3366Progress3()
 
     drawLocationTitle
 
-    updateShields 50
+    updateShields 40
 
     MENU=("c:Communications:0" "n:Navigation:0" "s:Sensors:0" "w:Weapons:0" "e:Engineering:0")
     drawMenu 1 0
@@ -123,8 +123,9 @@ function storyOutpost3366Progress3DamageReport()
 
     drawMessage "Abrahams" "Yes Cheif?"
 
-    drawMessage "Peters" "She'll survive another blast from that ship but that'll be our shields gone."
-    drawMessage "Peters" "That energy is just too much, it's not like a blast from a warp core shockwave."
+    drawMessage "Peters" "She'll survive another blast from that ship but that'll be our shields all but gone."
+    drawMessage "Peters" "That energy is just too powerful for them."
+    drawMessage "Peters" "It's not like a blast from a warp core shockwave, that she'll take minimal damage from."
 
     drawMessage "Abrahams" "Understood Cheif, Abrahams out."
 

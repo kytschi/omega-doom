@@ -24,11 +24,10 @@ function animateTitle()
 
 	if [[ $LOCATION_SECTOR ]];then
 		title="$title <$LOCATION_SECTOR>"
-		PRE_LOCATION_TITLE="$PRE_LOCATION_TITLE <$LOCATION_SECTOR>"
 	fi
 
 	if [[ $PRE_LOCATION_TITLE ]];then
-		printf "\e[0;47;0m  $PRE_LOCATION_TITLE  \e[0m"
+		printf "\e[0;30m  $PRE_LOCATION_TITLE  \e[0m"
 	fi
 	
 	fadeout=$2
@@ -66,7 +65,7 @@ function animateTitle()
 		fi
 	done
 
-	PRE_LOCATION_TITLE=$LOCATION_TITLE
+	PRE_LOCATION_TITLE=$title
 }
 
 MESSAGE_BOX_UP=0
@@ -100,7 +99,7 @@ function drawMessage()
 			printf "\e[38;5;83m$line\e[0m"
 
 			tput cup $row 0
-			printf "\e[0;47;0m$blank_line\e[0m"
+			printf "\e[0;30m$blank_line\e[0m"
 		done
 
 		MESSAGE_BOX_BLANK_LINE=""
@@ -122,7 +121,7 @@ function drawMessage()
 	x=44
 
 	tput cup $y $x
-	printf "\e[0;47;0m$MESSAGE_BOX_BLANK_LINE\e[0m"
+	printf "\e[0;30m$MESSAGE_BOX_BLANK_LINE\e[0m"
 
 	tput cup $y $x
 	printf "\e[0;40;30m \e[0m"

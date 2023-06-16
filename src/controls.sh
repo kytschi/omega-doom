@@ -6,6 +6,7 @@ FEDERATION_OUTPOST=1
 OMEGA_ENGINES=1
 OMEGA_SENSORS=1
 OMEGA_WEAPONS=1
+OP3366_PROBE=0
 
 function load()
 {
@@ -47,6 +48,9 @@ function load()
 						;;
 					storyOutpost3366OW)
 						OMEGA_WEAPONS=${splits[1]}
+						;;
+					OP3366_PROBE)
+						OP3366_PROBE=${splits[1]}
 						;;
 				esac
 			done
@@ -127,6 +131,8 @@ function save()
     TO_SAVE+=("storyOutpost3366OE $OMEGA_ENGINES")
     TO_SAVE+=("storyOutpost3366OW $OMEGA_WEAPONS")
     TO_SAVE+=("storyOutpost3366OS $OMEGA_SENSORS")
+	TO_SAVE+=("OP3366_PROBE $OP3366_PROBE")
+	OP3366_PROBE
 
 	output=""
 	for key in ${!TO_SAVE[@]}; do

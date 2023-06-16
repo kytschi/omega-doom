@@ -5,6 +5,7 @@ function storyPenalColonyProgress1()
     HIDE_HUD=1
     SHOW_STATS=0
 
+    LOCATION_SECTOR=""
     AT_LOCATION="atGarisRepublicPenalColony"
 
     tput clear
@@ -15,7 +16,7 @@ function storyPenalColonyProgress1()
     SCREEN_REDRAW=0
     HIDE_HUD=0
 
-	drawMessage "Abrahams" "Jake I just want you to know that I lo *EXPLOSION*" 1
+	drawMessage "Abrahams" "Jake I just want you to know that I..*EXPLOSION*" 1
     
     drawMessage "Taki" "Jesus Abrahams, do we have to be listening to that again?!"
     drawMessage "Taki" "How many times must we hear about Omega Doom?"

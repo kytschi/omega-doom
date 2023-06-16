@@ -1,6 +1,8 @@
 # !/bin/bash
 source $UNIVERSE_PATH/federation/story/outpost3366/misc.sh
 
+FIRE_PROCESS=0
+
 #storyOutpost3366Progress4
 function storyOutpost3366Progress4()
 {
@@ -13,7 +15,15 @@ function storyOutpost3366Progress4()
     MENU=("c:Communications:0" "n:Navigation:0" "s:Sensors:0" "w:Weapons:0" "e:Engineering:0")
     drawMenu 1 0
 
-    drawMessage "Abrahams" "Mr Simons, target that ship and fire at will!"
+    if (( OMEGA_SENSORS==0 )); then
+        FIRE_PROCESS=$((FIRE_PROCESS+1))
+    fi
+
+    if (( OMEGA_ENGINES==0 )); then
+        FIRE_PROCESS=$((FIRE_PROCESS+1))
+    fi
+
+    storyOutpost3366Progress4TargetMsg
 
     menuItem $((MENU_START_Y+3)) "w" "Weapons" 0 1
 
@@ -42,6 +52,16 @@ function storyOutpost3366Progress4()
 				;;
         esac
     done
+}
+
+function storyOutpost3366Progress4TargetMsg()
+{
+    if (( SHIELDS<70 )) && (( OMEGA_SENSORS==0 )) && (( OMEGA_ENGINES==0 )); then
+        drawMessage "Abrahams" "Mr Simons, perhaps we need another approach here?!"
+        drawMessage "Abrahams" "Use your best judgement on what to target."
+    else
+        drawMessage "Abrahams" "Mr Simons, target that ship and fire at will!"
+    fi
 }
 
 function storyOutpost3366Progress4CommsMenu()
@@ -225,6 +245,10 @@ function storyOutpost3366Progress4WeaponsMenu()
 # Omega Weapons
 function storyOutpost3366Progress4OmegaTargeting()
 {
+    if (( SHIELDS<10 )); then
+        gameover "The SS Liberty was completely destroyed!"
+    fi
+
     MENU=("1:Target the Engines:0" "2:Target the Shields:0" "3:Target the Sensors:0" "4:Target the Weapons:0")
     drawMenu 0 1
 
@@ -237,18 +261,30 @@ function storyOutpost3366Progress4OmegaTargeting()
                 ;;
 			[1])
 				storyOutpost3366Progress4FireEngines
+                storyOutpost3366Progress4FireInc
 				;;
             [2])
 				storyOutpost3366Progress4FireShields
+                storyOutpost3366Progress4FireInc
 				;;
             [3])
 				storyOutpost3366Progress4FireSensors
+                storyOutpost3366Progress4FireInc
 				;;
             [4])
 				storyOutpost3366Progress4FireWeapons
+                storyOutpost3366Progress4FireInc
 				;;
         esac
     done
+}
+
+function storyOutpost3366Progress4FireInc()
+{
+    FIRE_PROCESS=$((FIRE_PROCESS+1))
+    if (( FIRE_PROCESS>=2 )); then
+        storyOutpost3366Progress4End 1
+    fi
 }
 
 function storyOutpost3366Progress4FireEngines()
@@ -262,6 +298,7 @@ function storyOutpost3366Progress4FireEngines()
 
         # TODO Liberty firing effect.
 
+        drawMessage "Simons" "Direct hit!"
         drawMessage "Simons" "Captain, their engines are offline."
         drawMessage "Abrahams" "Good job Mr Simons, now keep firing!"
 
@@ -283,11 +320,15 @@ function storyOutpost3366Progress4FireSensors()
         drawMessage "Simons" "Their sensors are already down."
     else
         drawMessage "Simons" "Direct hit!"
-
         drawMessage "Simons" "She's as blind as a bat."
         
         drawMessage "Abrahams" "Good work Mr Simons, keep firing!"
         OMEGA_SENSORS=0
+
+        if (( SHIELDS>=70 )); then
+            storyOutpost3366Progress4OmegaFiring
+            storyOutpost3366Progress4OmegaFiringEnd
+        fi
     fi
 
     storyOutpost3366Progress4OmegaTargeting
@@ -305,6 +346,18 @@ function storyOutpost3366Progress4FireShields()
 
     menuItem $((MENU_START_Y+2)) "2" "Target the Shields" 0
     storyOutpost3366Progress4OmegaFiring
+    storyOutpost3366Progress4OmegaFiringEnd
+}
+
+function storyOutpost3366Progress4OmegaFiringEnd()
+{
+    if (( SHIELDS==0 )); then
+        gameover "The SS Liberty was completely destroyed!"
+    elif (( FIRE_PROCESS<2 )); then
+        drawMessage "Simons" "Captain, the shields are gone, we are a sitting duck!"
+        drawMessage "Abrahams" "Damn it! Now what?!"
+        storyOutpost3366Progress4TargetMsg
+    fi
 }
 
 function storyOutpost3366Progress4OmegaFiring()
@@ -312,14 +365,14 @@ function storyOutpost3366Progress4OmegaFiring()
     drawMessage "Thomas" "She's charging again...incoming..."
 
     clearView
-    shipOmegaDoomExteriaBlinkFireCharging
+    shipOmegaDoomExteriaBlinkFireCharging 1
     shipOmegaDoomExteriaBlinkFire
 
-    updateShields 20
-    drawMessage "Simons" "Captain, the shields are gone, we are a sitting duck!"
-
-    drawMessage "Abrahams" "Damn it! Now what?!"
-    drawMessage "Abrahams" "Mr Simons, target that ship and fire at will!"
+    if (( SHIELDS>=70 )); then
+        updateShields 10
+    else
+        updateShields 0
+    fi
 }
 
 function storyOutpost3366Progress4FireWeapons()
@@ -334,6 +387,7 @@ function storyOutpost3366Progress4FireWeapons()
 
     menuItem $((MENU_START_Y+4)) "4" "Target the Weapons" 0
     storyOutpost3366Progress4OmegaFiring
+    storyOutpost3366Progress4OmegaFiringEnd
 }
 # End Omega Weapons
 
@@ -434,6 +488,14 @@ function storyOutpost3366Progress4FireOutpostWeapons()
 function storyOutpost3366Progress4Explosion()
 {
     FEDERATION_OUTPOST=0
+    
+    if (( SHIELDS>=70 )); then
+        storyOutpost3366Progress4OmegaFiring
+    fi
+
+    if (( SHIELDS!=10 )); then
+        updateShields 10
+    fi
 
     tput clear
     federationOutPost3366Explosion
@@ -510,7 +572,7 @@ function storyOutpost3366Progress4NavigationExplosionMenu()
 
 function storyOutpost3366Progress4Port()
 {
-    drawMessage "Cyrus" "Aye sir, turning port to face the shockwave"
+    drawMessage "Cyrus" "Aye sir, using the thrusters to turn us port side to face the shockwave."
     drawMessage "Abrahams" "Hall hands, brace for IMPACT!"
 
     SCREEN_REDRAW=0
@@ -521,15 +583,15 @@ function storyOutpost3366Progress4Port()
 
 function storyOutpost3366Progress4Starboard()
 {
-    drawMessage "Cyrus" "Aye sir, turning starboard to face the shockwave"
+    drawMessage "Cyrus" "Aye sir, using the thrusters to turn us starboard to face the shockwave."
     drawMessage "Abrahams" "Hall hands, brace for IMPACT!"
 
     # TODO Shockwave hitting Liberty
 
-    if (( SHIELDS<=50 )); then
+    if (( SHIELDS<10 )); then
         gameover "The SS Liberty was completely destroyed!"
     else
-        updateShields 50
+        updateShields 0
 
         if (( OMEGA_ENGINES==1 )); then
             drawMessage "Simons" "Captain, the Omega Doom just reappeared."
@@ -561,9 +623,17 @@ function storyOutpost3366Progress4ExplosionLock()
 function storyOutpost3366Progress4End()
 {
     FEDERATION_OUTPOST=0
+    OP3366_PROBE=0
     AT_LOCATION="shipOmegaDoomExteria"
 
-    updateShields 50
+    if (( SHIELDS>=70 )); then
+        storyOutpost3366Progress4OmegaFiring
+    fi
+
+    if (( SHIELDS!=0 )); then
+        updateShields 0
+    fi
+
     if [ -z ${1+x} ]; then
         SCREEN_REDRAW=1
         drawScreen
@@ -605,8 +675,9 @@ function storyOutpost3366Progress4End()
     drawMessage "Abrahams" "Jake, I know I wasn't much of a father to you."
     drawMessage "Abrahams" "And we've had our problems over the years."
 
-    if (( OMEGA_SENSORS==0 )) && (( OMEGA_WEAPONS==0 )); then
+    if (( OMEGA_WEAPONS==0 )); then
         storyOutpost3366Progress4ProbeLaunch
+        OP3366_PROBE=1
     else
         storyOutpost3366Progress4ProbeLaunchDestoryed
     fi
@@ -622,10 +693,10 @@ function storyOutpost3366Progress4End()
     updateShields 0
     drawMessage "Simons" "Shields down! Weapons are gone..."
     drawMessage "Cyrus" "I've lost all control of the ship..."
-    drawMessage "Ambrose" "Comms are down..."
+    drawMessage "Ambrose" "Comms are failing..."
     drawMessage "Thomas" "Captain...the ship...she's took major damage....we need to..."
 
-    drawMessage "Abrahams" "Jake I just want you to know that I lo *EXPLOSION*"
+    drawMessage "Abrahams" "Jake I just want you to know that I..*EXPLOSION*"
 
     # TODO Liberty exploding.
 
