@@ -1,14 +1,14 @@
 #!/bin/bash
 
 RENDER_PATH=${PWD}
-GFX_PATH=$PWD/../../gfx/intro/
+GFX_PATH=$PWD/../../gfx/gameover/
 
-rm $GFX_PATH*.gfx
+rm $GFX_PATH/*.gfx
 rm $RENDER_PATH/*~
 
 for (( iLoop=1; iLoop<=7; iLoop++ )); do
-	src=$RENDER_PATH/game-title$iLoop.png
-	desc="game-title$iLoop"
+	src=$RENDER_PATH/gameover-$iLoop.png
+	desc="gameover-$iLoop"
 
 	echo "Rendering ${desc}.gfx"
 

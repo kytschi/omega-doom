@@ -49,18 +49,30 @@ function storyPenalColonyProgress1()
 function storyPenalColonyProgress1Dialog1()
 {
     drawMessage "Jake" "All myths start with some sort of truth Taki."
+
+    STORY_PROGRESS_FILE=$UNIVERSE_PATH/garis-republic/story/penal_colony/progress1
+    STORY_PROGRESS="storyPenalColonyProgress2"
     storyPenalColonyProgress2
 }
 
 function storyPenalColonyProgress1Dialog2()
 {
     drawMessage "Jake" "We all can't be as sane as you now can we?"
+    
+    STORY_PROGRESS_FILE=$UNIVERSE_PATH/garis-republic/story/penal_colony/progress1
+    STORY_PROGRESS="storyPenalColonyProgress2"
     storyPenalColonyProgress2
 }
 
 function storyPenalColonyProgress2()
 {
-    drawMessage "Taki" "Well your out of here soon right so you can go on your detective mystery then."
+    SHOW_STATS=0
+    AT_LOCATION="atGarisRepublicPenalColony"
+    drawScreen
+    SCREEN_REDRAW=0
+
+    drawMessage "Taki" "Well your out of here soon right?"
+    drawMessage "Taki" "Then you can go on your detective mystery."
     drawMessage "Taki" "What you got left again? 100 years...AHAHAHAHA"
 
     MENU=("1:You were there:0" "2:I was framed!:0")
@@ -90,6 +102,9 @@ function storyPenalColonyProgress2Dialog1()
     drawMessage "Taki" "Wasn't my fault the cops turned up."
     drawMessage "Jake" "I'm not the one who shot the guard and alerted them, am I?"
     drawMessage "Taki" "He shouldn't have been reaching for that alarm."
+
+    STORY_PROGRESS_FILE=$UNIVERSE_PATH/garis-republic/story/penal_colony/progress1
+    STORY_PROGRESS="storyPenalColonyProgress3"
     storyPenalColonyProgress3
 }
 
@@ -100,15 +115,24 @@ function storyPenalColonyProgress2Dialog2()
     drawMessage "Jake" "I'm not the one who killed the guard am I?"
     drawMessage "Taki" "He shouldn't have been reaching for that alarm."
     drawMessage "Jake" "I was there to break the safe, nothing else!"
+    
+    STORY_PROGRESS_FILE=$UNIVERSE_PATH/garis-republic/story/penal_colony/progress1
+    STORY_PROGRESS="storyPenalColonyProgress3"
     storyPenalColonyProgress3
 }
 
 function storyPenalColonyProgress3()
 {
+    SHOW_STATS=0
+    AT_LOCATION="atGarisRepublicPenalColony"
+    drawScreen
+    SCREEN_REDRAW=0
+
     drawMessage "Jake" "But don't you worry I'll be out of here soon enough!"
 
-    drawMessage "Taki" "Oh yeah, your crews coming back for you to help you escape, right?"
-    drawMessage "Taki" "How long we all heard that one! HAHAHAHA!"
+    drawMessage "Taki" "Oh yeah!"
+    drawMessage "Taki" "Your crews coming to help you escape..."
+    drawMessage "Taki" "How long we all heard that one?! HAHAHAHA!"
 
     MENU=("1:Insult the worm brain:0" "2:I've got friends:0")
     drawMenu 1 0
@@ -135,6 +159,9 @@ function storyPenalColonyProgress3Dialog1()
 {
     drawMessage "Jake" "Not long my worm brained friend, not long..."
     drawMessage "Taki" "WHAT DID YOU CALL ME?!"
+
+    STORY_PROGRESS_FILE=$UNIVERSE_PATH/garis-republic/story/penal_colony/progress1
+    STORY_PROGRESS="storyPenalColonyProgress4"
     storyPenalColonyProgress4
 }
 
@@ -147,16 +174,24 @@ function storyPenalColonyProgress3Dialog2()
     drawMessage "Taki" "Taki looks after himself and no one else!"
 
     drawMessage "Jake" "And how's that working out for you?"
+
+    STORY_PROGRESS_FILE=$UNIVERSE_PATH/garis-republic/story/penal_colony/progress1
+    STORY_PROGRESS="storyPenalColonyProgress4"
     storyPenalColonyProgress4
 }
 
 function storyPenalColonyProgress4()
 {
+    SHOW_STATS=0
+    AT_LOCATION="atGarisRepublicPenalColony"
+    drawScreen
+    SCREEN_REDRAW=0
+
     drawMessage "Jake" "My crew sent word the other day in a coded message..." 0 1
     drawMessage "Jake" "...they are ready for the breakout." 0 1
     drawMessage "Jake" "I just need to get myself sent to the hole..." 0 1
 
-    drawMessage "GRPCPrisonGuard" "Pipe down you two!"
+    drawMessage "GRPCPrisonGuard" "Pipe down you two!" 0
 
     MENU=("1:Provoke the guard:0" "2:Insult Taki some more:0")
     drawMenu 1 0
@@ -205,11 +240,13 @@ function storyPenalColonyProgress4Dialog2()
 
     drawMessage "Taki" "THAT DOES IT!"
 
-    drawMessage "Jake" "With his superior and worm brain..." 0 1
+    drawMessage "Jake" "With his superior strength and worm brain..." 0 1
     drawMessage "Jake" "...this isn't going to end well for me!" 0 1
+
+    gameover "Jake ended up in the infirmary badly beaten and with no means of escape!"
 }
 
 function storyPenalColonyProgress5()
 {
-    
+    # TODO
 }

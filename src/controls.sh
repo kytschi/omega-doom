@@ -205,15 +205,3 @@ function setMessageSpeed()
 	save
 	optionsMenu
 }
-
-function gameover()
-{
-	tput clear
-	tput cup 0 0
-	echo ""
-	echo "$1"
-	echo "GAME OVER"
-	echo ""
-	sleep 3
-	drawTitle
-}

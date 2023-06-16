@@ -83,7 +83,7 @@ function drawMessage()
 		rows=`tput lines`
 		rows=$((rows-1))
 		cols=`tput cols`
-		if [[ ! $full ]];then
+		if [[ $full==0 ]];then
 			cols=$((cols-HUD_WIDTH))
 		fi
 		
@@ -128,7 +128,7 @@ function drawMessage()
 
 	length=${#message}
 	mode=0
-	if [[ $thought ]];then
+	if [[ $thought==1 ]];then
 		mode=3
 	fi
 	for (( iLoop=0; iLoop<length; iLoop++ )); do
@@ -331,6 +331,53 @@ function engage()
 	SCREEN_REDRAW=1
 
 	eval "$WARP_COMPLETE"
+}
+
+function gameover()
+{
+	tput clear
+	tput cup 0 0
+	tput clear
+	SCREEN_REDRAW=1
+	message=$1
+
+	cols=`tput cols`
+    x=$((cols/3))
+    x=$((x-13))
+    
+	for (( iLoop=1; iLoop<=7; iLoop++ )); do
+		y=5
+		while IFS= read -r line; do
+			tput cup $y $x
+			printf '%s\n' "$line"
+			y=$((y+1))
+		done < $GFX_PATH/gameover/gameover-$iLoop.gfx
+		sleep 0.08
+	done
+
+	x=$((cols/2))
+	length=${#message}
+	length=$((length/2))
+    x=$((x-length))
+	y=$TITLE_MENU_Y
+
+	tput cup $y $x
+	echo "$message"
+	sleep 3
+
+	x=$((cols/3))
+    x=$((x-13))
+	for (( iLoop=7; iLoop>=1; iLoop-- )); do
+		y=5
+		while IFS= read -r line; do
+			tput cup $y $x
+			printf '%s\n' "$line"
+			y=$((y+1))
+		done < $GFX_PATH/gameover/gameover-$iLoop.gfx
+		sleep 0.08
+	done
+
+	drawTitle
 }
 
 function progressStory()
