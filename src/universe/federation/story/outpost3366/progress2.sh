@@ -134,10 +134,11 @@ function storyOutpost3366Progress2Hail()
 
     drawMessage "Byrd" "What sensor anomaly?!"
 
-    drawMessage "Abrahams" "We've picked up some anomaly on our sensors, Mr Thomas if you please."
+    drawMessage "Abrahams" "We've picked up some anomaly on our sensors..."
+    drawMessage "Abrahams" "...Mr Thomas if you please."
 
     drawMessage "Thomas" "Admiral, sensors indicate a solid mass but only for a fraction of a second."
-    drawMessage "Thomas" "I am also picking up neutronic radiation of the likes I've never seen before in open space."
+    drawMessage "Thomas" "I am also picking up neutronic radiation."
     drawMessage "Thomas" "It's like there's a sigularity near by..."
 
     drawMessage "Byrd" "Damn it John, why'd you have to download that data?"
@@ -174,7 +175,7 @@ function storyOutpost3366Progress2OmegaDoom()
 
     drawMessage "Simons" "It just appeared out of nowhere!"
 
-    drawMessage "Abrahams" "What the hell kind of ship is that?"
+    drawMessage "Abrahams" "What the hell kind of ship is that?!"
 
     drawMessage "Thomas" "Unknown Captain."
     drawMessage "Thomas" "But its the source of the neutronic radiation."
@@ -184,7 +185,7 @@ function storyOutpost3366Progress2OmegaDoom()
 
     LOCATION_TITLE="OMEGA DOOM"
     drawLocationTitle
-    drawMessage "Abrahams" "What is Rich? Omega Doom?"
+    drawMessage "Abrahams" "What is it Rich? What is the Omega Doom?"
 
     drawMessage "Byrd" "May God welcome you all. Byrd out."
 

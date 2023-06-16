@@ -126,7 +126,8 @@ function storyOutpost3366Progress4EngStatus()
 
     drawMessage "Abrahams" "Cheif, what the status?"
 
-    drawMessage "Peters" "Captain, engines are offline. We've took major damage to the core."
+    drawMessage "Peters" "Captain, engines are offline."
+    drawMessage "Peters" "We've took major damage to the core."
     drawMessage "Peters" "Shields are failing and life support isn't fairing much better!"
 
     drawMessage "Abrahams" "Lifepods?"
@@ -200,7 +201,7 @@ function storyOutpost3366Progress4ScanOmega()
 
     drawMessage "Thomas" "Scanning the ship."
     drawMessage "Thomas" "I'm unable to penetrate the shields Captain...but.."
-    drawMessage "Thomas" "Yes, I think targeting her sensors array we might be able to damage it."
+    drawMessage "Thomas" "I think targeting her sensors array we might be able to damage it."
     drawMessage "Thomas" "Mr Simons, target the ship's sensors."
 
     storyOutpost3366Progress4SensorsMenu
@@ -572,7 +573,8 @@ function storyOutpost3366Progress4NavigationExplosionMenu()
 
 function storyOutpost3366Progress4Port()
 {
-    drawMessage "Cyrus" "Aye sir, using the thrusters to turn us port side to face the shockwave."
+    drawMessage "Cyrus" "Aye sir, using the thrusters..."
+    drawMessage "Cyrus" "...to turn us port side to face the shockwave."
     drawMessage "Abrahams" "Hall hands, brace for IMPACT!"
 
     SCREEN_REDRAW=0
@@ -583,7 +585,8 @@ function storyOutpost3366Progress4Port()
 
 function storyOutpost3366Progress4Starboard()
 {
-    drawMessage "Cyrus" "Aye sir, using the thrusters to turn us starboard to face the shockwave."
+    drawMessage "Cyrus" "Aye sir, using the thrusters..."
+    drawMessage "Cyrus" "...to turn us starboard to face the shockwave."
     drawMessage "Abrahams" "Hall hands, brace for IMPACT!"
 
     # TODO Shockwave hitting Liberty
@@ -708,7 +711,8 @@ function storyOutpost3366Progress4End()
 
 function storyOutpost3366Progress4ProbeDownload()
 {
-    drawMessage "Abrahams" "Number one, download all the data collected from the outpost to a subspace probe."
+    drawMessage "Abrahams" "Number one."
+    drawMessage "Abrahams" "Download all the data collected from the outpost to a subspace probe."
     drawMessage "Abrahams" "Launch it when ready."
 
     drawMessage "Thomas" "Captain, the sensors and navigation computers are completely offline..."
@@ -716,7 +720,7 @@ function storyOutpost3366Progress4ProbeDownload()
 
     drawMessage "Abrahams" "Just use your best judgement Thomas."
 
-    drawMessage "Thomas" "Understood."
+    drawMessage "Thomas" "Aye Captain."
 }
 
 function storyOutpost3366Progress4ProbeLaunch()

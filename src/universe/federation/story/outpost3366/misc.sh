@@ -30,7 +30,7 @@ function storyOutpost3366EngStatus()
     drawMessage "Peters" "That'll explain it Captain."
     drawMessage "Peters" "But it's well with in the safety parameters of the core."
 
-    drawMessage "Abrahams" "Acknowledged Cheif, Abrahams out."
+    drawMessage "Abrahams" "Acknowledged Chief, Abrahams out."
 }
 
 function storyOutpost3366NavigationStatus()
@@ -54,7 +54,7 @@ function storyOutpost3366WeaponsStatus()
 
     drawMessage "Abrahams" "Mr Simons, status report."
 
-    drawMessage "Simons" "Weapons systems are reporting 100 percent across the board Captain."
+    drawMessage "Simons" "Weapon's systems are reporting 100 percent across the board Captain."
     drawMessage "Simons" "Sensor's are picking up the anomaly, but nothing I can get a fix on."
 
     drawMessage "Abrahams" "Acknowledged Mr Simons."
@@ -89,8 +89,8 @@ function storyOutpost3366ScanOutpost()
     drawMessage "Abrahams" "Any signs of damage?"
 
     drawMessage "Thomas" "Negative."
-    drawMessage "Thomas" "I'm showing the stations shields and life support are offline."
-    drawMessage "Thomas" "But her warp core seems to be unstable."
+    drawMessage "Thomas" "I'm showing the station's shields and life support are offline."
+    drawMessage "Thomas" "Her warp core seems to be unstable."
 }
 
 function storyOutpost3366ScanRegion()
@@ -103,8 +103,12 @@ function storyOutpost3366ScanRegion()
     drawMessage "Abrahams" "Report number one."
 
     drawMessage "Thomas" "Sensors are detecting an anomaly but only for a fraction of a second."
-    drawMessage "Thomas" "I am also picking up neutronic radiation of the likes I've never seen before in open space..."
-    drawMessage "Thomas" "...without a near by sigularity."
+    drawMessage "Thomas" "I am also picking up neutronic radiation." 
+
+    drawMessage "Abrahams" "Neutronic radiation?"
+
+    drawMessage "Thomas" "I've never seen the likes of this before in open space..."
+    drawMessage "Thomas" "...not without a near by sigularity."
 
     drawMessage "Abrahams" "A sigularity? A blackhole?"
 

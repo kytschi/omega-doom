@@ -14,7 +14,7 @@ function storyOutpost3366Progress1()
 
 	drawMessage "Simons" "Captain, thats a Kazaria Syndicate outpost."
 
-    drawMessage "Abrahams" "What the hell is a Kazaria outpost doing in Federation space on the Rosia border?"
+    drawMessage "Abrahams" "What the hell is a Kazarian outpost doing in Federation space on the Rosia border?"
     
     storyOutpost3366Progress1Sub
 }
@@ -264,7 +264,8 @@ function storyOutpost3366Progress1ScanedOutpost()
 
     drawMessage "Abrahams" "What is it?!"
 
-    drawMessage "Simons" "I'm not sure Captain. First there was a sensor reading then there wasn't."
+    drawMessage "Simons" "I'm not sure Captain."
+    drawMessage "Simons" "First there was a sensor reading then there wasn't."
 
     drawMessage "Abrahams" "Cloaked ship?"
 
@@ -275,7 +276,8 @@ function storyOutpost3366Progress1ScanedOutpost()
 
     drawMessage "Abrahams" "Shields up!"
     drawMessage "Abrahams" "I'm not taking any chances."
-    drawMessage "Abrahams" "Mr Thomas, link with the outpost's computer and start downloading whatever you can."
+    drawMessage "Abrahams" "Mr Thomas, link with the outpost's computer..."
+    drawMessage "Abrahams" "...and start downloading whatever you can."
     
     drawMessage "Thomas" "Aye Captain."
     

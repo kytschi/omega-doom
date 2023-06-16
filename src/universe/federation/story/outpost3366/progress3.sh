@@ -106,7 +106,8 @@ function storyOutpost3366Progress3DamageReport()
     drawMessage "Abrahams" "Cheif, what the status?"
 
     drawMessage "Peters" "Captain, engines are offline."
-    drawMessage "Peters" "Whatever that beam was, it completely ripped through our shields like it was butter!"
+    drawMessage "Peters" "Whatever that beam was..."
+    drawMessage "Peters" "...it completely ripped through our shields like butter!"
     drawMessage "Peters" "They've completely collapsed the warp field."
     drawMessage "Peters" "Shields took a beating but are holding at 50 percent efficiency."
     drawMessage "Peters" "There are reports from all over the ship that systems are offline..."
@@ -121,13 +122,15 @@ function storyOutpost3366Progress3DamageReport()
     drawMessage "Peters" "That'll boost the shields to about 70 percent efficiency."
     drawMessage "Peters" "Captain..."
 
-    drawMessage "Abrahams" "Yes Cheif?"
+    drawMessage "Abrahams" "Yes Chief?"
 
-    drawMessage "Peters" "She'll survive another blast from that ship but that'll be our shields all but gone."
+    drawMessage "Peters" "She'll survive another blast from that ship..."
+    drawMessage "Peters" "...but that'll be our shields all but gone."
     drawMessage "Peters" "That energy is just too powerful for them."
-    drawMessage "Peters" "It's not like a blast from a warp core shockwave, that she'll take minimal damage from."
+    drawMessage "Peters" "It's not like a blast from a warp core shockwave."
+    drawMessage "Peters" "That she'll take minimal damage from."
 
-    drawMessage "Abrahams" "Understood Cheif, Abrahams out."
+    drawMessage "Abrahams" "Understood Chief, Abrahams out."
 
     OMEGA_ENGINES=1
     OMEGA_SENSORS=1
@@ -256,8 +259,8 @@ function storyOutpost3366Progress3WeaponsStatus()
 
     drawMessage "Abrahams" "Mr Simons, status report."
 
-    drawMessage "Simons" "Weapons systems are reporting 100 percent across the board Captain."
-    drawMessage "Simons" "I have a sensor lock on the ship."
+    drawMessage "Simons" "Weapons systems are reporting 100 percent across the board."
+    drawMessage "Simons" "I have a sensor lock on the ship Captain."
 
     drawMessage "Abrahams" "Acknowledged Mr Simons."
 
