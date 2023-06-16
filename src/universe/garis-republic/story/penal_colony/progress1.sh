@@ -23,6 +23,7 @@ function storyPenalColonyProgress1()
     drawMessage "Taki" "Oooo, the ghost ship that appears out of thin air...it's a MYTH!"
 
     drawHUD
+    MESSAGE_BOX_UP=0
 
     MENU=("1:It's a fact:0" "2:Not all of us are sane:0")
     drawMenu 1 0
@@ -151,7 +152,7 @@ function storyPenalColonyProgress3Dialog2()
 
 function storyPenalColonyProgress4()
 {
-    drawMessage "Jake" "My crew sent word the other day in a coded message..."
+    drawMessage "Jake" "My crew sent word the other day in a coded message..." 0 1
     drawMessage "Jake" "...they are ready for the breakout." 0 1
     drawMessage "Jake" "I just need to get myself sent to the hole..." 0 1
 
