@@ -78,7 +78,7 @@ function drawMessage()
 	message=" $2 "
 	full=$3
 	thought=$4
-
+	
 	if (( MESSAGE_BOX_UP==0 )); then
 		rows=`tput lines`
 		rows=$((rows-1))
@@ -128,7 +128,7 @@ function drawMessage()
 
 	length=${#message}
 	mode=0
-	if [[ $thought==1 ]];then
+	if (( thought==1 ));then
 		mode=3
 	fi
 	for (( iLoop=0; iLoop<length; iLoop++ )); do

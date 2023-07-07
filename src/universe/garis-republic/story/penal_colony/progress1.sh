@@ -191,7 +191,7 @@ function storyPenalColonyProgress4()
     drawMessage "Jake" "...they are ready for the breakout." 0 1
     drawMessage "Jake" "I just need to get myself sent to the hole..." 0 1
 
-    drawMessage "GRPCPrisonGuard" "Pipe down you two!" 0
+    drawMessage "GRPCPrisonGuard" "Pipe down you two!" 0 0
 
     MENU=("1:Provoke the guard:0" "2:Insult Taki some more:0")
     drawMenu 1 0
