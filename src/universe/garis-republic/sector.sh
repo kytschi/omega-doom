@@ -14,6 +14,20 @@ function gotoGarisRepublicPenalColony()
 	menuEngage $((SUB_MENU_START_Y+10))
 }
 
+function atGarisRepublicPenalColonyHole()
+{
+	LOCATION_TITLE="PENAL COLONY HOLE"
+	LOCATION_SECTOR="GARIS REPUBLIC"
+	drawGfx "$UNIVERSE_PATH/garis-republic/sector/penal-colony-hole.gfx"
+}
+
+function gotoGarisRepublicPenalColonyHole()
+{
+	AT_LOCATION="atGarisRepublicPenalColonyHole"
+	menuItem $((SUB_MENU_START_Y+1)) "1" "Penal Colony Hole" 1
+	menuEngage $((SUB_MENU_START_Y+10))
+}
+
 function menuGarisRepublic()
 {
 	MENU_BACK="progressStory"

@@ -231,6 +231,10 @@ function storyPenalColonyProgress4Dialog1()
 
     drawMessage "Jake" "Many thanks boss."
     drawMessage "Jake" "See you in 100 years Taki."
+
+    STORY_PROGRESS_FILE=$UNIVERSE_PATH/garis-republic/story/penal_colony/progress5
+    STORY_PROGRESS="storyPenalColonyProgress5"
+    progressStory
 }
 
 function storyPenalColonyProgress4Dialog2()
@@ -244,9 +248,4 @@ function storyPenalColonyProgress4Dialog2()
     drawMessage "Jake" "...this isn't going to end well for me!" 0 1
 
     gameover "Jake ended up in the infirmary badly beaten and with no means of escape!"
-}
-
-function storyPenalColonyProgress5()
-{
-    # TODO
 }

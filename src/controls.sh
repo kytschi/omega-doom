@@ -7,6 +7,8 @@ OMEGA_ENGINES=1
 OMEGA_SENSORS=1
 OMEGA_WEAPONS=1
 OP3366_PROBE=0
+PSHIV=0
+PHPIPE=0
 
 function load()
 {
@@ -51,6 +53,12 @@ function load()
 						;;
 					OP3366_PROBE)
 						OP3366_PROBE=${splits[1]}
+						;;
+					PSHIV)
+						PSHIV=${splits[1]}
+						;;
+					PHPIPE)
+						PHPIPE=${splits[1]}
 						;;
 				esac
 			done
@@ -132,8 +140,9 @@ function save()
     TO_SAVE+=("storyOutpost3366OW $OMEGA_WEAPONS")
     TO_SAVE+=("storyOutpost3366OS $OMEGA_SENSORS")
 	TO_SAVE+=("OP3366_PROBE $OP3366_PROBE")
-	OP3366_PROBE
-
+	TO_SAVE+=("PSHIV $PSHIV")
+	TO_SAVE+=("PHPIPE $PHPIPE")
+	
 	output=""
 	for key in ${!TO_SAVE[@]}; do
 	 	output+=${TO_SAVE[$key]}

@@ -78,14 +78,20 @@ function drawMessage()
 	message=" $2 "
 	full=$3
 	thought=$4
+
+	cols=`tput cols`
+	if (( full==0 ));then
+		cols=$((cols-HUD_WIDTH))
+	fi
+
+	MESSAGE_BOX_BLANK_LINE=""
+	for (( col=0; col<cols-44; col++ )); do
+		MESSAGE_BOX_BLANK_LINE="$MESSAGE_BOX_BLANK_LINE "
+	done
 	
 	if (( MESSAGE_BOX_UP==0 )); then
 		rows=`tput lines`
 		rows=$((rows-1))
-		cols=`tput cols`
-		if [[ $full==0 ]];then
-			cols=$((cols-HUD_WIDTH))
-		fi
 		
 		blank_line=""
 		line=""
@@ -100,11 +106,6 @@ function drawMessage()
 
 			tput cup $row 0
 			printf "\e[0;30m$blank_line\e[0m"
-		done
-
-		MESSAGE_BOX_BLANK_LINE=""
-		for (( col=0; col<cols-44; col++ )); do
-			MESSAGE_BOX_BLANK_LINE="$MESSAGE_BOX_BLANK_LINE "
 		done
 
 		MESSAGE_BOX_UP=1
