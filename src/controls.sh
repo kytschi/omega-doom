@@ -60,6 +60,9 @@ function load()
 					PHPIPE)
 						PHPIPE=${splits[1]}
 						;;
+					PHPLASMA)
+						PHPLASMA=${splits[1]}
+						;;
 				esac
 			done
 		fi
@@ -142,6 +145,7 @@ function save()
 	TO_SAVE+=("OP3366_PROBE $OP3366_PROBE")
 	TO_SAVE+=("PSHIV $PSHIV")
 	TO_SAVE+=("PHPIPE $PHPIPE")
+	TO_SAVE+=("PHPLASMA $PHPLASMA")
 	
 	output=""
 	for key in ${!TO_SAVE[@]}; do
