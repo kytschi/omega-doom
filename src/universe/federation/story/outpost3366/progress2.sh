@@ -118,32 +118,55 @@ function storyOutpost3366Progress2Hail()
     menuItem $((MENU_START_Y+1)) "1" "Hail Federation Command" 1
 
     drawMessage "Ambrose" "Aye sir. Hailing Admiral Bryd at Federation Command."
+    pauseMessage
+
     drawMessage "Ambrose" "Captain, I have Admiral Byrd standing by."
+    pauseMessage
     
     drawMessage "Abrahams" "Onscreen."
+    pauseMessage
 
     drawMessage "Ambrose" "Aye sir. Onscreen."
+    pauseMessage
 
     drawMessage "Abrahams" "Admiral, no life signs at the outpost..."
+    pauseMessage
+
     drawMessage "Abrahams" "...we are downloading what we can from their computers..."
+    pauseMessage
 
     drawMessage "Byrd" "I said report back and not to do anything else!"
+    pauseMessage
+
     drawMessage "Byrd" "Damn it John!"
+    pauseMessage
 
     drawMessage "Simons" "Captain! The sensor anomaly, it's moving closer."
+    pauseMessage
 
     drawMessage "Byrd" "What sensor anomaly?!"
+    pauseMessage
 
     drawMessage "Abrahams" "We've picked up some anomaly on our sensors..."
+    pauseMessage
+
     drawMessage "Abrahams" "...Mr Thomas if you please."
+    pauseMessage
 
     drawMessage "Thomas" "Admiral, sensors indicate a solid mass but only for a fraction of a second."
+    pauseMessage
+
     drawMessage "Thomas" "I am also picking up neutronic radiation."
+    pauseMessage
+
     drawMessage "Thomas" "It's like there's a sigularity near by..."
+    pauseMessage
 
     drawMessage "Byrd" "Damn it John, why'd you have to download that data?"
+    pauseMessage
 
     drawMessage "Abrahams" "Rich? Am I missing something here?"
+    pauseMessage
 
     SCREEN_REDRAW=0
 
@@ -164,8 +187,10 @@ function storyOutpost3366Progress2OmegaDoom()
     drawMenu 0 1
 
     drawMessage "Thomas" "Captain, I'm reading a sigularity forming."
+    pauseMessage
     
     drawMessage "Abrahams" "Onscreen Mr Thomas."
+    pauseMessage
 
     clearView
     LOCATION_TITLE="UNKNOWN"
@@ -173,21 +198,35 @@ function storyOutpost3366Progress2OmegaDoom()
     shipOmegaDoomExteriaBlinkAppear
     sleep 2
 
+    drawHUD
+    drawMenu 0 1
+
     drawMessage "Simons" "It just appeared out of nowhere!"
+    pauseMessage
 
     drawMessage "Abrahams" "What the hell kind of ship is that?!"
+    pauseMessage
 
     drawMessage "Thomas" "Unknown Captain."
+    pauseMessage
+
     drawMessage "Thomas" "But its the source of the neutronic radiation."
+    pauseMessage
 
     drawMessage "Byrd" "They call it the Omega Doom..."
+    pauseMessage
+
     drawMessage "Byrd" "...John, I'm sorry. This is out of my control."
+    pauseMessage
 
     LOCATION_TITLE="OMEGA DOOM"
     drawLocationTitle
+
     drawMessage "Abrahams" "What is it Rich? What is the Omega Doom?"
+    pauseMessage
 
     drawMessage "Byrd" "May God welcome you all. Byrd out."
+    pauseMessage
 
     STORY_PROGRESS_FILE=$UNIVERSE_PATH/federation/story/outpost3366/progress3
     STORY_PROGRESS="storyOutpost3366Progress3"

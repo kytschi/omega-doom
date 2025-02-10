@@ -18,6 +18,7 @@ source $SRC_PATH/hud.sh
 source $SRC_PATH/screen.sh
 
 SHIELDS=100
+SHIELDS_UP=0
 MESSAGE_SPEED=5
 MESSAGE_PAUSE=1
 

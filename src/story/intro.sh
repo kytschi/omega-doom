@@ -18,35 +18,61 @@ function storyIntroProgress1()
     drawMenu 0 0
     sleep 1
     menuItem $MENU_START_Y "1" "Incoming Hail" 1
+    pauseMessage
     
     drawMessage "Ambrose" "Priority One message from Admiral Byrd sir."
+    pauseMessage
     
     drawMessage "Abrahams" "Onscreen."
+    pauseMessage
+
     drawMessage "Abrahams" "Admiral, I hope this isn't bad news?"
+    pauseMessage
+
     drawMessage "Abrahams" "My crew is in dire need of some R an..."
+    pauseMessage
 
     drawMessage "Byrd" "Sorry John, you'll have to delay that."
+    pauseMessage
+
     drawMessage "Byrd" "We've lost contact with a research team at outpost 3366."
+    pauseMessage
     
     drawMessage "Abrahams" "Output 3366, I don't recall it?"
+    pauseMessage
     
     drawMessage "Byrd" "You wouldn't, strictly for top brass eyes only John."
+    pauseMessage
+
     drawMessage "Byrd" "Your our closest Starship I'm afraid."
+    pauseMessage
+
     drawMessage "Byrd" "Report to the co-ordinates 663993 691216."
+    pauseMessage
     
     drawMessage "Abrahams" "Sector 663993, Admiral that's on the Rosia Empire border?!"
+    pauseMessage
 
     drawMessage "Byrd" "I am well aware of that Captain!"
-    drawMessage "Byrd" "Report back when you've arrived at the outpost."    
+    pauseMessage
+
+    drawMessage "Byrd" "Report back when you've arrived at the outpost."
+    pauseMessage
 
     drawMessage "Abrahams" "But Rich, the treaty? They'll see this as an act of..."
+    pauseMessage
 
     drawMessage "Byrd" "You have your order's John...God speed."
+    pauseMessage
+
     drawMessage "Byrd" "Byrd out."
+    pauseMessage
 
     drawMessage "Abrahams" "Helm..."
+    pauseMessage
 
     drawMessage "Cyrus" "Aye sir."
+    pauseMessage
 
     STORY_PROGRESS_FILE=$SRC_PATH/story/intro
 	STORY_PROGRESS="storyIntroProgress2"
@@ -104,15 +130,22 @@ function storyIntroProgress2()
 function storyIntroProgress2NavLock()
 {
     drawMessage "Cyrus" "Captain, the Admiral said to go to the outpost in Federation space on Rosia border."
+    pauseMessage
 
     drawMessage "Abrahams" "Your right Cyrus."
+    pauseMessage
+
     drawMessage "Abrahams" "Set a course for 663993 691216 in Federation space on Rosia border. Maximum warp."
+    pauseMessage
 }
 
 function storyIntroProgress2MenuLock()
 {
     drawMessage "Abrahams" "I don't need $1 right now."
+    pauseMessage
+
     drawMessage "Abrahams" "Set a course for 663993 691216 in Federation space on Rosia border. Maximum warp."
+    pauseMessage
 }
 
 function storyIntroProgress3()

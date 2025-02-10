@@ -11,8 +11,7 @@ function drawLocation()
 
 function drawLocationTitle()
 {
-	#animateTitle "$LOCATION_TITLE"
-	nothing=1
+	animateTitle "$LOCATION_TITLE"
 }
 
 function animateTitle()
@@ -23,9 +22,9 @@ function animateTitle()
 
 	title=$1
 
-	if [[ $LOCATION_SECTOR ]];then
-		title="[$LOCATION_SECTOR] $title "
-	fi
+	# if [[ $LOCATION_SECTOR ]];then
+	# 	title="[$LOCATION_SECTOR] $title "
+	# fi
 
 	if [[ $PRE_LOCATION_TITLE ]];then
 		printf "\e[0;30m  $PRE_LOCATION_TITLE  \e[0m"
@@ -144,7 +143,11 @@ function drawMessage()
 
 	tput cup $y $x
 	printf "\e[0;40;0m \e[0m"
+}
 
+
+function pauseMessage()
+{
 	# Pause Message
 	if [[ $MESSAGE_PAUSE == 1 ]]; then
 		read -rsn1

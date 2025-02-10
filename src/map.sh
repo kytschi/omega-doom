@@ -22,9 +22,9 @@ function drawQuadrantMap()
 	mapItem 12 33 "Federation" 0 2
 	mapItem 14 76 "Rosia Empire" 0 3
 	mapItem 19 4 "Aris Republic" 0 4
-	mapItem 25 20 "Garis Republic" 0 5
-	mapItem 23 48 "Stovacor" 0 6
-	mapItem 29 48 "House of Moong" 0 7
+	mapItem 23 45 "Garis Republic" 0 5
+	mapItem 25 18 "Stovacor" 0 6
+	mapItem 29 45 "House of Moong" 0 7
 	mapItem 17 48 "The Void" 0 8
 
 	MENU=("1:Kazaria Syndicate:0" "2:Federation:0" "3:Rosia Empire:0" "4:Aris Republic:0" "5:Garis Republic:0" "6:Stovacor:0" "7:House of Moong:0" "8:The Void:0")

@@ -58,11 +58,11 @@ function drawHUD()
 	end_padding="   "
 	start_stats_y=$((rows-10))
 	tput cup $start_stats_y $((HUD_COL+MENU_PAD))
-	printf "\e[38;5;83mSECTOR:\e[0m    %s$end_padding" $LOCATION_SECTOR
+	printf "SECTOR    \e[1;37m$LOCATION_SECTOR\e[0m$end_padding" 
 
 	start_stats_y=$((start_stats_y+1))
 	tput cup $start_stats_y $((HUD_COL+MENU_PAD))
-	printf "\e[38;5;83mLOCATION:\e[0m  %s$end_padding" $LOCATION_TITLE
+	printf "LOCATION  \e[1;37m$LOCATION_TITLE\e[0m$end_padding"
 
 	if (( SHOW_STATS== 1 )); then
 		updateShields $SHIELDS
@@ -151,9 +151,27 @@ function updateShields()
 
 	end_padding="   "
 
-	if (( SHIELDS < 10 )); then
-		printf "\e[38;5;83mSHIELDS:\e[0m\e[0;91m   %d%%\e[0m$end_padding" $SHIELDS
+	if (( SHIELDS <= 80 )); then
+		printf "SHIELDS   \e[1;36m%d%%\e[0m" $SHIELDS
+	elif (( SHIELDS <= 60 )); then
+		printf "SHIELDS   \e[1;34m%d%%\e[0m" $SHIELDS
+	elif (( SHIELDS <= 40 )); then
+		printf "SHIELDS   \e[1;33m%d%%\e[0m" $SHIELDS
+	elif (( SHIELDS <= 20 )); then
+		printf "SHIELDS   \e[1;31m%d%%\e[0m" $SHIELDS
 	else
-		printf "\e[38;5;83mSHIELDS:\e[0m   %d%%$end_padding" $SHIELDS
+		printf "SHIELDS   \e[1;32m%d%%\e[0m" $SHIELDS
 	fi
+
+	if (( SHIELDS == 0 )); then
+		SHIELDS_UP=0
+	fi
+
+	if (( SHIELDS_UP == 1)); then
+		printf " \e[1;32m[UP]\e[0m  "
+	else
+		printf " \e[1;31m[DOWN]\e[0m"
+	fi
+
+	printf " $end_padding"
 }

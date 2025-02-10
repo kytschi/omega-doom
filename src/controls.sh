@@ -36,6 +36,9 @@ function load()
 					SH)
 						SHIELDS=${splits[1]}
 						;;
+					SHU)
+						SHIELDS_UP=${splits[1]}
+						;;
 					SP)
 						STORY_PROGRESS=${splits[1]}
 						;;
@@ -139,6 +142,7 @@ function save()
 	TO_SAVE+=("MS $MESSAGE_SPEED")
 	TO_SAVE+=("MP $MESSAGE_PAUSE")
 	TO_SAVE+=("SH $SHIELDS")
+	TO_SAVE+=("SHU $SHIELDS_UP")
 	TO_SAVE+=("SP $STORY_PROGRESS")
 	TO_SAVE+=("SPF $STORY_PROGRESS_FILE")
 

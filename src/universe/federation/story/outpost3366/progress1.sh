@@ -13,8 +13,10 @@ function storyOutpost3366Progress1()
     SCREEN_REDRAW=0
 
 	drawMessage "Simons" "Captain, thats a Kazaria Syndicate outpost."
+    pauseMessage
 
     drawMessage "Abrahams" "What the hell is a Kazarian outpost doing in Federation space on the Rosia border?"
+    pauseMessage
     
     storyOutpost3366Progress1Sub
 }
@@ -83,9 +85,16 @@ function storyOutpost3366Progress1Hail()
     menuItem $((MENU_START_Y+1)) "1" "Hail the Outpost" 1
     
     drawMessage "Ambrose" "Outpost 3366, this is the SS Liberty."
+    pauseMessage
+
     drawMessage "Ambrose" "Outpost 3366, this is the SS Liberty, please respond."
+    pauseMessage
+
     drawMessage "Ambrose" "Outpost 3366, please respond."
+    pauseMessage
+
     drawMessage "Ambrose" "Captain, there is no response."
+    pauseMessage
 
     STORY_PROGRESS_FILE=$UNIVERSE_PATH/federation/story/outpost3366/progress1
     STORY_PROGRESS="storyOutpost3366Progress1Scan"
@@ -103,6 +112,7 @@ function storyOutpost3366Progress1Scan()
     drawMenu 1 0
 
     drawMessage "Abrahams" "Number one, scan the outpost for life signs."
+    pauseMessage
 
     menuItem $((MENU_START_Y+2)) "s" "Sensors" 0 1
 
@@ -256,30 +266,52 @@ function storyOutpost3366Progress1ScanOutpost()
 function storyOutpost3366Progress1ScanedOutpost()
 {
     drawMessage "Thomas" "But I am reading an anomaly on sensors."
+    pauseMessage
+
     drawMessage "Thomas" "Baring 20 08 74."
+    pauseMessage
 
     drawMessage "Abrahams" "Mr Simons you seeing anything?"
+    pauseMessage
 
     drawMessage "Simons" "Negative Captain...wait!"
+    pauseMessage
 
     drawMessage "Abrahams" "What is it?!"
+    pauseMessage
 
     drawMessage "Simons" "I'm not sure Captain."
+    pauseMessage
+
     drawMessage "Simons" "First there was a sensor reading then there wasn't."
+    pauseMessage
 
     drawMessage "Abrahams" "Cloaked ship?"
+    pauseMessage
 
     drawMessage "Thomas" "Doubtful."
+    pauseMessage
+
     drawMessage "Thomas" "Sensors are getting a strong reading but only for a fraction of a second."
+    pauseMessage
 
     drawMessage "Simons" "Captain! There it is again!"
+    pauseMessage
 
     drawMessage "Abrahams" "Shields up!"
+    pauseMessage
+
     drawMessage "Abrahams" "I'm not taking any chances."
+    pauseMessage
+
     drawMessage "Abrahams" "Mr Thomas, link with the outpost's computer..."
+    pauseMessage
+
     drawMessage "Abrahams" "...and start downloading whatever you can."
+    pauseMessage
     
     drawMessage "Thomas" "Aye Captain."
+    pauseMessage
     
     SCREEN_REDRAW=0
 
