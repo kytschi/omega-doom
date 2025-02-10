@@ -192,12 +192,13 @@ function storyOutpost3366Progress2OmegaDoom()
     drawMessage "Abrahams" "Onscreen Mr Thomas."
     pauseMessage
 
-    clearView
+    tput clear
     LOCATION_TITLE="UNKNOWN"
     MESSAGE_CURRENT_CHAR=""
     shipOmegaDoomExteriaBlinkAppear
     sleep 2
-
+    
+    MESSAGE_BOX_UP=0
     drawHUD
     drawMenu 0 1
 
