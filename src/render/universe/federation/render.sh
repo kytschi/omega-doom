@@ -19,13 +19,13 @@ if (( `ls $RENDER_PATH/*.png 2>/dev/null | wc -l` )); then
 				$src \
 				-background none \
 				-layers flatten \
-				jpg:- | jp2a - --width=200 --color > $GFX_PATH$desc.gfx
+				jpg:- | jp2a - --width=110 --color > $GFX_PATH$desc.gfx
 		else
 			convert \
 				$src \
 				-background none \
 				-layers flatten \
-				jpg:- | jp2a - --width=130 --color > $GFX_PATH$desc.gfx
+				jpg:- | jp2a - --width=120 --color > $GFX_PATH$desc.gfx
 		fi
 	done
 fi

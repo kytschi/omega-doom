@@ -30,6 +30,9 @@ function load()
 					MS)
 						MESSAGE_SPEED=${splits[1]}
 						;;
+					MP)
+						MESSAGE_PAUSE=${splits[1]}
+						;;
 					SH)
 						SHIELDS=${splits[1]}
 						;;
@@ -85,7 +88,7 @@ function optionsMenu()
 	y=4
 
 	tput cup $y $x
-	printf "\e[38;5;15m[\e[38;5;208mm\e[0m\e[38;5;15m] Set message scroll speed"
+	printf "\e[38;5;15m[\e[38;5;208mm\e[0m\e[38;5;15m] Set message settings"
 	y=$((y+1))
 
 	tput cup $y $x
@@ -134,6 +137,7 @@ function save()
 {
 	TO_SAVE=()
 	TO_SAVE+=("MS $MESSAGE_SPEED")
+	TO_SAVE+=("MP $MESSAGE_PAUSE")
 	TO_SAVE+=("SH $SHIELDS")
 	TO_SAVE+=("SP $STORY_PROGRESS")
 	TO_SAVE+=("SPF $STORY_PROGRESS_FILE")
@@ -157,60 +161,95 @@ function save()
 
 function setMessageSpeed()
 {
+	tput clear
+	tput cup 2 5
+	
 	x=5
 	tput cup 4 $x
-	printf "\e[38;5;15m[\e[38;5;208mm\e[0m\e[38;5;15m] \e[38;5;32mSet message scroll speed\e[0m"
+	printf "\e[38;5;15m[\e[38;5;208mm\e[0m\e[38;5;15m] \e[38;5;32mSet message settings\e[0m"
 
 	y=8
 	tput cup $y $x
 	printf "\e[38;5;15m[\e[38;5;208m1\e[0m\e[38;5;15m] Slowest"
+	if [[ $MESSAGE_SPEED == 9 ]]; then
+		printf " \e[1;32m[SELECTED]\e[0m"
+	fi
 	y=$((y+1))
 
 	tput cup $y $x
 	printf "\e[38;5;15m[\e[38;5;208m2\e[0m\e[38;5;15m] Slow"
+	if [[ $MESSAGE_SPEED == 7 ]]; then
+		printf " \e[1;32m[SELECTED]\e[0m"
+	fi
 	y=$((y+1))
 
 	tput cup $y $x
 	printf "\e[38;5;15m[\e[38;5;208m3\e[0m\e[38;5;15m] Normal"
+	if [[ $MESSAGE_SPEED == 5 ]]; then
+		printf " \e[1;32m[SELECTED]\e[0m"
+	fi
 	y=$((y+1))
 
 	tput cup $y $x
 	printf "\e[38;5;15m[\e[38;5;208m4\e[0m\e[38;5;15m] Fast"
+	if [[ $MESSAGE_SPEED == 3 ]]; then
+		printf " \e[1;32m[SELECTED]\e[0m"
+	fi
 	y=$((y+1))
 
 	tput cup $y $x
 	printf "\e[38;5;15m[\e[38;5;208m5\e[0m\e[38;5;15m] Fastest"
+	if [[ $MESSAGE_SPEED == 1 ]]; then
+		printf " \e[1;32m[SELECTED]\e[0m"
+	fi
 	y=$((y+1))
 
 	tput cup $y $x
-	printf "\e[38;5;15m[\e[38;5;208mc\e[0m\e[38;5;15m] Cancel"
+	printf "\e[38;5;15m[\e[38;5;208mp\e[0m\e[38;5;15m] Press key for next message"
+	if [[ $MESSAGE_PAUSE == 1 ]]; then
+		printf " \e[1;32m[ENABLED]\e[0m"
+	else
+		printf " \e[1;33m[DISABLED]\e[0m"
+	fi
+	y=$((y+1))
+
+	tput cup $y $x
+	printf "\e[38;5;15m[\e[38;5;208md\e[0m\e[38;5;15m] Done"
 
 	while true; do
 	    read -t 0.01 -s -n 10000 key
 
 		case "$key" in
-			[cC])
+			[dD])
 				break
 				;;
 			[1])
-				MESSAGE_SPEED=0.09
-				break
+				MESSAGE_SPEED=9
+				setMessageSpeed
 				;;
 			[2])
-				MESSAGE_SPEED=0.07
-				break
+				MESSAGE_SPEED=7
+				setMessageSpeed
 				;;
 			[3])
-				MESSAGE_SPEED=0.05
-				break
+				MESSAGE_SPEED=5
+				setMessageSpeed
 				;;
 			[4])
-				MESSAGE_SPEED=0.03
-				break
+				MESSAGE_SPEED=3
+				setMessageSpeed
 				;;
 			[5])
-				MESSAGE_SPEED=0.01
-				break
+				MESSAGE_SPEED=1
+				setMessageSpeed
+				;;
+			[pP])
+				if [[ $MESSAGE_PAUSE == 1 ]]; then
+					MESSAGE_PAUSE=0
+				else
+					MESSAGE_PAUSE=1
+				fi
+				setMessageSpeed
 				;;
 		esac
 	done

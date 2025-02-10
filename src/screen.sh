@@ -11,7 +11,8 @@ function drawLocation()
 
 function drawLocationTitle()
 {
-	animateTitle "$LOCATION_TITLE"
+	#animateTitle "$LOCATION_TITLE"
+	nothing=1
 }
 
 function animateTitle()
@@ -23,7 +24,7 @@ function animateTitle()
 	title=$1
 
 	if [[ $LOCATION_SECTOR ]];then
-		title="$title <$LOCATION_SECTOR>"
+		title="[$LOCATION_SECTOR] $title "
 	fi
 
 	if [[ $PRE_LOCATION_TITLE ]];then
@@ -138,12 +139,18 @@ function drawMessage()
 		tput cup $y $x
 		printf "\e[$mode;47;30m${message:$iLoop:1}\e[0m"
 		x=$((x+1))
-		sleep $MESSAGE_SPEED
+		sleep $((MESSAGE_SPEED/100))
 	done
 
 	tput cup $y $x
 	printf "\e[0;40;0m \e[0m"
-	sleep 1
+
+	# Pause Message
+	if [[ $MESSAGE_PAUSE == 1 ]]; then
+		read -rsn1
+	else
+		sleep 1
+	fi
 }
 
 function clearView()
@@ -188,11 +195,21 @@ function drawTitle()
 	SCREEN_REDRAW=1
 
 	cols=`tput cols`
-    x=$((cols/3))
-    x=$((x-13))
-    
+	
+	if (( cols <= 104 )); then
+		x=1
+		y=1
+		tput cup $y $x
+		printf "\e[0;31mConsole resolution too small\n\n\e[0m"
+		tput cnorm
+		exit 1
+	fi
+
+	x=$((cols/2))
+	x=$((x-50))
+						
 	for (( iLoop=1; iLoop<=7; iLoop++ )); do
-		y=5
+		y=2
 		while IFS= read -r line; do
 			tput cup $y $x
 			printf '%s\n' "$line"
@@ -203,7 +220,7 @@ function drawTitle()
 
 	x=$((cols/2))
     x=$((x-4))
-	TITLE_MENU_Y=$((y+3))
+	TITLE_MENU_Y=$y
 	y=$TITLE_MENU_Y
 
 	if [ -f "$BASE_PATH/.save" ]; then
@@ -260,10 +277,10 @@ function hideTitle()
 		echo "                                 "
 	done
 
-	x=$((cols/3))
-    x=$((x-13))
+	x=$((cols/2))
+	x=$((x-50))
 	for (( iLoop=7; iLoop>=1; iLoop-- )); do
-		y=5
+		y=2
 		while IFS= read -r line; do
 			tput cup $y $x
 			printf '%s\n' "$line"
@@ -276,7 +293,6 @@ function hideTitle()
 function drawGfx()
 {
 	tput cup 0 0
-
 	file=$1
 
 	rows=`tput lines`

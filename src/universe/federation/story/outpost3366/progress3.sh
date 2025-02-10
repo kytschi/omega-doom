@@ -109,7 +109,7 @@ function storyOutpost3366Progress3DamageReport()
     drawMessage "Peters" "Whatever that beam was..."
     drawMessage "Peters" "...it completely ripped through our shields like butter!"
     drawMessage "Peters" "They've completely collapsed the warp field."
-    drawMessage "Peters" "Shields took a beating but are holding at 50 percent efficiency."
+    drawMessage "Peters" "Shields took a beating but are holding at 40 percent efficiency."
     drawMessage "Peters" "There are reports from all over the ship that systems are offline..."
     drawMessage "Peters" "...and in some sections they reporting catastrophic structural damages."
     drawMessage "Peters" "Most the damage is confined to the port side."

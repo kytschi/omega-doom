@@ -3,7 +3,7 @@
 HUD_WIDTH=50
 HUD_COL=0
 MENU_PAD=5
-MENU_START_Y=5
+MENU_START_Y=2
 SUB_MENU_START_Y=12
 SHOW_STATS=1
 
@@ -54,6 +54,15 @@ function drawHUD()
 				break
 		fi
 	done
+
+	end_padding="   "
+	start_stats_y=$((rows-10))
+	tput cup $start_stats_y $((HUD_COL+MENU_PAD))
+	printf "\e[38;5;83mSECTOR:\e[0m    %s$end_padding" $LOCATION_SECTOR
+
+	start_stats_y=$((start_stats_y+1))
+	tput cup $start_stats_y $((HUD_COL+MENU_PAD))
+	printf "\e[38;5;83mLOCATION:\e[0m  %s$end_padding" $LOCATION_TITLE
 
 	if (( SHOW_STATS== 1 )); then
 		updateShields $SHIELDS
@@ -137,10 +146,14 @@ function menuItem()
 function updateShields()
 {
 	SHIELDS=$1
-	tput cup 2 $((HUD_COL+MENU_PAD))
+	start_stats_y=$((rows-8))
+	tput cup $start_stats_y $((HUD_COL+MENU_PAD))
+
+	end_padding="   "
+
 	if (( SHIELDS < 10 )); then
-		printf '\e[38;5;83mSHIELDS\e[0m \e[0;91m%d%%\e[0m  ' $SHIELDS
+		printf "\e[38;5;83mSHIELDS:\e[0m\e[0;91m   %d%%\e[0m$end_padding" $SHIELDS
 	else
-		printf '\e[38;5;83mSHIELDS\e[0m %d%%  ' $SHIELDS
+		printf "\e[38;5;83mSHIELDS:\e[0m   %d%%$end_padding" $SHIELDS
 	fi
 }

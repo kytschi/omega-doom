@@ -12,13 +12,13 @@ function storyIntroProgress1()
     menuItem $MENU_START_Y "c" "Communications" 1
     
     drawMessage "Ambrose" "Captain, incoming hail from Federation Command."
-    sleep 1 1
-
+    #sleep 1 1
+    
     MENU=("1:Incoming Hail:0")
     drawMenu 0 0
     sleep 1
     menuItem $MENU_START_Y "1" "Incoming Hail" 1
-
+    
     drawMessage "Ambrose" "Priority One message from Admiral Byrd sir."
     
     drawMessage "Abrahams" "Onscreen."
@@ -37,7 +37,7 @@ function storyIntroProgress1()
     drawMessage "Abrahams" "Sector 663993, Admiral that's on the Rosia Empire border?!"
 
     drawMessage "Byrd" "I am well aware of that Captain!"
-    drawMessage "Byrd" "Report back when you've arrived at the outpost."
+    drawMessage "Byrd" "Report back when you've arrived at the outpost."    
 
     drawMessage "Abrahams" "But Rich, the treaty? They'll see this as an act of..."
 

@@ -130,20 +130,20 @@ function federationOutPost3366Explosion()
 function drawFederationMapGfx()
 {
 	clearView
-	start_row=2
+	start_row=0
 	while IFS= read -r line; do
 		tput cup $start_row 0
 		printf '%s' "$line"
 		start_row=$((start_row+1))
 	done < $UNIVERSE_PATH/federation/sector/federation-map.gfx
 
-	mapItem 2 4 "Earth" 0
-	mapItem 5 42 "Yidow Prime" 0
-	mapItem 4 91 "Fasbon Prime" 0
-	mapItem 14 12 "Cratol Moon" 0
-	mapItem 26 14 "Furia Prime" 0
-	mapItem 24 57 "Opalus Prime" 0
-	mapItem 32 104 "OutPost 3366" 0
+	mapItem 1 13 "Earth" 0 1
+	mapItem 5 36 "Yidow Prime" 0 2
+	mapItem 6 83 "Fasbon Prime" 0 3	
+	mapItem 9 1 "Cratol Moon" 0 4
+	mapItem 22 12 "Furia Prime" 0 5
+	mapItem 16 44 "Opalus Prime" 0 6
+	mapItem 22 84 "OutPost 3366" 0 7
 	
 	MENU=("1:Earth:0" "2:Yidow Prime:0" "3:Fasbon Prime:0" "4:Cratol Moon:0" "5:Furia Prime:0" "6:Opalus Prime:0" "7:OutPost 3366:0")
     drawMenu 0 1

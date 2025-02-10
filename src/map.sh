@@ -18,14 +18,14 @@ function drawQuadrantMap()
 
 	start_row=6
 
-	mapItem 10 54 "Kazaria Syndicate" 0
-	mapItem 21 56 "Federation" 0
-	mapItem 24 103 "Rosia Empire" 0
-	mapItem 36 72 "Aris Republic" 0
-	mapItem 44 70 "Garis Republic" 0
-	mapItem 39 46 "Stovacor" 0
-	mapItem 30 30 "House of Moong" 0
-	mapItem 28 74 "The Void" 0
+	mapItem 3 29 "Kazaria Syndicate" 0 1
+	mapItem 12 33 "Federation" 0 2
+	mapItem 14 76 "Rosia Empire" 0 3
+	mapItem 19 4 "Aris Republic" 0 4
+	mapItem 25 20 "Garis Republic" 0 5
+	mapItem 23 48 "Stovacor" 0 6
+	mapItem 29 48 "House of Moong" 0 7
+	mapItem 17 48 "The Void" 0 8
 
 	MENU=("1:Kazaria Syndicate:0" "2:Federation:0" "3:Rosia Empire:0" "4:Aris Republic:0" "5:Garis Republic:0" "6:Stovacor:0" "7:House of Moong:0" "8:The Void:0")
     drawMenu 0 1
@@ -72,13 +72,20 @@ function mapItem()
 	x=$2
 	label=$3
 	active=$4
+	menu_item=$5
 
 	if ((active==1)); then
 		label="\e[38;5;32m$label\e[0m"
 	fi
 
+	count=$label
+	if ((menu_item)); then
+		count="[$menu_item] $label"
+		label="\e[38;5;15m[\e[38;5;208m$menu_item\e[0m\e[38;5;15m] $label"
+	fi
+
 	line=""
-	for (( iLoop=0; iLoop<${#label}; iLoop++ )); do
+	for (( iLoop=0; iLoop<${#count}; iLoop++ )); do
 		line="$line "
 	done
 

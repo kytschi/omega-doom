@@ -18,7 +18,8 @@ source $SRC_PATH/hud.sh
 source $SRC_PATH/screen.sh
 
 SHIELDS=100
-MESSAGE_SPEED=0.05
+MESSAGE_SPEED=5
+MESSAGE_PAUSE=1
 
 # Default story progress
 STORY_PROGRESS_FILE=$SRC_PATH/story/intro

@@ -18,6 +18,6 @@ if (( `ls $RENDER_PATH/*.png 2>/dev/null | wc -l` )); then
 			$src \
 			-background none \
 			-layers flatten \
-			jpg:- | jp2a - --width=150 --color > $GFX_PATH$desc.gfx
+			jpg:- | jp2a - --width=100 --color > $GFX_PATH$desc.gfx
 	done
 fi
