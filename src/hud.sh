@@ -2,6 +2,7 @@
 
 HUD_WIDTH=50
 HUD_COL=0
+HUD_ROWS=0
 MENU_PAD=5
 MENU_START_Y=2
 SUB_MENU_START_Y=12
@@ -12,8 +13,8 @@ function drawHUD()
 	cols=`tput cols`
 	HUD_COL=$((cols-HUD_WIDTH))
 
-	rows=`tput lines`
-	rows=$((rows-1))
+	HUD_ROWS=`tput lines`
+	#HUD_ROWS=$((HUD_ROWS-1))
 
 	tput cup 5 $HUD_COL
 	
@@ -24,21 +25,21 @@ function drawHUD()
 	tput cup 0 $HUD_COL
 	printf "\e[38;5;0m$line\e[0m"
 
+	# iLoop=0
+	# while true; do
+	# 	tput cup 0 $((HUD_COL+iLoop))
+	# 	printf "\e[38;5;83m=\e[0m"
+
+	# 	tput cup $HUD_ROWS $((HUD_COL+iLoop))
+	# 	printf "\e[38;5;83m=\e[0m"
+
+	# 	iLoop=$((iLoop+1))
+	# 	if (( iLoop == HUD_WIDTH )); then
+	# 		break
+	# 	fi
+	# done
+
 	iLoop=0
-	while true; do
-		tput cup 0 $((HUD_COL+iLoop))
-		printf "\e[38;5;83m=\e[0m"
-
-		tput cup $rows $((HUD_COL+iLoop))
-		printf "\e[38;5;83m=\e[0m"
-
-		iLoop=$((iLoop+1))
-		if (( iLoop == HUD_WIDTH )); then
-			break
-		fi
-	done
-
-	iLoop=1
 	while true; do
 		tput cup $iLoop $HUD_COL
 		printf "\e[38;5;0m$line\e[0m"
@@ -46,17 +47,17 @@ function drawHUD()
 		tput cup $iLoop $HUD_COL
 		printf "\e[38;5;83m|\e[0m"
 
-		tput cup $iLoop $((HUD_COL+HUD_WIDTH))
-		printf "\e[38;5;83m|\e[0m"
+		# tput cup $iLoop $((HUD_COL+HUD_WIDTH))
+		# printf "\e[38;5;83m|\e[0m"
 
 		iLoop=$((iLoop+1))
-		if (( iLoop == rows )); then
+		if (( iLoop == HUD_ROWS )); then
 				break
 		fi
 	done
 
 	end_padding="   "
-	start_stats_y=$((rows-10))
+	start_stats_y=$((HUD_ROWS-10))
 	tput cup $start_stats_y $((HUD_COL+MENU_PAD))
 	printf "SECTOR    \e[1;37m$LOCATION_SECTOR\e[0m$end_padding" 
 
@@ -65,7 +66,7 @@ function drawHUD()
 	printf "LOCATION  \e[1;37m$LOCATION_TITLE\e[0m$end_padding"
 
 	if (( SHOW_STATS== 1 )); then
-		updateShields $SHIELDS
+		updateTactical "$TACTICAL_STATUS"
 	fi
 }
 
@@ -143,22 +144,43 @@ function menuItem()
 	PREV_MENU_Y=$y
 }
 
+function updateTactical()
+{
+	TACTICAL_STATUS=$1
+
+	SHIELDS_UP=0
+	if [[ "$TACTICAL_STATUS" != "NORMAL" ]]; then
+		SHIELDS_UP=1
+	fi
+
+	tput cup $((HUD_ROWS-8)) $((HUD_COL+MENU_PAD))
+
+	if [[ "$TACTICAL_STATUS" == "RED ALERT" ]]; then
+		printf "TACTICAL  \e[1;31m$TACTICAL_STATUS\e[0m$end_padding"
+	elif [[ "$TACTICAL_STATUS" == "YELLOW ALERT" ]]; then
+		printf "TACTICAL  \e[1;33m$TACTICAL_STATUS\e[0m$end_padding"
+	else
+		printf "TACTICAL  \e[1;32m$TACTICAL_STATUS\e[0m$end_padding"
+	fi
+	
+	updateShields $SHIELDS
+}
+
 function updateShields()
 {
 	SHIELDS=$1
-	start_stats_y=$((rows-8))
-	tput cup $start_stats_y $((HUD_COL+MENU_PAD))
+	tput cup $((HUD_ROWS-7)) $((HUD_COL+MENU_PAD))
 
 	end_padding="   "
 
-	if (( SHIELDS <= 80 )); then
-		printf "SHIELDS   \e[1;36m%d%%\e[0m" $SHIELDS
+	if (( SHIELDS <= 20 )); then
+		printf "SHIELDS   \e[1;31m%d%%\e[0m" $SHIELDS
+	elif (( SHIELDS <= 40 )); then
+		printf "SHIELDS   \e[1;33m%d%%\e[0m" $SHIELDS	
 	elif (( SHIELDS <= 60 )); then
 		printf "SHIELDS   \e[1;34m%d%%\e[0m" $SHIELDS
-	elif (( SHIELDS <= 40 )); then
-		printf "SHIELDS   \e[1;33m%d%%\e[0m" $SHIELDS
-	elif (( SHIELDS <= 20 )); then
-		printf "SHIELDS   \e[1;31m%d%%\e[0m" $SHIELDS
+	elif (( SHIELDS <= 80 )); then
+		printf "SHIELDS   \e[1;36m%d%%\e[0m" $SHIELDS
 	else
 		printf "SHIELDS   \e[1;32m%d%%\e[0m" $SHIELDS
 	fi

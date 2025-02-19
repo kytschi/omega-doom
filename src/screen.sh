@@ -100,7 +100,7 @@ function drawMessage()
 			line="$line="
 		done
 
-		for (( row=rows; row>=$((rows-23)); row-- )); do
+		for (( row=rows; row>=$((rows-18)); row-- )); do
 			tput cup $((row-1)) 0
 			printf "\e[38;5;83m$line\e[0m"
 
@@ -118,7 +118,7 @@ function drawMessage()
 		eval "char$character 2 $((MESSAGE_TOP_Y+2))"
 	fi
 
-	y=$((MESSAGE_TOP_Y+10))
+	y=$((MESSAGE_TOP_Y+9))
 	x=44
 
 	tput cup $y $x

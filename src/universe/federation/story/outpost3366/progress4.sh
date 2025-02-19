@@ -837,7 +837,7 @@ function storyOutpost3366Progress4ProbeDownload()
     drawMessage "Thomas" "Captain, the sensors and navigation computers are completely offline..."
     pauseMessage
 
-    drawMessage "Thomas" "...I'll not be able to launch the probe to anywhere 100 percent certain."
+    drawMessage "Thomas" "...I'll not be able to launch the probe to anywhere with a 100 percent accuracy."
     pauseMessage
 
     drawMessage "Abrahams" "Just use your best judgement Thomas."

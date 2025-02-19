@@ -39,6 +39,9 @@ function load()
 					SHU)
 						SHIELDS_UP=${splits[1]}
 						;;
+					TS)
+						TACTICAL_STATUS=${splits[1]}
+						;;
 					SP)
 						STORY_PROGRESS=${splits[1]}
 						;;

@@ -180,6 +180,9 @@ function storyOutpost3366Progress2OmegaDoom()
 {
     MENU_BACK=""
     AT_LOCATION="atFederationOutPost3366"
+
+    updateShields 100
+
     drawScreen
     SCREEN_REDRAW=0
 

@@ -8,29 +8,42 @@ function storyOutpost3366Progress3()
     OMEGA_WEAPONS=1
 
     SCREEN_REDRAW=1
+
     updateShields 100
+
     AT_LOCATION="shipOmegaDoomExteria"
+    LOCATION_SECTOR="FEDERATION"
     drawScreen
     SCREEN_REDRAW=0
 
+    drawMessage "Abrahams" "RED ALERT!"
+    updateTactical "RED ALERT"
+    pauseMessage
+    
     drawMessage "Thomas" "Captain! I'm reading a massive build up of neutronic radiation."
     pauseMessage
 
     drawMessage "Thomas" "It's being focused in our direction..."
     pauseMessage
 
-    clearView
-    shipOmegaDoomExteriaBlinkFireCharging 1
+    shipOmegaDoomExteriaBlinkFireCharging
 
-    drawMessage "Abrahams" "ALL HANDS! BRACE FOR IMPACT!"
+    # SCREEN_REDRAW=1
+    # AT_LOCATION="shipOmegaDoomExteriaCharging"
+    # LOCATION_SECTOR="FEDERATION"
+    # drawScreen
+    # SCREEN_REDRAW=0
+
+    MESSAGE_BOX_UP=0
+    drawMessage "Abrahams" "ALL HANDS! BRACE FOR IMPACT!" 1
     pauseMessage
-
-    clearView
-    shipOmegaDoomExteriaBlinkFire 1
+    
+    shipOmegaDoomExteriaBlinkFire
 
     drawLocationTitle
-
-    updateShields 40
+    updateShields 40 1
+    MESSAGE_BOX_UP=0
+    drawHUD
 
     MENU=("c:Communications:0" "n:Navigation:0" "s:Sensors:0" "w:Weapons:0" "e:Engineering:0")
     drawMenu 1 0
